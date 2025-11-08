@@ -1,3 +1,371 @@
-.contenedor-footer{
-    background-color:bisque;
+/* A continuación una explicación línea por línea (solo lectura): */
+
+/* contenedor principal del footer: fondo, borde, padding y animación de entrada */
+.contenedor-footer { /* selector del contenedor principal del footer */
+    /* paleta basada en la navbar con contraste aumentado */
+    background: linear-gradient(180deg, rgba(255, 228, 196, 0.99) 0%, rgba(241, 218, 189, 1) 100%); /* gradiente vertical de color de fondo */
+    border-top: 1px solid rgba(95, 61, 34, 0.14); /* línea superior suave para separar del contenido anterior */
+    padding: 1.5rem 0; /* espacio vertical interno (arriba y abajo) */
+    position: relative; /* posicionamiento relativo para elementos absolutos hijos */
+    /* separación visual clara */
+    box-shadow: 0 -14px 40px rgba(95, 61, 34, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.92); /* sombra exterior sutil y iluminación interna */
+    border-left: 1px solid rgba(95, 61, 34, 0.05); /* borde izquierdo muy suave */
+    border-right: 1px solid rgba(95, 61, 34, 0.05); /* borde derecho muy suave */
+
+    /* animación de entrada */
+    animation: footerFadeIn 520ms cubic-bezier(.2, .9, .2, 1) both; /* aplica la keyframe footerFadeIn al cargar */
+}
+
+/* Layout: fila principal del footer con tres áreas (izq, centro, derecha) */
+.footer .container > .row.align-items-center { /* selector de la fila que contiene las 3 columnas */
+    display: flex; /* usa flexbox para alinear columnas */
+    align-items: center; /* centra verticalmente los elementos de la fila */
+    justify-content: space-between; /* separa las columnas ocupando todo el ancho */
+    gap: 6rem; /* crea un espacio entre las columnas para que se puedan separar */
+    flex-wrap: nowrap; /* evita que las columnas hagan wrap en escritorio, wrap es el comportamiento por defecto que tiene flexbox */
+}
+
+/* Área izquierda: logo + nombre, evitando que crezca */
+.footer .col-md-4.d-flex.align-items-center {
+    /* area izquierda (logo + nombre) */
+    display: flex; /* layout interno en fila */
+    align-items: center; /* centra verticalmente logo y texto */
+    gap: 1rem; /* separación entre logo y nombre */
+    flex: 0 0 auto; /* no crecer ni encogerse; mantener tamaño contenido */
+    min-width: 0; /* evita overflow causado por texto largo */
+}
+
+/* Centro: nav, crece para ocupar espacio disponible y tiene padding lateral */
+.footer .container > .row.align-items-center > .col-md-4:nth-child(2) {
+    display: flex; /* contenedor del nav */
+    justify-content: center; /* centra el nav horizontalmente */
+    flex: 1 1 50%; /* puede crecer y encogerse, base 50% */
+    padding-left: 2.5rem;   /* separación desde el logo hacia el centro */
+    padding-right: 2.5rem; /* separación derecha */
+    min-width: 260px; /* ancho mínimo para mantener legibilidad */
+    box-sizing: border-box; /* incluye padding en el cálculo de ancho */
+    align-items: center; /* alinea verticalmente elementos internos */
+}
+
+/* Derecha (redes): alinea a la derecha y no empuja el centro */
+.col-md-4.text-md-end {
+    display: flex; /* layout de la columna derecha */
+    justify-content: flex-end; /* alinea al final (derecha) */
+    align-items: center; /* centra verticalmente */
+    margin-left: 0; /* elimina margen sobrante */
+    flex: 0 0 auto; /* no crecer ni encogerse */
+}
+
+/* Tarjeta del logo para contraste: fondo blanco, sombra y borde */
+.logo-img {
+    background: rgba(99, 99, 78, 0.95); /* fondo casi blanco para destacar el logo */
+    padding: 10px; /* espacio interior alrededor de la imagen */
+    border-radius: 10px; /* esquinas redondeadas */
+    box-shadow: 14px 12px 36px rgba(0, 0, 0, 0.12); /* sombra pronunciada para "levantar" el logo */
+    border: 1px solid rgba(95, 61, 34, 0.12); /* borde sutil que liga con la paleta */
+    width: 120px; /* anchura fija para el logo */
+    height: auto; /* mantiene proporción */
+    object-fit: contain; /* asegura que la imagen no se deforme */
+    transform-origin: left center; /* origen de transformaciones en la izquierda */
+    transition: transform .32s cubic-bezier(.2, .9, .2, 1), box-shadow .32s ease; /* transición para hover */
+}
+
+/* Efecto hover del logo: elevar y suavemente agrandar */
+.logo-img:hover {
+    transform: translateY(-6px) scale(1.02); /* levanta y escala ligeramente al pasar el mouse */
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.16); /* sombra más grande en hover */
+}
+
+/* Nombre de la librería: tipografía y espaciado */
+.footer .navbar-brand {
+    color: #2b2b2b; /* color oscuro para el texto */
+    font-weight: 700; /* texto en negrita */
+    font-size: 1.15rem; /* tamaño de fuente */
+    letter-spacing: .3px; /* espaciado entre letras */
+    white-space: nowrap; /* evita que el nombre haga wrap */
+}
+
+/* Nav central: flex, separación entre enlaces y animación de entrada */
+.footer .nav {
+    display: flex; /* layout horizontal para la lista */
+    gap: 1.5rem; /* separación entre cada enlace */
+    align-items: center; /* centra verticalmente los enlaces */
+    justify-content: center; /* centra el conjunto */
+    flex-wrap: wrap; /* permite wrap en pantallas pequeñas */
+    padding: 0; /* elimina padding por defecto de lista */
+    margin: 0; /* elimina margin por defecto */
+    list-style: none; /* quita bullets */
+    animation: navFadeIn 520ms cubic-bezier(.2,.9,.2,1) both; /* animación de aparición */
+}
+
+/* Cada ítem del nav: animación y comportamiento inline-flex */
+.footer .nav-item {
+    display: inline-flex; /* comportamiento en línea pero con flex interno */
+    align-items: center; /* centra contenido */
+    justify-content: center; /* centra contenido horizontalmente */
+    border-radius: 8px; /* esquinas redondeadas alrededor del área del item */
+    overflow: visible; /* permite sombras y pseudo-elementos sobresalir */
+    animation: navItemPop .54s cubic-bezier(.2,.9,.2,1) both; /* animación de entrada por ítem */
+}
+
+/* enlaces estilizados: padding, transición y apariencia */
+.footer .nav-link {
+    position: relative; /* necesario para el pseudo-elemento ::after */
+    color: #4b4b4b; /* color base del enlace */
+    padding: .45rem .85rem; /* espacio interno para hacer el enlace más "clicable" */
+    transition: color .18s ease, transform .22s cubic-bezier(.2,.9,.2,1), background .2s ease, box-shadow .2s ease; /* transiciones suaves */
+    border-radius: 8px; /* esquinas redondeadas del enlace */
+    font-weight: 600; /* texto ligeramente en negrita */
+    letter-spacing: .2px; /* espaciado entre letras */
+    background: transparent; /* fondo transparente por defecto */
+}
+
+/* barra animada debajo del enlace: definida con pseudo-elemento ::after */
+.footer .nav-link::after {
+    content: ""; /* crea elemento vacío visual */
+    position: absolute; /* posicionamiento relativo al enlace */
+    left: 50%; /* centra horizontalmente */
+    bottom: 6px; /* distancia desde la base del enlace */
+    transform: translateX(-50%) scaleX(0); /* inicia colapsado (no visible) */
+    transform-origin: center; /* origen para la escala */
+    width: 56%; /* ancho de la barra relativa al enlace */
+    height: 3px; /* grosor de la barra */
+    border-radius: 3px; /* bordes redondeados de la barra */
+    background: linear-gradient(90deg, rgba(255,228,196,0.95), #d4a66a); /* gradiente de la barra */
+    transition: transform .28s cubic-bezier(.2,.9,.2,1); /* transición de escala para efecto "revelar" */
+    pointer-events: none; /* no interfiere con el hover/click del enlace */
+}
+
+/* Hover del enlace: color, elevación y mostrar la barra */
+.footer .nav-link:hover {
+    color: #2b2b2b; /* color más oscuro al pasar por encima */
+    transform: translateY(-4px); /* levanta el enlace ligeramente */
+    background: rgba(255,255,255,0.36); /* fondo semitransparente para resaltar */
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06); /* sombra sutil alrededor */
+}
+.footer .nav-link:hover::after {
+    transform: translateX(-50%) scaleX(1); /* expande la barra para mostrarse */
+}
+
+/* Estado activo del enlace: mantener la barra visible y color */
+.footer .nav-link.active {
+    color: #2b2b2b; /* color para el enlace activo */
+}
+.footer .nav-link.active::after {
+    transform: translateX(-50%) scaleX(1); /* barra visible en activo */
+    background: #a05b1a; /* color sólido diferente cuando está activo */
+}
+
+/* Animación escalonada por item: delay progresivo para entrada */
+.footer .nav-item:nth-child(1) { animation-delay: 120ms; } /* primer item aparece antes */
+.footer .nav-item:nth-child(2) { animation-delay: 220ms; } /* segundo con retraso */
+.footer .nav-item:nth-child(3) { animation-delay: 320ms; } /* tercer item con más retraso */
+
+/* Wrapper de redes sociales: flex y separación */
+.social {
+    display: inline-flex; /* layout en línea con flex */
+    gap: 1rem; /* separación entre botones sociales */
+    align-items: center; /* centra iconos verticalmente */
+    justify-content: flex-end; /* alinea a la derecha dentro del wrapper */
+}
+
+/* Personalización puntual del icono GitHub: fondo y forma */
+#githubsito {
+    background-color: rgb(236, 218, 218); /* fondo rosado claro detrás del svg */
+    border-radius: 50%; /* lo hace circular */
+}
+
+/* Botones sociales circulares: tamaño, transición y animación */
+.social-link {
+    display: inline-flex; /* flex para centrar el img dentro */
+    align-items: center; /* centra verticalmente */
+    justify-content: center; /* centra horizontalmente */
+    width: 64px; /* ancho fijo del botón */
+    height: 64px; /* alto fijo del botón */
+    border-radius: 50%; /* lo hace circular */
+    text-decoration: none; /* quita subrayado de enlace */
+    overflow: hidden; /* recorta contenidos que sobresalgan */
+    position: relative; /* para posicionar hijos si fuera necesario */
+    transform-origin: center; /* origen de transformaciones */
+    transition: transform .24s cubic-bezier(.2, .9, .2, 1), box-shadow .24s ease; /* transición para hover */
+    animation: socialPop .64s cubic-bezier(.2, .9, .2, 1) both; /* anima la entrada de cada botón */
+}
+
+/* Delay escalonado para la entrada de cada botón social */
+.social-link:nth-child(1){ animation-delay: 120ms; } /* primer botón */
+.social-link:nth-child(2){ animation-delay: 220ms; } /* segundo */
+.social-link:nth-child(3){ animation-delay: 320ms; } /* tercero */
+
+/* Imagen del icono dentro del botón: tamaño y animación */
+.social-icon {
+    width: 38px; /* ancho del icono dentro del botón */
+    height: 38px; /* alto del icono */
+    object-fit: contain; /* ajusta manteniendo aspecto */
+    display: block; /* evita espacios en línea */
+    transition: transform .28s cubic-bezier(.2, .9, .2, 1); /* transición para rotar/escalar en hover */
+    transform-origin: center; /* origen para rotación/escala */
+}
+
+/* Hover/focus en botón social: elevar, escalar y sombra */
+.social-link:hover,
+.social-link:focus {
+    transform: translateY(-12px) scale(1.04); /* efecto de "levantar" y agrandar en hover */
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.20); /* sombra pronunciada en hover */
+    outline: none; /* evita outline por defecto */
+}
+.social-link:hover .social-icon {
+    transform: rotate(-14deg) scale(1.14); /* rotación+escala del icono dentro al hover */
+}
+
+/* Forzar que SVGs negros se vean claros sobre el fondo oscuro del botón */
+.social-link img[src$=".svg"] {
+    filter: invert(1) brightness(2) saturate(0); /* invierte y aclara SVGs para que se vean en blanco */
+}
+
+/* Estado active (clic): comportamiento inmediato */
+.social-link:active {
+    transform: translateY(-6px) scale(.98); /* pequeño "hundimiento" al hacer clic */
+}
+
+/* Divider y copyright: separación y estilo del texto inferior */
+.row.mt-3 .col.text-center {
+    padding-top: 1rem; /* espacio arriba del texto */
+    margin-top: 1rem; /* separación de la fila anterior */
+    border-top: 1px solid rgba(95, 61, 34, 0.06); /* línea divisoria tenue */
+    color: #6b625a; /* color del texto secundario */
+    font-size: .95rem; /* tamaño de texto */
+}
+
+/* Focus visible para enlaces sociales (accesibilidad) */
+.social-link:focus-visible {
+    box-shadow: 0 0 0 6px rgba(255, 228, 196, 0.35), 0 24px 40px rgba(0, 0, 0, 0.14); /* anillo visible al enfocar con teclado */
+}
+
+/* Responsive: en pantallas pequeñas apila columnas y ajusta tamaños */
+@media (max-width: 1089px) {
+    .footer .container > .row.align-items-center {
+        flex-direction: column; /* apila columnas verticalmente */
+        align-items: center; /* centra el contenido */
+        text-align: center; /* texto centrado */
+        gap: .75rem; /* menor separación entre filas apiladas */
+    }
+
+    .footer .col-md-4.d-flex.align-items-center {
+        justify-content: center; /* logo y nombre centrados en móvil */
+        gap: .6rem; /* reduce gap entre logo y nombre */
+        order: 1; /* orden en el flujo apilado */
+    }
+
+    .footer .container > .row.align-items-center > .col-md-4:nth-child(2) {
+        order: 3; /* coloca el nav al final en móvil */
+        padding-left: 0; /* quita padding lateral */
+        padding-right: 0;
+        width: 100%; /* ocupa todo el ancho */
+    }
+
+    .col-md-4.text-md-end {
+        order: 2; /* redes van en medio en móvil */
+        width: 100%; /* ocupan ancho completo */
+        justify-content: center; /* centrado horizontal */
+    }
+
+    .social-link { width: 60px; height: 60px; } /* reduce tamaño de botones en móvil */
+    .social-icon { width: 36px; height: 36px; } /* reduce tamaño de iconos en móvil */
+    .logo-img { width: 100px; padding: 8px; } /* ajusta tamaño del logo en móvil */
+}
+
+/* Reduce motion: respeta preferencia del usuario por menos animaciones */
+@media (prefers-reduced-motion: reduce) {
+    .contenedor-footer, .social-link, .logo-img { animation: none !important; transition: none !important; } /* elimina animaciones y transiciones si se pide */
+}
+
+/* Keyframes: animación de entrada del footer */
+@keyframes footerFadeIn {
+    from { transform: translateY(14px); opacity: 0; } /* inicia desplazado hacia abajo y transparente */
+    to   { transform: translateY(0); opacity: 1; } /* termina en su posición y visible */
+}
+
+/* Keyframes: entrada escalonada para botones sociales */
+@keyframes socialPop {
+    0%   { transform: translateY(28px) scale(.92); opacity: 0; } /* inicio: abajo y pequeño */
+    60%  { transform: translateY(-8px) scale(1.06); opacity: 1; } /* rebote hacia arriba */
+    100% { transform: translateY(0) scale(1); opacity: 1; } /* posición final normal */
+}
+
+/* Keyframes: animación de aparición para el nav */
+@keyframes navFadeIn {
+    from { opacity: 0; transform: translateY(8px); } /* inicia con opacidad 0 y ligeramente abajo */
+    to   { opacity: 1; transform: translateY(0); } /* termina visible y en su lugar */
+}
+
+/* Keyframes: pop individual para items del nav */
+@keyframes navItemPop {
+    0%   { opacity: 0; transform: translateY(12px) scale(.98); } /* inicio: abajo y casi tamaño normal */
+    60%  { opacity: 1; transform: translateY(-6px) scale(1.03); } /* rebote pequeño */
+    100% { opacity: 1; transform: translateY(0) scale(1); } /* posición final */
+}
+
+/* Resaltar copyright: estilo, sombra y transición (sin brillo activo en su CSS actual) */
+.resaltarCuchau{
+    display: inline-block; /* se comporta como bloque en línea para padding y borde */
+    padding: 8px 14px; /* espacio interno */
+    border-radius: 8px; /* esquinas redondeadas */
+    font-weight: 700; /* texto en negrita */
+    color: #5f3d22; /* tono cálido para el texto */
+    
+    border: 1px solid rgba(95,61,34,0.08); /* borde sutil */
+    box-shadow: 0 8px 22px rgba(95,61,34,0.06), inset 0 -2px 0 rgba(255,228,196,0.55); /* sombra externa y luz interna */
+    position: relative; /* para el pseudo-elemento ::before */
+    overflow: hidden; /* recorta el brillo en ::before */
+    transform-origin: center; /* origen para transformaciones */
+    transition: transform .22s cubic-bezier(.2,.9,.2,1), box-shadow .22s ease; /* transición para hover */
+    
+}
+
+/* brillo que recorre el texto: pseudo-elemento posicionado y animado */
+.resaltarCuchau::before{
+    content: ""; /* elemento vacío usado como brillo */
+    position: absolute; /* absoluto respecto al .resaltarCuchau */
+    left: -120%; /* comienza fuera a la izquierda */
+    top: -10%; /* ligeramente arriba para cubrir todo */
+    width: 40%; /* ancho de la franja de brillo */
+    height: 120%; /* altura suficiente para cubrir todo el área */
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0) 100%); /* degradado blanco translúcido */
+    transform: skewX(-18deg); /* sesgado para efecto dinámico */
+    filter: blur(8px); /* suaviza el brillo */
+    opacity: 0.85; /* opacidad del brillo */
+    pointer-events: none; /* no bloquea interacciones */
+    animation: shimmer 2.8s linear infinite; /* anima el brillo de izquierda a derecha indefinidamente */
+}
+
+/* hover del resaltar: elevar y sombra más pronunciada */
+.resaltarCuchau:hover{
+    transform: translateY(-6px) scale(1.03); /* levanta y escala ligeramente */
+    box-shadow: 0 18px 46px rgba(95,61,34,0.14); /* sombra más notable */
+}
+.resaltarCuchau:active{
+    transform: translateY(-2px) scale(.99); /* comportamiento en clic */
+}
+
+/* animación del brillo (pseudo-elemento) */
+@keyframes shimmer{
+    0%   { left: -120%; } /* inicia a la izquierda fuera del área */
+    50%  { left: 120%; } /* atraviesa hacia la derecha */
+    100% { left: 120%; } /* queda a la derecha al final del ciclo */
+}
+
+/* animación ligera de pulso (definida pero no aplicada directamente en este fragmento) */
+@keyframes pulseSoft{
+    0%   { transform: translateY(0) scale(1); } /* estado inicial */
+    50%  { transform: translateY(-3px) scale(1.01); } /* pequeño levantamiento */
+    100% { transform: translateY(0) scale(1); } /* vuelve al original */
+}
+
+/* Accesibilidad: desactivar animaciones si el usuario prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce){
+    .resaltarCuchau,
+    .resaltarCuchau::before {
+        animation: none !important; /* quita animación de brillo */
+        transition: none !important; /* quita transiciones */
+    }
 }

@@ -1,30 +1,47 @@
 <div class="contenedor-navbar">
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" routerLink="/">Entre Letras</a>
+            <!-- LEFT: logo + brand -->
+            <a class="navbar-brand d-flex align-items-center" routerLink="/">
+                <img src="assets/logo.png" alt="Entre Letras logo" class="navbar-logo">
+                <span class="brand-text">Entre Letras</span>
+            </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" routerLink="/libros">Libros</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" routerLink="/contacto">Contacto</a>
                     </li>
-                    
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+
+                <form class="d-flex ms-lg-3 me-3 align-items-center" role="search">
+                    <input class="form-control me-2 nav-search" type="search" placeholder="Buscar" aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </form>
+
+                <!-- User / Login button -->
+                <a class="user-profile" routerLink="/login" aria-label="User Login Button" role="button" tabindex="0">
+                    <div class="user-profile-inner" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" focusable="false" aria-hidden="true">
+                          <g>
+                            <path d="m15.626 11.769a6 6 0 1 0 -7.252 0 9.008 9.008 0 0 0 -5.374 8.231 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 9.008 9.008 0 0 0 -5.374-8.231zm-7.626-4.769a4 4 0 1 1 4 4 4 4 0 0 1 -4-4zm10 14h-12a1 1 0 0 1 -1-1 7 7 0 0 1 14 0 1 1 0 0 1 -1 1z"></path>
+                          </g>
+                        </svg>
+                        <span>Ingresar</span>
+                    </div>
+                </a>
             </div>
         </div>
     </nav>

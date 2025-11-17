@@ -1,1 +1,70 @@
-<p>contacto works!</p>
+<app-navbar></app-navbar>
+
+<section class="contact-container">
+  <header class="contact-hero">
+    <h1 class="contact-title">Contacto</h1>
+    <p class="contact-subtitle">¿Tienes dudas, sugerencias o quieres colaborar? Escríbenos.</p>
+  </header>
+
+  <div class="contact-cards">
+    <article class="contact-card">
+      <h3>Email</h3>
+      <p><a href="mailto:EntreLetras@gmail.com" class="link">EntreLetras&#64;gmail.com</a></p>
+    </article>
+
+    <article class="contact-card">
+      <h3>Teléfono</h3>
+      <p><a href="tel:0987654321" class="link">0987654321</a></p>
+    </article>
+
+    <article class="contact-card">
+      <h3>Dirección</h3>
+      <p>Av. Siempre Viva 123</p>
+    </article>
+  </div>
+
+  <section class="social-section" aria-label="Redes sociales">
+    <h3 class="social-title">También estamos en redes</h3>
+    <ul class="social-list">
+      <li class="social-item">
+        <a href="https://www.instagram.com/_addrriel/" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="assets/Ig.png" alt="Instagram" />
+          <span>Instagram</span>
+        </a>
+      </li>
+      <li class="social-item">
+        <a href="https://github.com/JonnathITQ" target="_blank" rel="noopener" aria-label="GitHub">
+          <img src="assets/github.svg" alt="GitHub" />
+          <span>GitHub</span>
+        </a>
+      </li>
+      <li class="social-item">
+        <a href="https://wa.me/593939863068" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <img src="assets/wsp.png" alt="WhatsApp" />
+          <span>WhatsApp</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="contact-form" aria-labelledby="form-title">
+    <h3 id="form-title">Envíanos un mensaje</h3>
+    <form>
+      <div class="form-field">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+      </div>
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required />
+      </div>
+      <div class="form-field">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos cómo podemos ayudarte" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Enviar</button>
+    </form>
+  </section>
+</section>
+
+<app-footer></app-footer>

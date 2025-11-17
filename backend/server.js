@@ -1,1 +1,0 @@
-require('./BDD.js'); //esto solo es para probar si vale la conexión

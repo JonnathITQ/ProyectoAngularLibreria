@@ -1,0 +1,73 @@
+.book-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  background: rgba(255, 228, 196, 0.92); /* Fondo igual a navbar */
+}
+
+.book-detail-card {
+  display: flex;
+  gap: 2rem;
+  background: #fff8ed;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(95, 61, 34, 0.08);
+  padding: 2rem;
+  max-width: 700px;
+  width: 100%;
+}
+
+.book-cover {
+  width: 180px;
+  height: auto;
+  border-radius: 12px;
+  background: rgba(99, 99, 78, 0.95);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.book-meta {
+  flex: 1;
+  color: #2b2b2b;
+}
+
+.book-meta h2 {
+  color: #1d4f6b;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.book-meta p {
+  margin: 0.3rem 0;
+  font-size: 1.08rem;
+}
+
+.book-description {
+  margin-top: 1rem;
+  color: #3f3f3f;
+  background: rgba(255,255,255,0.35);
+  padding: 0.7rem;
+  border-radius: 8px;
+}
+
+.download-btn {
+  display: inline-block;
+  margin-top: 1.2rem;
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(
+    to bottom right,
+    #f8d085 0%,
+    rgba(16, 228, 51, 0.226) 30%
+  );
+  color: #2b2b2b;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background .18s, box-shadow .18s;
+  box-shadow: 0 2px 8px rgba(95, 61, 34, 0.08);
+}
+
+.download-btn:hover {
+  background: #fab05c;
+  color: #1d4f6b;
+  box-shadow: 0 6px 18px rgba(151, 160, 24, 0.12);
+}

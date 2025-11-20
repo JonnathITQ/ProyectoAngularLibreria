@@ -11,6 +11,7 @@ import { RecuperarComponent } from './sesiones/recuperar/recuperar.component';
 import { AdminModule } from './modules/admin/admin.module';
 import { BibliotecarioModule } from './modules/bibliotecario/bibliotecario.module';
 import { ClienteModule } from './modules/cliente/cliente.module';
+import { IndependienteComponent } from './pages/independiente/independiente.component';
 
 export const routes: Routes = [
     {path: "navbar" , component: NavbarComponent}, //Navbar
@@ -24,6 +25,7 @@ export const routes: Routes = [
     {path: "admin" , component: AdminModule}, //Módulo de Administrador
     {path: "bibliotecario" , component: BibliotecarioModule}, //Módulo de bibliotecario
     {path: "cliente" , component: ClienteModule}, //Módulo de Cliente
+    {path: "independiente", component: IndependienteComponent}, //Página de Independiente
     {path: "footer" , component: FooterComponent}, //Footer
     {path: "**" , component: PrincipalComponent}, //Validación al error de rutas, manda al inicio
 ];

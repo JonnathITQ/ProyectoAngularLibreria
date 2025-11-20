@@ -19,13 +19,15 @@
       </div>
     </div>
 
-    <!--Can't bind to 'aria-label' since it isn't a known property of 'div'.-->
+    <!--El #track sirve para referenciar el carrusel y poder manipularlo con el typescript, es decir, -->
     <div #track class="carousel-track" role="region" [attr.aria-label]="'Carrusel de libros de ' + genre.name">
       <article *ngFor="let book of genre.books" class="book-card">
-        <img [src]="book.cover" [alt]="book.title" />
+        <a routerLink="/independiente" class="book-link">
+          <img [src]="book.portada" [alt]="book.titulo" />
+        </a>
         <div class="book-info">
-          <h4>{{ book.title }}</h4>
-          <p>{{ book.author }}</p>
+          <h4>{{ book.titulo }}</h4>
+          <p>{{ book.autor }}</p>
         </div>
       </article>
     </div>

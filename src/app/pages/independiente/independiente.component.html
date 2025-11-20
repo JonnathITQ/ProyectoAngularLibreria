@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+
+<section class="book-detail">
+    <div class="book-detail-card" *ngIf="book">
+        <img [src]="book.cover" [alt]="book.title" class="book-cover" />
+        <div class="book-meta">
+            <h2>{{ book.title }}</h2>
+            <p><strong>Autor:</strong> {{ book.author }}</p>
+            <p><strong>Género:</strong> {{ book.genre }}</p>
+            <p><strong>Año:</strong> {{ book.year }}</p>
+            <p><strong>Idioma:</strong> {{ book.language }}</p>
+            <p><strong>Ubicación:</strong>
+                {{ book.location?.shelf }},
+                Fila {{ book.location?.row }}
+            </p>
+            <p class="book-description">{{ book.description }}</p>
+            <button *ngIf="book.link" (click)="descargarPDF(book.link)" class="download-btn">
+                Descargar PDF
+            </button>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

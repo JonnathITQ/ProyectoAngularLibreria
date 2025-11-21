@@ -1,45 +1,56 @@
-.books-page {
-    max-width: 1100px;
+/*Sección Libros*/
+.libros {
+    --accent: #7c5cff;
+    --accent2: #2fb5f2;
+    --ring: rgba(124,92,255,.35);
+    --card-shadow: 0 10px 30px rgba(24,32,45,.14);
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 24px 16px 40px
+    padding: 0 16px
 }
 
-.page-head {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-bottom: 16px
+.titulo-descripcion { /* Título y descripción de la sección libros */
+    max-width: 920px; /* Ancho máximo del título y descripción */
+    margin: 0 auto 12px; /* Margen superior e inferior de 12px y centrado horizontal */
+    padding: 0 16px; /* Padding horizontal de 16px para que el contenido no toque los bordes */
+    text-align: center /* Alineación del texto al centro */
 }
 
-.page-head h1 {
-    font-size: 1.8rem;
+/* Título de la sección libros */
+.titulo-descripcion h2 {
+    margin: 0 0 6px; /* Margen inferior de 6px para separar el título de la descripción */
+    font-size: 1.8rem; /* Tamaño de letra del título */
+    font-weight: 700 /* Grosor que tendrá la letra*/
+}
+
+/* Descripción de la sección libros */
+.titulo-descripcion p {
+    margin: 0; /* Margen superior e inferior de 0 para eliminar espacios innecesarios */
+    color: #555 /* Color de letra gris oscuro */
+}
+
+/*Sección Carrusel*/
+.carousel-section {
+    margin: 24px 50px; /* Margen superior e inferior de 24px para separar la sección de los elementos anteriores y siguientes */
+    padding: 8px 0
+}
+
+/* Encabezado de la sección carrusel */
+.section-header {
+    display: flex; /* Utilizamos flexbox para alinear los elementos horizontalmente */
+    align-items: center; /* Alineamos los elementos verticalmente en el centro*/
+    justify-content: space-between; /* Distribuimos los elementos de manera uniforme con espacio entre ellos */
+    margin-bottom: 12px /* Margen inferior de 12px para separar el encabezado de la sección de los libros */
+}
+
+.section-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
     font-weight: 800;
-    margin: 0;
-    color: #2b2b2b
-}
-
-.page-head p {
-    margin: 0;
-    color: #3f3f3f
-}
-
-.genre-section {
-    margin: 22px 0
-}
-
-.genre-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 10px
-}
-
-.genre-head h2 {
-    margin: 0;
-    font-size: 1.3rem;
-    color: #1d4f6b;
-    font-weight: 800
+    letter-spacing: .3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    color: transparent
 }
 
 .controls {
@@ -48,77 +59,199 @@
 }
 
 .nav-btn {
-    border: 1px solid rgba(95, 61, 34, .12);
-    background: #fab05c;
-    color: #2b2b2b;
-    border-radius: 10px;
-    padding: 6px 10px;
-    font-weight: 700;
-    cursor: pointer
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(24,32,45,.22);
+    transition: transform .15s ease, background .2s ease, box-shadow .2s ease
 }
 
-.nav-btn:focus {
-    outline: none
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(24,32,45,.28)
+}
+
+.nav-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--ring), 0 8px 20px rgba(24,32,45,.26)
+}
+
+.nav-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(24,32,45,.22)
+}
+
+.carousel-viewport {
+    position: relative;
+    overflow: hidden
+}
+
+.carousel-viewport::before,
+.carousel-viewport::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 24px;
+    pointer-events: none
+}
+
+.carousel-viewport::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0))
+}
+
+.carousel-viewport::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0))
 }
 
 .carousel-track {
     display: flex;
-    gap: 12px;
-    overflow: hidden;
-    scroll-behavior: smooth
+    gap: 32px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 12px 0 16px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain
+}
+
+.carousel-track::-webkit-scrollbar {
+    width: 0;
+    height: 0
+}
+
+.carousel-track::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 0
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+    background: transparent
+}
+
+.carousel-track:hover::-webkit-scrollbar-thumb {
+    background: transparent
 }
 
 .book-card {
-    flex: 0 0 auto;
-    width: 210px;
-    border: 1px solid rgba(95, 61, 34, .12);
-    border-radius: 14px;
+    flex: 0 0 240px;
+    width: 240px;
+    height: 320px;
+    position: relative;
+    text-decoration: none;
     background: #fff;
-    box-shadow: 0 6px 18px rgba(95, 61, 34, .06)
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(24,32,45,.16);
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, .06);
+    transition: box-shadow .2s ease, transform .2s ease;
+    will-change: transform, box-shadow;
+    color: inherit;
+    scroll-snap-align: start;
+    isolation: isolate
 }
 
-.book-card img {
-    display: block;
+.book-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    padding: 1px;
+    background: linear-gradient(140deg, rgba(124,92,255,.35), rgba(47,181,242,.35));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: source-out;
+    pointer-events: none
+}
+
+.book-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 18px 36px rgba(24,32,45,.24)
+}
+
+.book-card:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--ring), 0 18px 36px rgba(24,32,45,.24)
+}
+
+.thumb {
     width: 100%;
-    height: 280px;
+    height: 100%;
+    background: #f5f7fa
+}
+
+.thumb img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-top-left-radius: 14px;
-    border-top-right-radius: 14px
+    transition: transform .35s ease
 }
 
-.book-info {
-    padding: 10px 12px
+.book-card:hover .thumb img {
+    transform: scale(1.06)
 }
 
-.book-info h4 {
-    margin: 0 0 6px;
-    font-size: 1rem;
-    color: #2b2b2b;
-    font-weight: 800
+.meta {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 8px 10px;
+    background: linear-gradient(transparent, rgba(0,0,0,.40));
+    color: #fff;
+    backdrop-filter: blur(2px);
+    display: flex;
+    flex-direction: column;
+    gap: 1px
 }
 
-.book-info p {
+.title {
+    font-size: .98rem;
+    font-weight: 700;
     margin: 0;
-    color: #3f3f3f;
-    font-weight: 600
+    line-height: 1.2;
+    letter-spacing: .2px;
+    text-shadow: 0 1px 2px rgba(0,0,0,.85), 0 0 1px rgba(0,0,0,.9);
+    -webkit-text-stroke: .3px rgba(0,0,0,.7);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden
 }
 
-@media(max-width:991.98px) {
-    .book-card {
-        width: 190px
-    }
+.author {
+    margin: 0;
+    font-size: .8rem;
+    color: rgba(255,255,255,.92);
+    text-shadow: 0 1px 2px rgba(0,0,0,.85), 0 0 1px rgba(0,0,0,.9);
+    -webkit-text-stroke: .25px rgba(0,0,0,.7)
+}
 
-    .book-card img {
-        height: 250px
+@media (max-width:992px) {
+    .book-card {
+        flex: 0 0 240px
     }
 }
 
-@media(max-width:575.98px) {
+@media (max-width:576px) {
     .book-card {
-        width: 160px
+        flex: 0 0 240px
     }
+}
 
-    .book-card img {
-        height: 220px
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition: none !important;
+        animation: none !important
     }
 }

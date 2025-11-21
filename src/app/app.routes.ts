@@ -8,10 +8,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoginComponent } from './sesiones/login/login.component';
 import { RegistrarComponent } from './sesiones/registrar/registrar.component';
 import { RecuperarComponent } from './sesiones/recuperar/recuperar.component';
-import { AdminModule } from './modules/admin/admin.module';
-import { BibliotecarioModule } from './modules/bibliotecario/bibliotecario.module';
-import { ClienteModule } from './modules/cliente/cliente.module';
 import { IndependienteComponent } from './pages/independiente/independiente.component';
+import { SesionComponent } from './modales/sesion/sesion.component';
 
 export const routes: Routes = [
     {path: "navbar" , component: NavbarComponent}, //Navbar
@@ -22,10 +20,8 @@ export const routes: Routes = [
     {path: "login" , component: LoginComponent}, //Página para el Login
     {path: "registrar" , component: RegistrarComponent}, //Página para el registro del usuario
     {path: "recuperar" , component: RecuperarComponent}, //Página para recuperar la contraseña de usuario o bibliotecario
-    {path: "admin" , component: AdminModule}, //Módulo de Administrador
-    {path: "bibliotecario" , component: BibliotecarioModule}, //Módulo de bibliotecario
-    {path: "cliente" , component: ClienteModule}, //Módulo de Cliente
     {path: "independiente", component: IndependienteComponent}, //Página de Independiente
     {path: "footer" , component: FooterComponent}, //Footer
+    {path: "modales" , component: SesionComponent}, //Modal para inicio de sesión en caso que toque los libros
     {path: "**" , component: PrincipalComponent}, //Validación al error de rutas, manda al inicio
 ];

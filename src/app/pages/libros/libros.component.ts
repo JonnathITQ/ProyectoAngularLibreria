@@ -5,16 +5,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 export interface Book {
-  id: number;
-  titulo: string;
-  autor: string;
-  portada: string;
-  link: string;
-  descripcion?: string;
-  genero?: string;
-  anio?: number;
-  idioma?: string;
-  ubicacion?: { estante: string; fila: number };
+  titulo: string,
+  descripcion: string,
+  genero: string,
+  portada: string,
+  anio_publicacion: number,
+  idioma: string,
+  cantidad_disponible: number,
+  autor: string,
+  ubicacion: string
 }
 
 @Component({
@@ -29,45 +28,46 @@ export class LibrosComponent {
     {
       name: 'Romance',
       books: [
-        { id: 1, titulo: 'Boulevard', autor: 'Flor Salvador', portada: 'assets/books/portada/Boulevard.jpg', link: 'assets/books/Boulevard-Flor-Salvador.pdf', descripcion: 'Historia de amor y recuperación entre dos jóvenes en el café Boulevard.', genero: 'Romance', anio: 2020, idioma: 'Español', ubicacion: { estante: 'Romance A', fila: 2 } },
-        { id: 2, titulo: 'El Orden de las Cosas', autor: 'Ivan Thays', portada: 'assets/books/portada/OrdenCosas.jpg', link: 'assets/books/El-Orden-de-las-Cosas-Ivan-Thays.pdf', descripcion: 'Relato íntimo sobre memoria, vínculos y el orden que damos a la vida.', genero: 'Romance', anio: 2000, idioma: 'Español', ubicacion: { estante: 'Romance A', fila: 3 } },
-        { id: 3, titulo: 'El Silencio', autor: 'Flor Salvador', portada: 'assets/books/portada/Silencio.png', link: 'assets/books/El-Silencio-Flor-Salvador.pdf', descripcion: 'Historia de pérdida y redención que acompaña el universo de Boulevard.', genero: 'Romance', anio: 2021, idioma: 'Español', ubicacion: { estante: 'Romance A', fila: 4 } },
-        { id: 4, titulo: 'Orgullo y Prejuicio', autor: 'Jane Austen', portada: 'assets/books/portada/OrgulloPrejuicio.jpeg', link: 'assets/books/Orgullo-y-Prejuicio-Jane-Austen.pdf', descripcion: 'Clásico sobre las relaciones, clase social y el amor en la Inglaterra georgiana.', genero: 'Romance', anio: 1813, idioma: 'Español (Traducción)', ubicacion: { estante: 'Clásicos B', fila: 4 } },
-        { id: 5, titulo: 'Somebody to Love', autor: 'Jonnath Suárez', portada: 'assets/books/portada/Somebody.png', link: 'assets/books/Somebody-to-Love-Jonnath-Suárez.pdf', descripcion: 'Romance contemporáneo sobre segundas oportunidades.', genero: 'Romance', anio: 2024, idioma: 'Español', ubicacion: { estante: 'Romance B', fila: 1 } },
-        { id: 6, titulo: 'Noches Blancas', autor: 'Fedor Dostoiewski', portada: 'assets/books/portada/NochesBlancas.png', link: 'assets/books/Noches-Blancas-Fedor-Dostoiewski.pdf', descripcion: 'Novela corta sobre soledad y sueños en San Petersburgo.', genero: 'Romance', anio: 1848, idioma: 'Español (Traducción)', ubicacion: { estante: 'Clásicos B', fila: 1 } }
+
+        { titulo: 'El Orden de las Cosas', descripcion: 'Una obra llena amor, deporte y de inesperadas confesiones. En medio de una competencia de fútbol y del primer amor, el protagonista debe sobrellevar la sorpresiva confesión de su mejor amigo, quien le había mostrado que la mejor manera de lograr sus sueños era siguiendo un orden', genero: 'Romance', portada: 'assets/books/portada/OrdenCosas.jpg', anio_publicacion: 2011, idioma: 'Español', cantidad_disponible: 20, autor: 'Ivan Thays', ubicacion: 'Estante A, Fila 1' },
+        { titulo: 'Boulevard', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Boulevard.jpg', anio_publicacion: 2012, idioma: 'Español', cantidad_disponible: 33, autor: 'Flor Salvador', ubicacion: 'Estante A, Fila 2' },
+        { titulo: 'El Silencio', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Silencio.png', anio_publicacion: 2014, idioma: 'Español', cantidad_disponible: 10, autor: 'Flor Salvador', ubicacion: 'Estante A, Fila 3' },
+        { titulo: 'Noches Blancas', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/NochesBlancas.png', anio_publicacion: 1990, idioma: 'Español', cantidad_disponible: 4, autor: 'Fedor Dostoiewski', ubicacion: 'Estante A, Fila 4' },
+        { titulo: 'Orgullo y Prejuicio', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/OrgulloPrejuicio.jpeg', anio_publicacion: 2011, idioma: 'Español', cantidad_disponible: 10, autor: 'Jane Austen', ubicacion: 'Estante A, Fila 5' },
+        { titulo: 'Somebody to Love', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Somebody.png', anio_publicacion: 2015, idioma: 'Español', cantidad_disponible: 2, autor: 'J.R.R. Tolkien', ubicacion: 'Estante A, Fila 6' },
       ]
     },
     {
       name: 'Acción',
       books: [
-        { id: 7, titulo: 'El código Da Vinci', autor: 'Dan Brown', portada: 'https://picsum.photos/seed/accion1/300/420', link: '/libros/accion/el-codigo-da-vinci' },
-        { id: 8, titulo: 'Ángeles y demonios', autor: 'Dan Brown', portada: 'https://picsum.photos/seed/accion2/300/420', link: '/libros/accion/angeles-y-demonios' },
-        { id: 9, titulo: 'Los juegos del hambre', autor: 'Suzanne Collins', portada: 'https://picsum.photos/seed/accion3/300/420', link: '/libros/accion/los-juegos-del-hambre' },
-        { id: 10, titulo: 'En llamas', autor: 'Suzanne Collins', portada: 'https://picsum.photos/seed/accion4/300/420', link: '/libros/accion/en-llamas' },
-        { id: 11, titulo: 'Sinsajo', autor: 'Suzanne Collins', portada: 'https://picsum.photos/seed/accion5/300/420', link: '/libros/accion/sinsajo' },
-        { id: 12, titulo: 'Inferno', autor: 'Dan Brown', portada: 'https://picsum.photos/seed/accion6/300/420', link: '/libros/accion/inferno' }
+        { titulo: 'El Orden de las Cosas', descripcion: 'Una obra llena amor, deporte y de inesperadas confesiones. En medio de una competencia de fútbol y del primer amor, el protagonista debe sobrellevar la sorpresiva confesión de su mejor amigo, quien le había mostrado que la mejor manera de lograr sus sueños era siguiendo un orden', genero: 'Romance', portada: 'assets/books/portada/OrdenCosas.jpg', anio_publicacion: 2011, idioma: 'Español', cantidad_disponible: 20, autor: 'Ivan Thays', ubicacion: 'Estante A, Fila 1' },
+        { titulo: 'Boulevard', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Boulevard.jpg', anio_publicacion: 2012, idioma: 'Español', cantidad_disponible: 33, autor: 'Flor Salvador', ubicacion: 'Estante A, Fila 2' },
+        { titulo: 'El Silencio', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Silencio.png', anio_publicacion: 2014, idioma: 'Español', cantidad_disponible: 10, autor: 'Flor Salvador', ubicacion: 'Estante A, Fila 3' },
+        { titulo: 'Noches Blancas', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/NochesBlancas.png', anio_publicacion: 1990, idioma: 'Español', cantidad_disponible: 4, autor: 'Fedor Dostoiewski', ubicacion: 'Estante A, Fila 4' },
+        { titulo: 'Orgullo y Prejuicio', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/OrgulloPrejuicio.jpeg', anio_publicacion: 2011, idioma: 'Español', cantidad_disponible: 10, autor: 'Jane Austen', ubicacion: 'Estante A, Fila 5' },
+        { titulo: 'Somebody to Love', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Somebody.png', anio_publicacion: 2015, idioma: 'Español', cantidad_disponible: 2, autor: 'J.R.R. Tolkien', ubicacion: 'Estante A, Fila 6' },
       ]
     },
     {
       name: 'Programación',
       books: [
-        { id: 13, titulo: 'Clean Code', autor: 'Robert C. Martin', portada: 'https://picsum.photos/seed/prog1/300/420', link: '/libros/programacion/clean-code' },
-        { id: 14, titulo: 'The Pragmatic Programmer', autor: 'Andrew Hunt y David Thomas', portada: 'https://picsum.photos/seed/prog2/300/420', link: '/libros/programacion/the-pragmatic-programmer' },
-        { id: 15, titulo: 'Design Patterns', autor: 'GoF', portada: 'https://picsum.photos/seed/prog3/300/420', link: '/libros/programacion/design-patterns' },
-        { id: 16, titulo: 'Refactoring', autor: 'Martin Fowler', portada: 'https://picsum.photos/seed/prog4/300/420', link: '/libros/programacion/refactoring' },
-        { id: 17, titulo: 'Eloquent JavaScript', autor: 'Marijn Haverbeke', portada: 'https://picsum.photos/seed/prog5/300/420', link: '/libros/programacion/eloquent-javascript' },
-        { id: 18, titulo: "You Don't Know JS", autor: 'Kyle Simpson', portada: 'https://picsum.photos/seed/prog6/300/420', link: '/libros/programacion/you-dont-know-js' }
+        { titulo: 'El Orden de las Cosas', descripcion: 'Una obra llena amor, deporte y de inesperadas confesiones. En medio de una competencia de fútbol y del primer amor, el protagonista debe sobrellevar la sorpresiva confesión de su mejor amigo, quien le había mostrado que la mejor manera de lograr sus sueños era siguiendo un orden', genero: 'Romance', portada: 'assets/books/portada/OrdenCosas.jpg', anio_publicacion: 2011, idioma: 'Español', cantidad_disponible: 20, autor: 'Ivan Thays', ubicacion: 'Estante A, Fila 1' },
+        { titulo: 'Boulevard', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Boulevard.jpg', anio_publicacion: 2012, idioma: 'Español', cantidad_disponible: 33, autor: 'Flor Salvador', ubicacion: 'Estante A, Fila 2' },
+        { titulo: 'El Silencio', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Silencio.png', anio_publicacion: 2014, idioma: 'Español', cantidad_disponible: 10, autor: 'Flor Salvador', ubicacion: 'Estante A, Fila 3' },
+        { titulo: 'Noches Blancas', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/NochesBlancas.png', anio_publicacion: 1990, idioma: 'Español', cantidad_disponible: 4, autor: 'Fedor Dostoiewski', ubicacion: 'Estante A, Fila 4' },
+        { titulo: 'Orgullo y Prejuicio', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/OrgulloPrejuicio.jpeg', anio_publicacion: 2011, idioma: 'Español', cantidad_disponible: 10, autor: 'Jane Austen', ubicacion: 'Estante A, Fila 5' },
+        { titulo: 'Somebody to Love', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Somebody.png', anio_publicacion: 2015, idioma: 'Español', cantidad_disponible: 2, autor: 'J.R.R. Tolkien', ubicacion: 'Estante A, Fila 6' },
       ]
     },
     {
       name: 'Filosofía',
       books: [
-        { id: 19, titulo: 'La república', autor: 'Platón', portada: 'https://picsum.photos/seed/filo1/300/420', link: '/libros/filosofia/la-republica' },
-        { id: 20, titulo: 'Meditaciones', autor: 'Marco Aurelio', portada: 'https://picsum.photos/seed/filo2/300/420', link: '/libros/filosofia/meditaciones' },
-        { id: 21, titulo: 'Así habló Zaratustra', autor: 'F. Nietzsche', portada: 'https://picsum.photos/seed/filo3/300/420', link: '/libros/filosofia/asi-hablo-zaratustra' },
-        { id: 22, titulo: 'Crítica de la razón pura', autor: 'I. Kant', portada: 'https://picsum.photos/seed/filo4/300/420', link: '/libros/filosofia/critica-de-la-razon-pura' },
-        { id: 23, titulo: 'El mundo de Sofía', autor: 'J. Gaarder', portada: 'https://picsum.photos/seed/filo5/300/420', link: '/libros/filosofia/el-mundo-de-sofia' },
-        { id: 24, titulo: 'La genealogía de la moral', autor: 'F. Nietzsche', portada: 'https://picsum.photos/seed/filo6/300/420', link: '/libros/filosofia/la-genealogia-de-la-moral' }
+        { titulo: 'El Orden de las Cosas', descripcion: 'Una obra llena amor, deporte y de inesperadas confesiones. En medio de una competencia de fútbol y del primer amor, el protagonista debe sobrellevar la sorpresiva confesión de su mejor amigo, quien le había mostrado que la mejor manera de lograr sus sueños era siguiendo un orden', genero: 'Romance', portada: 'assets/books/portada/OrdenCosas.jpg', anio_publicacion: 2011, idioma: 'Español', cantidad_disponible: 20, autor: 'Ivan Thays', ubicacion: 'Estante A, Fila 1' },
+        { titulo: 'Boulevard', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Boulevard.jpg', anio_publicacion: 2012, idioma: 'Español', cantidad_disponible: 33, autor: 'Flor Salvador', ubicacion: 'Estante A, Fila 2' },
+        { titulo: 'El Silencio', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Silencio.png', anio_publicacion: 2014, idioma: 'Español', cantidad_disponible: 10, autor: 'Flor Salvador', ubicacion: 'Estante A, Fila 3' },
+        { titulo: 'Noches Blancas', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/NochesBlancas.png', anio_publicacion: 1990, idioma: 'Español', cantidad_disponible: 4, autor: 'Fedor Dostoiewski', ubicacion: 'Estante A, Fila 4' },
+        { titulo: 'Orgullo y Prejuicio', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/OrgulloPrejuicio.jpeg', anio_publicacion: 2011, idioma: 'Español', cantidad_disponible: 10, autor: 'Jane Austen', ubicacion: 'Estante A, Fila 5' },
+        { titulo: 'Somebody to Love', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Somebody.png', anio_publicacion: 2015, idioma: 'Español', cantidad_disponible: 2, autor: 'J.R.R. Tolkien', ubicacion: 'Estante A, Fila 6' },
       ]
     }
   ];

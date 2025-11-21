@@ -8,9 +8,9 @@
 
 <section class="libros">
 
-  <div *ngFor="let genre of genres; let i = index" class="carousel-section">
+  <div *ngFor="let genre of generos; let i = index" class="carousel-section">
     <div class="section-header">
-      <h3>{{ genre.name }}</h3>
+      <h3>{{ genre.titulo }}</h3>
       <div class="controls">
         <button class="nav-btn prev" (click)="scroll(i, 'prev')" aria-label="Anterior"> < </button>
         <button class="nav-btn next" (click)="scroll(i, 'next')" aria-label="Siguiente"> > </button>
@@ -19,7 +19,7 @@
 
     <div class="carousel-viewport">
       <div class="carousel-track" id="track-{{i}}">
-        <a *ngFor="let book of genre.books" class="book-card" [attr.href]="book.ubicacion">
+        <a *ngFor="let book of genre.libros" class="book-card" [attr.href]="book.ubicacion">
           <div class="thumb">
             <img [src]="book.portada" [alt]="book.titulo">
           </div>

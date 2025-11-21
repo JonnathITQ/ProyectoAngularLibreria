@@ -24,10 +24,10 @@ export interface Book {
 })
 export class LibrosComponent {
 
-  genres: { name: string; books: Book[] }[] = [
+  generos: { titulo: string; libros: Book[] }[] = [
     {
-      name: 'Romance',
-      books: [
+      titulo: 'Romance',
+      libros: [
 
         { titulo: 'El Orden de las Cosas', descripcion: 'Una obra llena amor, deporte y de inesperadas confesiones. En medio de una competencia de fútbol y del primer amor, el protagonista debe sobrellevar la sorpresiva confesión de su mejor amigo, quien le había mostrado que la mejor manera de lograr sus sueños era siguiendo un orden', genero: 'Romance', portada: 'assets/books/portada/OrdenCosas.jpg', anio_publicacion: 2011, idioma: 'Español', cantidad_disponible: 20, autor: 'Ivan Thays', ubicacion: 'Estante A, Fila 1' },
         { titulo: 'Boulevard', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Boulevard.jpg', anio_publicacion: 2012, idioma: 'Español', cantidad_disponible: 33, autor: 'Flor Salvador', ubicacion: 'Estante A, Fila 2' },
@@ -38,8 +38,8 @@ export class LibrosComponent {
       ]
     },
     {
-      name: 'Acción',
-      books: [
+      titulo: 'Acción',
+      libros: [
         { titulo: 'El Orden de las Cosas', descripcion: 'Una obra llena amor, deporte y de inesperadas confesiones. En medio de una competencia de fútbol y del primer amor, el protagonista debe sobrellevar la sorpresiva confesión de su mejor amigo, quien le había mostrado que la mejor manera de lograr sus sueños era siguiendo un orden', genero: 'Romance', portada: 'assets/books/portada/OrdenCosas.jpg', anio_publicacion: 2011, idioma: 'Español', cantidad_disponible: 20, autor: 'Ivan Thays', ubicacion: 'Estante A, Fila 1' },
         { titulo: 'Boulevard', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Boulevard.jpg', anio_publicacion: 2012, idioma: 'Español', cantidad_disponible: 33, autor: 'Flor Salvador', ubicacion: 'Estante A, Fila 2' },
         { titulo: 'El Silencio', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Silencio.png', anio_publicacion: 2014, idioma: 'Español', cantidad_disponible: 10, autor: 'Flor Salvador', ubicacion: 'Estante A, Fila 3' },
@@ -49,8 +49,8 @@ export class LibrosComponent {
       ]
     },
     {
-      name: 'Programación',
-      books: [
+      titulo: 'Programación',
+      libros: [
         { titulo: 'El Orden de las Cosas', descripcion: 'Una obra llena amor, deporte y de inesperadas confesiones. En medio de una competencia de fútbol y del primer amor, el protagonista debe sobrellevar la sorpresiva confesión de su mejor amigo, quien le había mostrado que la mejor manera de lograr sus sueños era siguiendo un orden', genero: 'Romance', portada: 'assets/books/portada/OrdenCosas.jpg', anio_publicacion: 2011, idioma: 'Español', cantidad_disponible: 20, autor: 'Ivan Thays', ubicacion: 'Estante A, Fila 1' },
         { titulo: 'Boulevard', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Boulevard.jpg', anio_publicacion: 2012, idioma: 'Español', cantidad_disponible: 33, autor: 'Flor Salvador', ubicacion: 'Estante A, Fila 2' },
         { titulo: 'El Silencio', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Silencio.png', anio_publicacion: 2014, idioma: 'Español', cantidad_disponible: 10, autor: 'Flor Salvador', ubicacion: 'Estante A, Fila 3' },
@@ -60,8 +60,8 @@ export class LibrosComponent {
       ]
     },
     {
-      name: 'Filosofía',
-      books: [
+      titulo: 'Filosofía',
+      libros: [
         { titulo: 'El Orden de las Cosas', descripcion: 'Una obra llena amor, deporte y de inesperadas confesiones. En medio de una competencia de fútbol y del primer amor, el protagonista debe sobrellevar la sorpresiva confesión de su mejor amigo, quien le había mostrado que la mejor manera de lograr sus sueños era siguiendo un orden', genero: 'Romance', portada: 'assets/books/portada/OrdenCosas.jpg', anio_publicacion: 2011, idioma: 'Español', cantidad_disponible: 20, autor: 'Ivan Thays', ubicacion: 'Estante A, Fila 1' },
         { titulo: 'Boulevard', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Boulevard.jpg', anio_publicacion: 2012, idioma: 'Español', cantidad_disponible: 33, autor: 'Flor Salvador', ubicacion: 'Estante A, Fila 2' },
         { titulo: 'El Silencio', descripcion: 'Una novela romántica que explora la complejidad de la relación entre dos personas aparentemente opuestas.', genero: 'Romance', portada: 'assets/books/portada/Silencio.png', anio_publicacion: 2014, idioma: 'Español', cantidad_disponible: 10, autor: 'Flor Salvador', ubicacion: 'Estante A, Fila 3' },

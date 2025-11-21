@@ -1,12 +1,12 @@
 /*Sección Libros*/
 .libros {
-    --accent: #7c5cff;
-    --accent2: #2fb5f2;
-    --ring: rgba(124,92,255,.35);
-    --card-shadow: 0 10px 30px rgba(24,32,45,.14);
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 16px
+    --accent: #7c5cff; /* Color primario para resaltar elementos */
+    --accent2: #2fb5f2; /* Color secundario para resaltar elementos */
+    --ring: rgba(124,92,255,.35); /* Color de borde para resaltar elementos */
+    --card-shadow: 0 10px 30px rgba(24,32,45,.14); /* Sombra para las tarjetas de libros */
+    max-width: 1200px; /* Ancho máximo de la sección libros */
+    margin: 0 auto; /* Margen automático para centrar la sección horizontalmente */
+    padding: 0 16px /* Padding horizontal de 16px para que el contenido no toque los bordes */
 }
 
 .titulo-descripcion { /* Título y descripción de la sección libros */

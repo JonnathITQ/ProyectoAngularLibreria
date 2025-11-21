@@ -50,6 +50,7 @@
     letter-spacing: .3px;
     background: linear-gradient(90deg, var(--accent), var(--accent2));
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent
 }
 
@@ -169,7 +170,9 @@
     padding: 1px;
     background: linear-gradient(140deg, rgba(124,92,255,.35), rgba(47,181,242,.35));
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: source-out;
+    mask-composite: subtract;
     pointer-events: none
 }
 

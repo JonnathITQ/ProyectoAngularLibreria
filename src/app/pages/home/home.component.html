@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+
+<div class="home-container">
+    <!-- Hero -->
+    <section class="introduccion-section">
+        <div class="introduccion-content">
+            <img src="assets/logo.png" alt="Logo" class="introduccion-logo">
+            <h1>Bienvenido a Tu Nueva Librería Digital</h1>
+            <p>
+                Hemos evolucionado para ti. Lo que antes era solo un espacio físico, ahora es un universo digital
+                donde las historias cobran vida en tu pantalla. Explora, descubre y sumérgete en la lectura
+                sin límites.
+            </p>
+        </div>
+    </section>
+
+    <!-- Books Section -->
+    <section class="info-section books-section">
+        <div class="content-wrapper">
+            <div class="text-content">
+                <h2>Nuestra Colección</h2>
+                <p>
+                    Contamos con una vasta selección de títulos que abarcan desde los clásicos de la literatura
+                    hasta las últimas novedades en tecnología, ciencia y ficción. Ya sea que busques aprender
+                    un nuevo lenguaje de programación, perderte en una novela romántica o expandir tu mente
+                    con filosofía, tenemos el libro perfecto para ti.
+                </p>
+                <a routerLink="/libros" class="cta-button">Ver Libros</a>
+            </div>
+            <div class="visual-content">
+                <div class="icon-placeholder">📚</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="info-section contact-section">
+        <div class="content-wrapper reverse">
+            <div class="text-content">
+                <h2>Contáctanos</h2>
+                <p>
+                    ¿Tienes alguna duda, sugerencia o estás interesado en formar parte de nuestro equipo?
+                    En nuestra sección de contacto encontrarás nuestra ubicación física, nuestras redes sociales
+                    y un formulario directo para enviarnos tus observaciones, hojas de vida o reportar novedades
+                    sobre nuestros libros.
+                </p>
+                <a routerLink="/contacto" class="cta-button secondary">Ir a Contacto</a>
+            </div>
+            <div class="visual-content">
+                <div class="icon-placeholder">📍</div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<app-footer></app-footer>

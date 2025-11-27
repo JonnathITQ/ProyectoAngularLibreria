@@ -1,46 +1,62 @@
-/*Sección Libros*/
 .libros {
-    --accent: #7c5cff; /* Color primario para resaltar elementos */
-    --accent2: #2fb5f2; /* Color secundario para resaltar elementos */
-    --ring: rgba(124,92,255,.35); /* Color de borde para resaltar elementos */
-    --card-shadow: 0 10px 30px rgba(24,32,45,.14); /* Sombra para las tarjetas de libros */
-    max-width: 1200px; /* Ancho máximo de la sección libros */
-    margin: 0 auto; /* Margen automático para centrar la sección horizontalmente */
-    padding: 0 16px /* Padding horizontal de 16px para que el contenido no toque los bordes */
+    /* Color principal de la primera flecha y algunos matices */
+    --accent: #2c3e50;
+    /* Color secundario para la segunda flecha y alguno de sus estilos */
+    --accent2: #3498db;
+    /* variable para usar el shadow en la card, para los títulos generalmente, pilas */
+    --ring: rgba(124, 92, 255, .35);
+    /* Sombra reutilizable para usar en otras cosas de este css*/
+    --card-shadow: 0 10px 30px rgba(24, 32, 45, .14);
+    /* Limita el ancho de la sección */
+    max-width: 1200px;
+    /* Centra el contenedor */
+    margin: 0 auto;
+    /* Espaciado lateral. el primer espacio es para arriba y abajo; el segundo es para derecha e izquierda */
+    padding: 0 16px;
+
+
 }
 
-.titulo-descripcion { /* Título y descripción de la sección libros */
-    max-width: 920px; /* Ancho máximo del título y descripción */
-    margin: 0 auto 12px; /* Margen superior e inferior de 12px y centrado horizontal */
-    padding: 0 16px; /* Padding horizontal de 16px para que el contenido no toque los bordes */
-    text-align: center /* Alineación del texto al centro */
+/* 
+   SECCIÓN DEL TÍTULO Y DESCRIPCIÓN
+*/
+.titulo-descripcion {
+    max-width: 920px;
+    margin: 0 auto 12px;
+    padding: 0 16px;
+    text-align: center;
 }
 
-/* Título de la sección libros */
 .titulo-descripcion h2 {
-    margin: 0 0 6px; /* Margen inferior de 6px para separar el título de la descripción */
-    font-size: 1.8rem; /* Tamaño de letra del título */
-    font-weight: 700 /* Grosor que tendrá la letra*/
+    margin: 0 0 6px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #5f4733;
 }
 
-/* Descripción de la sección libros */
 .titulo-descripcion p {
-    margin: 0; /* Margen superior e inferior de 0 para eliminar espacios innecesarios */
-    color: #555 /* Color de letra gris oscuro */
+    margin: 0;
+    color: #555;
 }
 
-/*Sección Carrusel*/
+/*
+   pequeña parte del carousel
+*/
 .carousel-section {
-    margin: 24px 50px; /* Margen superior e inferior de 24px para separar la sección de los elementos anteriores y siguientes */
-    padding: 8px 0
+    margin: 24px 50px;
+    padding: 8px 0;
 }
 
-/* Encabezado de la sección carrusel */
+/* 
+   Header
+*/
 .section-header {
-    display: flex; /* Utilizamos flexbox para alinear los elementos horizontalmente */
-    align-items: center; /* Alineamos los elementos verticalmente en el centro*/
-    justify-content: space-between; /* Distribuimos los elementos de manera uniforme con espacio entre ellos */
-    margin-bottom: 12px /* Margen inferior de 12px para separar el encabezado de la sección de los libros */
+    /* Alinea el título y los botones en fila */
+    display: flex;
+    align-items: center;
+    /* Separa el título y los controles */
+    justify-content: space-between;
+    margin-bottom: 12px;
 }
 
 .section-header h3 {
@@ -48,52 +64,68 @@
     font-size: 1.25rem;
     font-weight: 800;
     letter-spacing: .3px;
+    /* Degradado aplicado al texto */
     background: linear-gradient(90deg, var(--accent), var(--accent2));
+    /* Permite aplicar fondo al texto */
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent
+    color: #584a3d;
 }
 
+/* 
+   Flechas
+*/
 .controls {
     display: flex;
-    gap: 8px
+    gap: 8px;
 }
 
+/* Botones de navegación */
 .nav-btn {
     width: 40px;
     height: 40px;
     border: none;
-    border-radius: 999px;
+    /*Borde para el botón*/
+    border-radius: 50%;
     background: linear-gradient(135deg, var(--accent), var(--accent2));
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 6px 18px rgba(24,32,45,.22);
-    transition: transform .15s ease, background .2s ease, box-shadow .2s ease
+    /*Añadimos una sombra para el botón*/
+    box-shadow: 0 6px 18px rgba(24, 32, 45, .22);
+    /* Una transición suave para que se vea bien */
+    transition: transform .15s, background .2s, box-shadow .2s;
+
 }
 
+/* Efecto hover de flotación */
 .nav-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(24,32,45,.28)
+    box-shadow: 0 10px 24px rgba(24, 32, 45, .28);
 }
 
 .nav-btn:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px var(--ring), 0 8px 20px rgba(24,32,45,.26)
+    box-shadow: 0 0 0 3px var(--ring), 0 8px 20px rgba(24, 32, 45, .26);
 }
 
+/* Da ese efecto que se hace un poco para abajo si le dan click */
 .nav-btn:active {
     transform: translateY(0);
-    box-shadow: 0 4px 12px rgba(24,32,45,.22)
+    box-shadow: 0 4px 12px rgba(24, 32, 45, .22);
 }
 
+/*
+   ÁREA QUE CONTIENE EL CARRUSEL
+*/
 .carousel-viewport {
     position: relative;
-    overflow: hidden
+    overflow: hidden;
 }
 
+/* Bordes carousel */
 .carousel-viewport::before,
 .carousel-viewport::after {
     content: "";
@@ -101,50 +133,38 @@
     top: 0;
     bottom: 0;
     width: 24px;
-    pointer-events: none
+    /* Evita bloquear clics */
+    pointer-events: none;
+
 }
 
-.carousel-viewport::before {
-    left: 0;
-    background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0))
-}
-
-.carousel-viewport::after {
-    right: 0;
-    background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0))
-}
-
+/* Trackeo del carousel */
 .carousel-track {
     display: flex;
+    /* Espacio entre cards */
     gap: 32px;
+    /* Permite desplazarse horizontalmente */
     overflow-x: auto;
+    /* Scroll suave */
     scroll-behavior: smooth;
+    /* Enclava cada tarjeta */
     scroll-snap-type: x mandatory;
     padding: 12px 0 16px;
-    -ms-overflow-style: none;
+    /* Oculta barra de scroll para Firefox*/
     scrollbar-width: none;
-    overscroll-behavior-x: contain
+
 }
 
+/* Ocultar scroll para Chrome */
 .carousel-track::-webkit-scrollbar {
-    width: 0;
-    height: 0
+    display: none;
 }
 
-.carousel-track::-webkit-scrollbar-track {
-    background: transparent;
-    border-radius: 0
-}
-
-.carousel-track::-webkit-scrollbar-thumb {
-    background: transparent
-}
-
-.carousel-track:hover::-webkit-scrollbar-thumb {
-    background: transparent
-}
-
+/*
+   CARDS
+*/
 .book-card {
+    /* Tamaño fijo necesario para scroll-snap */
     flex: 0 0 240px;
     width: 240px;
     height: 320px;
@@ -152,69 +172,68 @@
     text-decoration: none;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 10px 24px rgba(24,32,45,.16);
+    box-shadow: 0 10px 24px rgba(24, 32, 45, .16);
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, .06);
-    transition: box-shadow .2s ease, transform .2s ease;
-    will-change: transform, box-shadow;
+    transition: box-shadow .2s, transform .2s;
     color: inherit;
+    /* Encaja la card perfectamente en scroll */
     scroll-snap-align: start;
-    isolation: isolate
-}
-
-.book-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 12px;
-    padding: 1px;
-    background: linear-gradient(140deg, rgba(124,92,255,.35), rgba(47,181,242,.35));
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: source-out;
-    mask-composite: subtract;
-    pointer-events: none
+    /* Crea un stacking context propio */
+    isolation: isolate;
 }
 
 .book-card:hover {
-    transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 18px 36px rgba(24,32,45,.24)
+    box-shadow: 0 18px 36px rgba(24, 32, 45, .24);
+    /* Sombra al pasar */
 }
 
 .book-card:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px var(--ring), 0 18px 36px rgba(24,32,45,.24)
+    box-shadow: 0 0 0 3px var(--ring), 0 18px 36px rgba(24, 32, 45, .24);
 }
 
+/* 
+   IMAGEN DE PORTADA DE CADA LIBRO
+*/
 .thumb {
     width: 100%;
     height: 100%;
-    background: #f5f7fa
+    background: #f5f7fa;
+
 }
 
 .thumb img {
     width: 100%;
     height: 100%;
+    /* Ajuste perfecto sin deformación */
     object-fit: cover;
-    transition: transform .35s ease
+    /* Efecto suave al hacer zoom */
+    transition: transform .35s;
 }
 
 .book-card:hover .thumb img {
-    transform: scale(1.06)
+    transform: scale(1.06);
+    /* Pequeño zoom de hover */
 }
 
+/*
+   Titulo y autor (el overlay)
+*/
 .meta {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
     padding: 8px 10px;
-    background: linear-gradient(transparent, rgba(0,0,0,.40));
+    /*Difuminado oscuro en la parte de abajo de la imagen*/
+    background: linear-gradient(transparent, rgba(0, 0, 0, .3));
     color: #fff;
+    /*Funciona para hacer como un efecto de reflejo o de vidrio, el blur en si*/
     backdrop-filter: blur(2px);
     display: flex;
     flex-direction: column;
-    gap: 1px
+    gap: 1px;
 }
 
 .title {
@@ -223,38 +242,37 @@
     margin: 0;
     line-height: 1.2;
     letter-spacing: .2px;
-    text-shadow: 0 1px 2px rgba(0,0,0,.85), 0 0 1px rgba(0,0,0,.9);
-    -webkit-text-stroke: .3px rgba(0,0,0,.7);
+    /*Borde fino al texto para que se pueda leer*/
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .85);
+    /*Hace que el texto sea más legible con esa sombra*/
+    -webkit-text-stroke: .3px rgba(0, 0, 0, .7);
     display: -webkit-box;
+    /* Limita a 2 líneas */
     -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
-    overflow: hidden
+    /* Oculta el texto extra */
+    overflow: hidden;
+
 }
 
 .author {
     margin: 0;
     font-size: .8rem;
-    color: rgba(255,255,255,.92);
-    text-shadow: 0 1px 2px rgba(0,0,0,.85), 0 0 1px rgba(0,0,0,.9);
-    -webkit-text-stroke: .25px rgba(0,0,0,.7)
+    color: rgba(255, 255, 255, .92);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .85);
+    -webkit-text-stroke: .25px rgba(0, 0, 0, .7);
 }
 
+/*Responsive*/
 @media (max-width:992px) {
     .book-card {
-        flex: 0 0 240px
+        flex: 0 0 240px;
     }
 }
 
 @media (max-width:576px) {
     .book-card {
-        flex: 0 0 240px
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        transition: none !important;
-        animation: none !important
+        flex: 0 0 240px;
     }
 }

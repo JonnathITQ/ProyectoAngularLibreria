@@ -18,14 +18,14 @@ export class UsuarioService {
     //Lista de los usuarios -GET
     //http://localhost:3600/usuarios
     verUsuarios(): Observable<any> {
-        let headers = new HttpHeaders().set('Content-Type', 'applications/json');
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this._http.get(this.url + 'usuarios', { headers: headers });
     }
 
     //Ver datos de un usuario por ID - GET
     //http://localhost:3600/usuario/:id
     verUsuario(id: String): Observable<any> {
-        let headers = new HttpHeaders().set('Content-Type', 'applications/json');
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this._http.get(this.url + 'usuario/' + id, { headers: headers });
     }
 
@@ -33,7 +33,7 @@ export class UsuarioService {
     //http://localhost:3600/guardar-usuarios
     guardarUsuarios(usuario: Usuarios): Observable<any> {
         let params = JSON.stringify(usuario);
-        let headers = new HttpHeaders().set('Content-Type', 'applications/json');
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this._http.post(this.url + 'guardar-usuarios', params, { headers: headers });
     }
 
@@ -41,7 +41,7 @@ export class UsuarioService {
     //http://localhost:3600/usuario/:id
     actualizarUsuario(usuario: Usuarios): Observable<any> {
         let params = JSON.stringify(usuario)
-        let headers = new HttpHeaders().set('Content-Type', 'applications/json');
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this._http.put(this.url + 'usuario/' + usuario._id, params, { headers: headers });
     }
 
@@ -50,5 +50,13 @@ export class UsuarioService {
     deleteUsuario(id: String): Observable<any> {
         let headers = new HttpHeaders().set('Content-Type', 'applications/json');
         return this._http.delete(this.url + 'usuario/' + id, { headers: headers });
+    }
+
+    //Subir imagenes para el usuario - POST
+    //http://localhost:3600/cargar-imagenUsuario/:id
+    subirImagen(id: string, file: File): Observable<any> {
+        const formData = new FormData();
+        formData.append('imagen', file, file.name);
+        return this._http.post(this.url + 'cargar-imagenUsuario/' + id, formData);
     }
 }

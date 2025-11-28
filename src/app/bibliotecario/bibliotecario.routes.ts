@@ -3,6 +3,7 @@ import { InicioComponent } from "./inicio/inicio.component";
 import { LibrosComponent } from "./libros/libros.component";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { UsuariosComponent } from "./usuarios/usuarios.component";
+import { PrestamosComponent } from "./prestamos/prestamos.component";
 
 
 export const BibliotecarioRoutes: Routes = [
@@ -10,5 +11,6 @@ export const BibliotecarioRoutes: Routes = [
     { path: 'libros', component: LibrosComponent },
     { path: 'sidebar', component: SidebarComponent },
     { path: 'usuarios', component: UsuariosComponent },
+    { path: 'prestamos', component: PrestamosComponent },
     { path: "**", component: InicioComponent }
 ]

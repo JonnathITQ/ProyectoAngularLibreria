@@ -15,25 +15,26 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 })
 export class UsuariosComponent implements OnInit {
 
-  public listaUsuarios: Usuarios[] = [];
-  public usuario: Usuarios;
-  public status: string = "";
-  public usuarioOriginal: Usuarios | null = null;
-  public idUsuarioAEliminar: String | null = null;
+  public listaUsuarios: Usuarios[] = []; //Guardo en un vector  la lista de usuarios cargados en la bdd
+  public usuario: Usuarios; //guardo el usuario activo, me servirá para crear y editar
+  public status: string = ""; //Esto servirá para mostrar los estados
+  public usuarioOriginal: Usuarios | null = null; //Esto es para comparar si hicieron algún cambio
+  public idUsuarioAEliminar: String | null = null; //Puse esto para guardar el ID y eliminarlo temporalmente
 
   constructor(
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService //Esto accedera a los métodos del CRUD que hice en el usuario.service.ts
   ) {
+    //Iniciamos con datos vacíos y como todo es un string, se quedará ''
     this.usuario = new Usuarios('', '', '', '', '', '', '');
   }
 
   ngOnInit(): void {
-    this.obtenerUsuarios();
+    this.obtenerUsuarios(); //Apenas inicie el componente, cargará los usuarios
   }
 
   obtenerUsuarios() {
     this.usuarioService.verUsuarios().subscribe(response => {
-      this.listaUsuarios = response.usuario;
+      this.listaUsuarios = response.usuario; //Guardamos las respuestas del backend gracias a esto
       console.log('Usuarios Cargados:', this.listaUsuarios);
     },
       error => {
@@ -45,13 +46,13 @@ export class UsuariosComponent implements OnInit {
   registrarUsuario(form: any) {
     this.usuarioService.guardarUsuarios(this.usuario).subscribe(
       response => {
-        if (response.usuario) {
+        if (response.usuario) { //Haremos un if para validar si la respuesta fue éxitosa y la incorrecta
           this.status = 'success';
-          this.obtenerUsuarios();
-          this.resetForm(form);
-          this.cerrarModal();
+          this.obtenerUsuarios(); //Recarga la lista de usuarios
+          this.resetForm(form); //Esto limpia el formulario una vez escrito y guardado o editado
+          this.cerrarModal(); //Con esto cerraremos el modal de registro
         } else {
-          this.status = 'failed';
+          this.status = 'failed'; //Alejar al Maiccol 4 metros del proyecto para que funcione bien
         }
       },
       error => {
@@ -62,7 +63,9 @@ export class UsuariosComponent implements OnInit {
   }
 
   actualizarUsuario() {
-    // Check if changes were made
+
+    //Escribí una validación. Para actualizar, se debería cambiar algo, esto detecta que si no se cambia nada, saldrá un error que diga
+    //'Debes cambiar algo para poder editar o guardar'
     if (JSON.stringify(this.usuario) === JSON.stringify(this.usuarioOriginal)) {
       console.error("Debes modificar algo para guardar");
       return;
@@ -70,19 +73,19 @@ export class UsuariosComponent implements OnInit {
 
     this.usuarioService.actualizarUsuario(this.usuario).subscribe(
       response => {
-        if (response.usuario) {
+        if (response.usuario) { //Si la validación es exitosa, obtendré los usuarios, se limpiará el form, se reemplaza por el original
           this.status = 'success';
           this.obtenerUsuarios();
-          this.usuario = new Usuarios('', '', '', '', '', '', ''); // Reset object
+          this.usuario = new Usuarios('', '', '', '', '', '', '');
           this.usuarioOriginal = null;
-          this.cerrarModal();
+          this.cerrarModal(); // se cierra el modal
         } else {
-          this.status = 'failed';
+          this.status = 'failed'; // ya nada, no vale
         }
       },
       error => {
         console.log(error);
-        this.status = 'failed';
+        this.status = 'failed'; //si tiene algún error en la lógica, se podrá ver en la consola
       }
     );
   }
@@ -107,11 +110,11 @@ export class UsuariosComponent implements OnInit {
   }
 
   seleccionarUsuario(usuario: Usuarios) {
-    this.usuario = { ...usuario }; // Create a copy
-    this.usuarioOriginal = { ...usuario }; // Save original state
+    this.usuario = { ...usuario }; // Creamos una copia
+    this.usuarioOriginal = { ...usuario }; // guardamos el original
   }
 
-  resetForm(form?: any) {
+  resetForm(form?: any) { //Reseteamos el formulario cuando se envie
     if (form) {
       form.reset();
     }

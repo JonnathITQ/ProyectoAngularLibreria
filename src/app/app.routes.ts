@@ -21,8 +21,13 @@ export const routes: Routes = [
     { path: "login", component: LoginComponent }, //Página para el Login
     { path: "registrar", component: RegistrarComponent }, //Página para el registro del usuario
     { path: "recuperar", component: RecuperarComponent }, //Página para recuperar la contraseña de usuario o bibliotecario
-    { path: "independiente", component: IndependienteComponent }, //Página de Independiente
+    { path: "independiente", component: IndependienteComponent }, //Página de Libros específicos
     { path: "footer", component: FooterComponent }, //Footer
     { path: "modales", component: SesionComponent }, //Modal para inicio de sesión en caso que toque los libros
+    {
+        path: "bibliotecario", loadChildren: //Rutas para el bibliotecario
+            () => import('./bibliotecario/bibliotecario.routes')
+                .then(m => m.BibliotecarioRoutes)
+    },
     { path: "**", component: HomeComponent }, //Validación al error de rutas, manda al inicio
 ];

@@ -1,0 +1,119 @@
+.dashboard-container {
+    padding: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.dashboard-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.dashboard-header p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    padding: 0.5rem;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #e2b95f, #b6762c);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    background: #f8f9fa;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.card-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.card:hover .card-icon {
+    background: #eef2f7;
+    transform: scale(1.1);
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.card p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}

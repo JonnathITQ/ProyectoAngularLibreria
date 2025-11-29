@@ -1,0 +1,178 @@
+.container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card Styling for Main Content */
+.card-custom {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(95, 61, 34, 0.08);
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+}
+
+h2 {
+    color: #ce9851;
+    font-weight: 700;
+    border-bottom: 2px solid rgba(255, 228, 196, 0.5);
+    padding-bottom: 1rem;
+}
+
+/* Buttons */
+.btn-primary-custom {
+    background-color: #af7b3f;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary-custom:hover {
+    background-color: #e09b4b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-action {
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    margin: 0 2px;
+}
+
+.btn-action:hover {
+    transform: scale(1.1);
+}
+
+/* Table Styling */
+.table-responsive {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+    margin-bottom: 0;
+    background-color: white;
+}
+
+.table thead th {
+    background-color: #af7b3f;
+    /* Using the primary color for header */
+    color: white;
+    border: none;
+    font-weight: 600;
+    padding: 1rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.table tbody tr:hover {
+    background-color: rgba(255, 228, 196, 0.2);
+}
+
+.table td {
+    padding: 1rem;
+    vertical-align: middle;
+    color: #555;
+}
+
+/* Badges */
+.badge {
+    padding: 0.5em 0.8em;
+    border-radius: 6px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Modal Styling */
+.modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    background-color: rgba(255, 228, 196, 0.92);
+    border-radius: 15px 15px 0 0;
+    border-bottom: 1px solid rgba(95, 61, 34, 0.08);
+}
+
+.modal-title {
+    color: #af7b3f;
+    font-weight: 700;
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    border: 1px solid rgba(95, 61, 34, 0.2);
+    padding: 0.7rem 1rem;
+    transition: all 0.3s;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #fab05c;
+    box-shadow: 0 0 0 0.25rem rgba(250, 176, 92, 0.25);
+}
+
+.form-label {
+    color: #666;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* Form Switch Styling */
+.form-check-input {
+    width: 3em;
+    height: 1.5em;
+    cursor: pointer;
+    background-color: #e9ecef;
+    border: 2px solid rgba(95, 61, 34, 0.2);
+}
+
+.form-check-input:checked {
+    background-color: #af7b3f;
+    border-color: #af7b3f;
+}
+
+.form-check-input:focus {
+    border-color: #fab05c;
+    box-shadow: 0 0 0 0.25rem rgba(250, 176, 92, 0.25);
+}
+
+.multa-container {
+    background-color: rgba(255, 228, 196, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px dashed rgba(95, 61, 34, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+}
+
+.multa-container:hover {
+    background-color: rgba(255, 228, 196, 0.4);
+}
+
+.multa-label {
+    font-weight: 600;
+    color: #af7b3f;
+    margin-bottom: 0;
+    cursor: pointer;
+    font-size: 1.05rem;
+}
+
+.modal-body {
+    padding: 2rem;
+}

@@ -59,4 +59,42 @@ export class UsuarioService {
         formData.append('imagen', file, file.name);
         return this._http.post(this.url + 'cargar-imagenUsuario/' + id, formData);
     }
+
+    login(usuario: any): Observable<any> {
+        let params = JSON.stringify(usuario);
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this._http.post(this.url + 'login-usuario', params, { headers: headers });
+    }
+
+    recuperar(datos: any): Observable<any> {
+        let params = JSON.stringify(datos);
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this._http.post(this.url + 'recuperar-contrasenia', params, { headers: headers });
+    }
+
+    setToken(token: string): void {
+        localStorage.setItem('token', token);
+    }
+
+    getToken(): string | null {
+        return localStorage.getItem('token');
+    }
+
+    setUsuario(usuario: any): void {
+        localStorage.setItem('usuario', JSON.stringify(usuario));
+    }
+
+    getUsuario(): any {
+        let usuario = localStorage.getItem('usuario');
+        if (usuario) {
+            return JSON.parse(usuario);
+        } else {
+            return null;
+        }
+    }
+
+    logout(): void {
+        localStorage.removeItem('token');
+        localStorage.removeItem('usuario');
+    }
 }

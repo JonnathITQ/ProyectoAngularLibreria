@@ -1,1 +1,42 @@
-<p>recuperar works!</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header text-white">
+                    <h3 class="mb-0">Recuperar Contraseña</h3>
+                    <small>Actualiza tu contraseña de acceso</small>
+                </div>
+                <div class="card-body">
+                    <form #recuperarForm="ngForm" (ngSubmit)="onSubmit(recuperarForm)">
+                        <div class="mb-3">
+                            <label for="correo" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="correo" name="correo" #correoInput="ngModel"
+                                [(ngModel)]="correo" required>
+                            <small class="form-text text-muted">Ingresa el correo de tu cuenta</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nuevaContrasenia" class="form-label">Nueva Contraseña</label>
+                            <input type="password" class="form-control" id="nuevaContrasenia" name="nuevaContrasenia"
+                                #nuevaContraseniaInput="ngModel" [(ngModel)]="nuevaContrasenia" required>
+                        </div>
+
+                        <div *ngIf="status === 'success'" class="alert alert-success">
+                            Contraseña actualizada correctamente. Redirigiendo al login...
+                        </div>
+                        <div *ngIf="status === 'failed'" class="alert alert-danger">
+                            {{ errorMessage }}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100"
+                            [disabled]="recuperarForm.invalid">Actualizar Contraseña</button>
+
+                        <div class="mt-3 text-center">
+                            <a [routerLink]="['/login-usuario']">Volver al login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

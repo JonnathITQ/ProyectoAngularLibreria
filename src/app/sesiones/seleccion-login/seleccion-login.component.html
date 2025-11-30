@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="text-center mb-4">Seleccione su tipo de cuenta</h2>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100 text-center p-4 shadow-sm hover-card" style="cursor: pointer;"
+                        [routerLink]="['/login']">
+                        <div class="card-body">
+                            <i class="fas fa-user-tie fa-4x mb-3 text-primary"></i>
+                            <h3 class="card-title">Empleado</h3>
+                            <p class="card-text">Acceso para bibliotecarios y personal administrativo.</p>
+                            <button class="btn btn-outline-primary mt-2">Ingresar como Empleado</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100 text-center p-4 shadow-sm hover-card" style="cursor: pointer;"
+                        [routerLink]="['/login-usuario']">
+                        <div class="card-body">
+                            <i class="fas fa-user fa-4x mb-3 text-success"></i>
+                            <h3 class="card-title">Usuario</h3>
+                            <p class="card-text">Acceso para lectores y usuarios de la biblioteca.</p>
+                            <button class="btn btn-outline-success mt-2">Ingresar como Usuario</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+            </div>
+        </div>
+    </div>
+</div>

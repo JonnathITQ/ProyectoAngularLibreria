@@ -1,1 +1,56 @@
-<p>registrar works!</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header text-white">
+                    <h3 class="mb-0">Registro de Usuario</h3>
+                    <small>Crea tu cuenta para acceder a la biblioteca</small>
+                </div>
+                <div class="card-body">
+                    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" #nombre="ngModel"
+                                    [(ngModel)]="usuario.nombre" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="apellido" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" id="apellido" name="apellido"
+                                    #apellido="ngModel" [(ngModel)]="usuario.apellido" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="cedula" class="form-label">Cédula</label>
+                            <input type="text" class="form-control" id="cedula" name="cedula" #cedula="ngModel"
+                                [(ngModel)]="usuario.cedula" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="correo" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="correo" name="correo" #correo="ngModel"
+                                [(ngModel)]="usuario.correo" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="contrasenia" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="contrasenia" name="contrasenia"
+                                #contrasenia="ngModel" [(ngModel)]="usuario.contrasenia" required>
+                        </div>
+
+                        <div *ngIf="status === 'success'" class="alert alert-success">
+                            Registro exitoso. Redirigiendo al login...
+                        </div>
+                        <div *ngIf="status === 'failed'" class="alert alert-danger">
+                            Error al registrar. Inténtalo de nuevo.
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100"
+                            [disabled]="registerForm.invalid">Registrarse</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,53 +1,52 @@
-/* contenedor y fondo */
-.contenedor-navbar { /*Fondo para toda la navbar, color principal*/
-    background-color: rgba(255, 228, 196, 0.92); 
-    border-bottom: 1px solid rgba(95, 61, 34, 0.08);
-    box-shadow: 0 6px 18px rgba(95, 61, 34, 0.04);
+/* CONTENEDOR PRINCIPAL */
+.contenedor-navbar {
+    background-color: rgba(255, 228, 196, 0.92);
+    /* crema */
+    border-bottom: 1px solid rgba(95, 61, 34, 0.10);
+    /* café suave */
+    box-shadow: 0 6px 18px rgba(95, 61, 34, 0.06);
 }
 
-/* marca: logo + texto alineados a la izquierda */
+/* LOGO + TEXTO */
 .navbar-brand {
-    gap: 0.75rem; /*el gap lo usamos aquí para dar un poco de espacio entre el logo y el texto*/
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
     padding: 6px 8px;
-    display: inline-flex; /*El display inline flex sirve para que el logo y el texto se alineen en una fila*/
-    align-items: center; /*Centramos verticalmente el logo y el texto*/
-    text-decoration: none; /*Quitamos el subrayado del texto*/
+    text-decoration: none;
 }
 
-/* imagen del logo */
 .navbar-logo {
-    width: 56px; /*Tamaño de ancho*/
-    height: auto; /*Este tamaño esta en auto para que se acople al tamaño de la imagen*/
-    display: block; /*El display block sirve para que el logo se muestre en una fila separada del texto*/
-    border-radius: 8px; /*Aquí doblamos las esquinas del logo*/
-    padding: 6px; /*aumentamos un poco su borde interno*/
-    background: rgba(99, 99, 78, 0.95); /*le metemos un fondo para que el png se pueda distinguir*/
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08); /*Un poco de sombra en los bordes*/
-    transition: transform .18s ease, box-shadow .18s ease; /*Una transición al momento de recargar la página con su sombreado*/
+    width: 56px;
+    height: auto;
+    border-radius: 8px;
+    padding: 6px;
+    background: rgba(99, 99, 78, 0.95);
+    /* fondo opaco del PNG */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transition: transform .18s ease, box-shadow .18s ease;
 }
 
-/* nombre junto al logo */
 .brand-text {
     color: #2b2b2b;
     font-weight: 700;
     font-size: 1.05rem;
-    margin-left: 4px;
     white-space: nowrap;
 }
 
-/* Hover para la navbar */
+/* HOVER LOGO */
 .navbar-brand:hover .navbar-logo {
     transform: translateY(-3px);
-    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
 }
 
-/* Links de la Navbar */
+/* LINKS DE LA NAVBAR */
 .navbar-nav .nav-link {
     color: #3f3f3f;
+    font-weight: 600;
     padding: 0.45rem 0.75rem;
     border-radius: 8px;
     transition: background .18s ease, transform .18s ease, color .12s ease;
-    font-weight: 600;
 }
 
 .navbar-nav .nav-link:hover {
@@ -56,88 +55,54 @@
     transform: translateY(-3px);
 }
 
-/* activa */
+/* ACTIVO */
 .navbar-nav .nav-link.active {
-    color: #1d4f6b;
+    color: #5f3d22;
+    /* café más oscuro */
     background: rgba(255, 255, 255, 0.35);
 }
 
-/* Buscador: la barra de filtro */
+/* BUSCADOR */
 .nav-search {
     border-radius: 8px;
-    border: 1px solid rgba(161, 96, 43, 0.692);
+    border: 1px solid rgba(95, 61, 34, 0.35);
     background: rgba(255, 255, 255, 0.9);
 }
 
 .nav-search:focus {
     outline: none;
-    box-shadow: 0 6px 18px rgba(101, 235, 184, 0.945);
+    box-shadow: 0 6px 18px rgba(95, 61, 34, 0.25);
 }
 
-/* botón de buscar */
-.nav-search-btn {
+/* BOTÓN BUSCAR (solo café) */
+.btn-outline-success {
     border-radius: 8px;
-    border-color: rgba(103, 236, 163, 0.952);
+    border: 1px solid rgba(95, 61, 34, 0.45);
+    color: #5f3d22;
+    background: rgba(255, 255, 255, 0.06);
+    font-weight: 600;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.btn-outline-success:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(95, 61, 34, 0.18);
+}
+
+/* LOGIN BUTTON (User-profile) */
+.user-profile {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: rgb(219, 165, 47);
+    border: 1px solid rgba(95, 61, 34, 0.15);
     color: #2b2b2b;
-}
-
-/* Plantilla de Uiverse */ 
-.user-profile {
-  width: 131px;
-  height: 51px;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  background: linear-gradient(
-    to bottom right,
-    #f8d085 0%,
-    rgba(16, 228, 51, 0.226) 30%
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.user-profile:hover,
-.user-profile:focus {
-  background-color: rgba(243, 247, 15, 0.7);
-  box-shadow: 0 0 10px rgba(151, 160, 24, 0.5);
-  outline: none;
-}
-
-.user-profile-inner {
-  width: 127px;
-  height: 47px;
-  border-radius: 13px;
-  background-color: #fab05c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  color: #fff;
-  font-weight: 600;
-}
-
-.user-profile-inner svg {
-  width: 27px;
-  height: 27px;
-  fill: #fff;
-}
-
-/* Configuración del botón login */
-.user-profile {
-    display: inline-flex; /* el inline flex sirve para que el botón se muestre en una fila separada del texto */
-    align-items: center; /*luego centramos verticalmente el texto y el icono*/
-    gap: 8px; /*después de centrarlo, le damos un poco de espacio entre el texto y el icono*/
-    padding: 6px 10px; /*aumentamos un poco el padding para que el botón se vea más grande*/
-    border-radius: 8px; /*redondeamos las esquinas*/
-    background: rgba(255,255,255,0.06); /* Un fondo para darle un poco de contraste */
-    border: 1px solid rgba(95,61,34,0.08); /*Uso el border para poder darle un poco de contraste al botón*/
-    color: #2b2b2b; /*las letras salen de color Alan*/
-    text-decoration: none; /*Quitamos el subrayado del texto*/
-    cursor: pointer; /*Le ponemos al cursor una mano para que se vea más interactivo*/
-    transition: transform .12s ease, box-shadow .12s ease, background .12s ease; /*Basicamente esta transición hace que el botón se mueva un poco cuando se le da click*/
-    flex-shrink: 0;/* Esto sirve para que el botón no se reduzca en filas apretadas, es decir, que se mantenga su tamaño original */
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
 }
 
 .user-profile-inner {
@@ -148,7 +113,6 @@
     color: inherit;
 }
 
-/* icono más discreto y con herencia de color */
 .user-profile-inner svg {
     width: 20px;
     height: 20px;
@@ -156,40 +120,27 @@
     opacity: 0.95;
 }
 
-/* hover/focus sutil */
 .user-profile:hover,
 .user-profile:focus {
-    background: rgba(255,255,255,0.18);
+    background: rgba(255, 255, 255, 0.18);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-    outline: none;
-}
-
-/* foco accesible */
-.user-profile:focus-visible {
-    box-shadow: 0 0 0 4px rgba(255,228,196,0.28);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
 /* RESPONSIVE */
 @media (max-width: 991.98px) {
-    
-    .contenedor-navbar .container-fluid {/* Reduce el padding horizontal del contenedor para que haya más espacio a la izquierda */
+    .contenedor-navbar .container-fluid {
         padding-left: 0.75rem;
         padding-right: 0.75rem;
     }
 
-    /* Mueve el botón toggler más hacia la izquierda, evitando que se quede pegado al borde derecho */
     .navbar-toggler {
-        margin-left: 0.5rem;/* espacio desde el logo */
-        margin-right: 50px;/* Le movemos más a la izquierda a la hamburguesa para que se vea*/
+        margin-left: 0.5rem;
+        margin-right: 50px;
         padding: 0.35rem 0.6rem;
         border-radius: 8px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
     }
 
-    /* Ajuste opcional del icono para que mantenga buenas proporciones */
     .navbar-toggler-icon {
         width: 28px;
         height: 18px;
@@ -210,13 +161,9 @@
         width: 100%;
     }
 
-    .nav-search-btn {
+    .btn-outline-success {
         width: 100%;
         margin-top: 8px;
-    }
-
-    .collapse.navbar-collapse {
-        padding-top: 8px;
     }
 
     .navbar-collapse .user-profile {
@@ -224,27 +171,21 @@
         justify-content: center;
         padding: 8px 12px;
         margin-top: 8px;
-        background: rgba(255,255,255,0.06);
         border-radius: 10px;
     }
-
-    .navbar-collapse .user-profile .user-profile-inner {
-        gap: 10px;
-    }
-
 }
 
-/* En pantallas muy pequeñas ocultar el texto y mostrar solo el icono para ahorrar espacio */
 @media (max-width: 575.98px) {
-    .user-profile-inner p {
+    .user-profile-inner span {
         display: none;
     }
+
     .user-profile {
         padding: 6px;
     }
 }
 
-/* reduce motion preference */
+/* REDUCE MOTION */
 @media (prefers-reduced-motion: reduce) {
 
     .navbar-logo,

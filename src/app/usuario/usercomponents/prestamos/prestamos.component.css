@@ -1,0 +1,81 @@
+.prestamo-container {
+  padding: 20px;
+}
+
+.title {
+  font-size: 25px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.book-list h3 {
+  margin-bottom: 10px;
+}
+
+.no-books {
+  padding: 12px;
+  background: #f8fafc;
+  border-left: 4px solid #143F13;
+  color: #143F13;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.book-card {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.book-card:hover {
+  transform: scale(1.02);
+}
+
+.book-card.no-disponible {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.autor {
+  color: #555;
+}
+
+.estado {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.estado.disponible {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.solicitud-box {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f0f4ff;
+  border-radius: 8px;
+}
+
+.btn-solicitar {
+  width: 100%;
+  background: #143F13;
+  padding: 10px;
+  color: white;
+  border-radius: 6px;
+  margin-top: 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-solicitar:hover {
+  background: #143F13;
+}

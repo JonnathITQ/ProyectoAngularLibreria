@@ -1,0 +1,41 @@
+<app-burguer></app-burguer>
+
+<br>
+<div class="prestamo-container">
+
+    <h2 class="title">Solicitar Préstamo de un libro</h2>
+
+    <!-- Lista de libros -->
+    <div class="book-list">
+        <h3>Seleccione un libro</h3>
+
+        <div *ngIf="books.length === 0" class="no-books">
+            No hay libros disponibles por el momento.
+        </div>
+
+        <div *ngFor="let libro of books" class="book-card"
+             [class.no-disponible]="!libro.disponible"
+             (click)="libro.disponible && selectBook(libro)">
+            
+            <h4>{{ libro.titulo }}</h4>
+            <p class="autor">{{ libro.autor }}</p>
+
+            <span class="estado" [class.disponible]="libro.disponible">
+                {{ libro.disponible ? 'Disponible' : 'No disponible' }}
+            </span>
+        </div>
+    </div>
+
+    <!-- Formulario de solicitud -->
+    <div *ngIf="selectedBook" class="solicitud-box">
+        <h3>Solicitud para préstamo</h3>
+
+        <p><strong>Libro:</strong> {{ selectedBook.titulo }}</p>
+        <p><strong>Autor:</strong> {{ selectedBook.autor }}</p>
+
+        <button class="btn-solicitar" (click)="solicitarPrestamo()">
+            Enviar Solicitud
+        </button>
+    </div>
+
+</div>

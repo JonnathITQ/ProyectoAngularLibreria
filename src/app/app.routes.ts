@@ -24,5 +24,11 @@ export const routes: Routes = [
     { path: "independiente", component: IndependienteComponent }, //Página de Independiente
     { path: "footer", component: FooterComponent }, //Footer
     { path: "modales", component: SesionComponent }, //Modal para inicio de sesión en caso que toque los libros
+    {
+        path: "usuario", loadChildren:
+        () => import('./usuario/usuario.routes')
+        .then(m => m.UsuarioRoutes)
+    },
+
     { path: "**", component: HomeComponent }, //Validación al error de rutas, manda al inicio
 ];

@@ -1,0 +1,30 @@
+<div class="home-container">
+  <h1>Bienvenido a tu Biblioteca Virtual</h1>
+  <p class="subtitle">Guarda y gestiona tus libros favoritos, información y más</p>
+
+  <div class="actions-grid">
+
+    <div class="action-card">
+      <img src="assets/icons/miperfil.webp" alt="Perfil">
+      <h3>Mi Perfil</h3>
+      <p>Revisa o actualiza tu información de usuario</p>
+      <button (click)="goTo('usuario/perfil')">Ir</button>
+    </div>
+
+    <div class="action-card">
+      <img src="assets/icons/favlib.webp" alt="Favoritos">
+      <h3>Libros Favoritos</h3>
+      <p>Revisa los libros que has marcado como favoritos</p>
+      <button (click)="goTo('usuario/favorito')">Ir</button>
+    </div>
+
+    <div class="action-card">
+      <img src="assets/icons/buscarlibro.png" alt="Buscar libros">
+      <h3>Prestamo de Libros</h3>
+      <p>Explora el catálogo completo y rentalos</p>
+      <button (click)="goTo('usuario/prestamos')">Ir</button>
+    </div>
+
+
+  </div>
+</div>

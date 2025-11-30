@@ -1,0 +1,145 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 260px;
+    height: 100vh;
+    background: linear-gradient(to bottom right,
+            #f8d085 0%,
+            rgba(16, 228, 51, 0.226) 30%,
+            rgba(255, 255, 255, 0.9) 100%);
+    color: #333;
+    padding: 20px;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3);
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+    z-index: 900;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.hamburger-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    width: 35px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.hamburger-line {
+    width: 100%;
+    height: 4px;
+    margin: 5px 0;
+    background: #333;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Animación de la hamburguesa */
+.hamburger-btn.active .hamburger-line:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn.active .hamburger-line:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.sidebar-title {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #c3c3d1;
+    text-decoration: none;
+    padding: 12px 0;
+    border-radius: 8px;
+    transition: 0.2s ease;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    padding-left: 10px;
+    color: white;
+}
+
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 20px;
+    width: 85%;
+}
+
+.logout-btn {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    background: #ff4d4d;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.logout-btn:hover {
+    background: #e63939;
+}

@@ -1,0 +1,19 @@
+<app-burguer></app-burguer>
+
+<br>
+<div class="favorites-container">
+  <h2>Libros Favoritos</h2>
+
+  <div class="empty-message" *ngIf="librosFavoritos.length === 0">
+    <p>No tienes libros favoritos todavía.</p>
+    <small>Agrega los que más te gusten aquí</small>
+  </div>
+
+  <div class="books-grid" *ngIf="librosFavoritos.length > 0">
+    <div class="book-card" *ngFor="let book of librosFavoritos">
+      <img [src]="book.image" alt="Portada del libro">
+      <h3>{{ book.title }}</h3>
+      <p>{{ book.author }}</p>
+    </div>
+  </div>
+</div>

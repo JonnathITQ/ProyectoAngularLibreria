@@ -8,7 +8,6 @@ import { BurguerComponent } from "./usercomponents/burguer/burguer.component";
 
 export const UsuarioRoutes: Routes = [
     { path: '', component: UserComponent },
-    { path: 'user', component: UserComponent},
     { path: 'burguer', component: BurguerComponent},
     { path: 'perfil', component: PerfilComponent },
     { path: 'favorito', component: FavoritoComponent },

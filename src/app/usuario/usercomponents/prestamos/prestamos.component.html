@@ -1,41 +1,112 @@
-<app-burguer></app-burguer>
+<div class="d-flex">
+    <app-burguer></app-burguer>
 
-<br>
-<div class="prestamo-container">
-
-    <h2 class="title">Solicitar Préstamo de un libro</h2>
-
-    <!-- Lista de libros -->
-    <div class="book-list">
-        <h3>Seleccione un libro</h3>
-
-        <div *ngIf="books.length === 0" class="no-books">
-            No hay libros disponibles por el momento.
-        </div>
-
-        <div *ngFor="let libro of books" class="book-card"
-             [class.no-disponible]="!libro.disponible"
-             (click)="libro.disponible && selectBook(libro)">
+    <div class="content p-4 w-100 container">
+        
+        <div class="card-custom">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0">Mis Préstamos Solicitados</h2>
+                
+                <button type="button" class="btn btn-primary-custom" 
+                        [disabled]="tieneMulta || !usuarioLogueadoId"
+                        data-bs-toggle="modal" data-bs-target="#solicitudModal" 
+                        (click)="resetForm()">
+                    <i class="fas fa-plus me-2"></i> Solicitar Préstamo
+                </button>
+            </div>
             
-            <h4>{{ libro.titulo }}</h4>
-            <p class="autor">{{ libro.autor }}</p>
+            <div *ngIf="mensajeModal" 
+                 class="alert-status mb-4" 
+                 [ngClass]="{'alert-danger-custom': tieneMulta || mensajeModal.startsWith('❌'), 'alert-info-custom': !tieneMulta && mensajeModal && !mensajeModal.startsWith('❌')}">
+                {{ mensajeModal }}
+            </div>
 
-            <span class="estado" [class.disponible]="libro.disponible">
-                {{ libro.disponible ? 'Disponible' : 'No disponible' }}
-            </span>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Libro</th>
+                            <th>Autor</th>
+                            <th>Horas Solicitadas</th>
+                            <th>Estado Multa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let prestamo of listaPrestamos">
+                            <td>
+                                <div class="fw-bold">{{ prestamo.libros_id?.titulo }}</div>
+                            </td>
+                            <td>
+                                <small class="text-muted">{{ prestamo.libros_id?.autor || 'N/A' }}</small>
+                            </td>
+                            <td>{{ prestamo.horasPrestamo }} hrs</td>
+                            <td>
+                                <span class="badge"
+                                    [ngClass]="{'bg-danger': prestamo.multa, 'bg-success': !prestamo.multa}">
+                                    {{ prestamo.multa ? 'CON MULTA' : 'Sin Multa' }}
+                                </span>
+                            </td>
+                        </tr>
+                        <tr *ngIf="listaPrestamos.length === 0">
+                            <td colspan="4" class="text-center text-muted">Aún no has solicitado ningún préstamo.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+</div>
 
-    <!-- Formulario de solicitud -->
-    <div *ngIf="selectedBook" class="solicitud-box">
-        <h3>Solicitud para préstamo</h3>
+<!-- Solicitud de Préstamo (USUARIO) -->
+<div class="modal fade" id="solicitudModal" tabindex="-1" aria-labelledby="solicitudModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="solicitudModalLabel">Solicitar Nuevo Préstamo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    id="closeSolicitudModalBtn"></button>
+            </div>
+            <div class="modal-body">
+                <form #solicitudForm="ngForm" (ngSubmit)="solicitarPrestamo(solicitudForm)">
 
-        <p><strong>Libro:</strong> {{ selectedBook.titulo }}</p>
-        <p><strong>Autor:</strong> {{ selectedBook.autor }}</p>
+                    <div class="mb-3">
+                        <label for="libro" class="form-label">Libro a Solicitar <span class="text-danger">*</span></label>
+                        <select class="form-select" id="libro" name="libro" #libro="ngModel"
+                            [(ngModel)]="prestamo.libros_id" required>
+                            <option value="" disabled selected>Seleccione un libro</option>
+                            <option *ngFor="let libro of listaLibros" [value]="libro._id">
+                                {{ libro.titulo }} - (Disp: {{ libro.cantidad_disponible }})
+                            </option>
+                        </select>
+                        <div *ngIf="libro.touched && libro.invalid" class="text-danger small mt-1">
+                            El libro es requerido.
+                        </div>
+                    </div>
 
-        <button class="btn-solicitar" (click)="solicitarPrestamo()">
-            Enviar Solicitud
-        </button>
+                    <div class="mb-3">
+                        <label for="horas" class="form-label">Horas de Préstamo (Mín 2h / Máx 8h) <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <select class="form-select" id="horas" name="horas" #horas="ngModel"
+                                [(ngModel)]="prestamo.horasPrestamo" required min="2" max="8">
+                                <option *ngFor="let h of horasDisponibles" [value]="h">
+                                    {{ h }} Horas
+                                </option>
+                            </select>
+                            <span class="input-group-text">Hrs</span>
+                        </div>
+                        <div *ngIf="horas.touched && horas.invalid" class="text-danger small mt-1">
+                            El rango de horas es de 2 a 8.
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer border-0 px-0 pb-0 mt-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary-custom px-4" [disabled]="!solicitudForm.form.valid">
+                            <i class="fas fa-paper-plane me-2"></i> Enviar Solicitud
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-
 </div>

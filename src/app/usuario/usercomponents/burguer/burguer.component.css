@@ -1,18 +1,18 @@
 .sidebar {
     position: fixed;
     top: 0;
-    left: -260px;
+    left: -280px; 
     width: 260px;
     height: 100vh;
-    background: linear-gradient(to bottom right,
-            #f8d085 0%,
-            rgba(16, 228, 51, 0.226) 30%,
-            rgba(255, 255, 255, 0.9) 100%);
-    color: #333;
+    background-color: #fdf7f0; 
+    color: #2c3e50;
     padding: 20px;
-    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3);
-    transition: left 0.3s ease;
+
+    box-shadow: 6px 0 15px rgba(0, 0, 0, 0.1); 
+    transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.35); /* Transición elástica moderna */
     z-index: 1000;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar.open {
@@ -26,11 +26,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(44, 62, 80, 0.6);
     opacity: 0;
     visibility: hidden;
-    transition: 0.3s ease;
-    z-index: 900;
+    transition: opacity 0.3s ease;
+    z-index: 999; 
 }
 
 .sidebar-overlay.active {
@@ -38,39 +38,30 @@
     visibility: visible;
 }
 
-
 .hamburger-btn {
-    position: fixed;
-    top: 15px;
+    position: absolute;
+    top: 18px;
     left: 15px;
-    width: 35px;
-    height: 30px;
+    width: 30px;
+    height: 25px;
     background: transparent;
     border: none;
     cursor: pointer;
-    z-index: 1100;
+    z-index: 998; 
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
+
 
 .hamburger-line {
     width: 100%;
-    height: 4px;
-    margin: 5px 0;
-    background: #333;
-    border-radius: 4px;
+    height: 3px; 
+    background: #2c3e50; 
+    border-radius: 2px;
     transition: all 0.3s ease;
-}
-
-/* Animación de la hamburguesa */
-.hamburger-btn.active .hamburger-line:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-}
-
-.hamburger-btn.active .hamburger-line:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger-btn.active .hamburger-line:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
 }
 
 
@@ -78,68 +69,93 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    padding: 5px 0 25px 0;
+    border-bottom: 1px solid #e2b95f; 
+    margin-bottom: 15px;
 }
 
 .sidebar-title {
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 1.5rem;
+    color: #2c3e50;
+    font-weight: 700;
 }
 
+
 .close-btn {
-    background: transparent;
+    background: none;
     border: none;
     cursor: pointer;
-    color: white;
+    color: #2c3e50;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #e2b95f; 
 }
 
 
 .sidebar-nav {
+    flex-grow: 1; 
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    gap: 5px; 
 }
 
 .nav-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    color: #c3c3d1;
+    gap: 15px;
+    color: #2c3e50;
     text-decoration: none;
-    padding: 12px 0;
+    padding: 10px 15px;
     border-radius: 8px;
-    transition: 0.2s ease;
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
-.nav-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    padding-left: 10px;
-    color: white;
+.nav-item svg {
+    stroke: #2c3e50;
+    transition: stroke 0.2s;
+}
+
+.nav-item:hover, .nav-item.active {
+    background: rgba(226, 185, 95, 0.15);
+    color: #b6762c;
+}
+
+.nav-item:hover svg, .nav-item.active svg {
+    stroke: #b6762c;
 }
 
 
 .sidebar-footer {
-    position: absolute;
-    bottom: 20px;
-    width: 85%;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    width: 100%;
 }
 
 .logout-btn {
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     gap: 12px;
     width: 100%;
-    background: #ff4d4d;
+    background: #ff6b6b; 
     border: none;
     padding: 12px;
     border-radius: 8px;
     color: white;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: background 0.2s ease;
 }
 
 .logout-btn:hover {
-    background: #e63939;
+    background: #e55959;
+}
+
+.logout-btn svg {
+    stroke: white;
 }

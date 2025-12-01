@@ -117,4 +117,9 @@ export class UsuarioService {
         localStorage.removeItem('token');
         localStorage.removeItem('usuario');
     }
+
+    isAuthenticated():boolean{
+        const token = this.getToken();
+        return !!token;
+    }
 }

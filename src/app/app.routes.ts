@@ -5,7 +5,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { LibrosComponent } from './pages/libros/libros.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { LoginComponent } from './sesiones/login/login.component';
+import { LoginUsuarioComponent } from './sesiones/login-usuario/login-usuario.component';
 import { RegistrarComponent } from './sesiones/registrar/registrar.component';
 import { RecuperarComponent } from './sesiones/recuperar/recuperar.component';
 import { IndependienteComponent } from './pages/independiente/independiente.component';
@@ -18,7 +18,7 @@ export const routes: Routes = [
     { path: "contacto", component: ContactoComponent }, //Página Contacto
     { path: "libros", component: LibrosComponent }, //Página donde se ubican todos los libros
     { path: "sidebar", component: SidebarComponent }, //Sidebar
-    { path: "login", component: LoginComponent }, //Página para el Login
+    { path: "login-usuario", component: LoginUsuarioComponent}, //Página para el Login
     { path: "registrar", component: RegistrarComponent }, //Página para el registro del usuario
     { path: "recuperar", component: RecuperarComponent }, //Página para recuperar la contraseña de usuario o bibliotecario
     { path: "independiente", component: IndependienteComponent }, //Página de Independiente

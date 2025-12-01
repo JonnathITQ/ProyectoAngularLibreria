@@ -4,9 +4,7 @@ import { urlMongo } from "./urlMongo";
 import { Observable } from "rxjs";
 import { Libros } from "../models/libros.model";
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 
 export class LibrosService {
 
@@ -62,16 +60,5 @@ export class LibrosService {
         const formData = new FormData();
         formData.append('portada', file, file.name);
         return this._http.post(this.url + 'subir-portada/' + id, formData);
-    }
-
-    gestionarFavorito(usuarioId: String, libroId: String): Observable<any> {
-        const datos = {
-            libroId: libroId
-        };
-        
-        let params = JSON.stringify(datos);
-        let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        
-        return this._http.put(this.url + 'usuario/' + usuarioId + '/favorito', params, { headers });
     }
 }

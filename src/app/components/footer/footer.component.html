@@ -2,17 +2,17 @@
     <footer class="footer py-4">
         <div class="container">
             <div class="row align-items-center">
-                <!-- LEFT: logo + nombre -->
+                <!-- Logo -->
                 <div class="col-md-4 d-flex align-items-center">
                     <img src="assets/logo.png" alt="Logo Entre Letras" class="me-2 logo-img">
                     <a class="navbar-brand mb-0 fs-5" routerLink="/">Entre Letras</a>
                 </div>
 
-                <!-- CENTER: navegación -->
+                <!-- Links -->
                 <div class="col-md-4">
                     <ul class="nav justify-content-center">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
+                            <a class="nav-link active" href="#inicio">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLink="/libros">Libros</a>
@@ -23,27 +23,39 @@
                     </ul>
                 </div>
 
-                <!-- RIGHT: redes sociales -->
+                <!-- Redes sociales -->
+                <!--Ocupará 4 columnas cuando la pantalla sea de tamaño mediano, en pantallas pequeñas ocupa todo el ancho
+                     Alinea el texto a la derecha pero de pantallas medianas o grandes
+                     Agrega un margen superior en pantallas pequeñas (en cristiano, espacio hacia abajo en pantallas pequeñas)
+                     el mt-md-0 quita el margen superior cuando hay pantallas medianas y grandes
+                 -->
                 <div class="col-md-4 text-md-end mt-3 mt-md-0">
                     <div class="social">
-                        <a class="social-link" href="https://www.instagram.com/_addrriel/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <a class="social-link" href="https://www.instagram.com/_addrriel/" target="_blank">
                             <img src="assets/Ig.png" alt="Instagram" class="social-icon">
                         </a>
 
-                        <a class="social-link" href="https://github.com/JonnathITQ" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <a class="social-link" href="https://github.com/JonnathITQ" target="_blank">
                             <img src="assets/github.svg" alt="GitHub" class="social-icon" id="githubsito">
                         </a>
 
-                        <a class="social-link" href="https://wa.me/593939863068?text=Hola%20Entre%20Letras" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                        <a class="social-link" href="https://wa.me/593939863068?text=Hola%20Entre%20Letras"
+                            target="_blank">
                             <img src="assets/wsp.png" alt="WhatsApp" class="social-icon">
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="row mt-3">
+            <div class="row mt-3"> <!--El mt 3 añade un espacio arriba-->
                 <div class="col text-center small text-muted">
-                    <span class="resaltarCuchau">© 2025 Entre Letras. Todos los derechos reservados.</span>
+                    <!--text-center: centra el texto
+                        small: reduce ligeramente el tamaño de letra
+                        text-muted: es para el color gris
+                    -->
+                    <span class="resaltarCuchau">© 2025 Entre Letras. Absolutamente todos los derechos
+                        reservados.</span>
+                    <!--Resalta el texto del copy-->
                 </div>
             </div>
         </div>

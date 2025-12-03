@@ -1,10 +1,8 @@
 import { Routes } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
-
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { LibrosComponent } from './pages/libros/libros.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoginComponent } from './sesiones/login/login.component';
 import { LoginUsuarioComponent } from './sesiones/login-usuario/login-usuario.component';
 import { RegistrarComponent } from './sesiones/registrar/registrar.component';
@@ -19,7 +17,6 @@ export const routes: Routes = [
     { path: "", component: HomeComponent }, //Página de Inicio
     { path: "contacto", component: ContactoComponent }, //Página Contacto
     { path: "libros", component: LibrosComponent }, //Página donde se ubican todos los libros
-    { path: "sidebar", component: SidebarComponent }, //Sidebar
     { path: "login", component: LoginComponent }, //Página para el Login de Empleado
     { path: "login-usuario", component: LoginUsuarioComponent }, //Página para el Login de Usuario
     { path: "registrar", component: RegistrarComponent }, //Página para el registro del usuario

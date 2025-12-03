@@ -60,12 +60,16 @@ export class UsuarioService {
         return this._http.post(this.url + 'cargar-imagenUsuario/' + id, formData);
     }
 
+    //Login para el usuario - POST
+    //http://localhost:3600/login-usuario
     login(usuario: any): Observable<any> {
-        let params = JSON.stringify(usuario);
-        let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this._http.post(this.url + 'login-usuario', params, { headers: headers });
+        let params = JSON.stringify(usuario); //Convertimos el objeto a JSON
+        let headers = new HttpHeaders().set('Content-Type', 'application/json'); //Encabezados HTTP
+        return this._http.post(this.url + 'login-usuario', params, { headers: headers }); //Para poder tener el endpoint
     }
 
+    //Recuperar la contraseña - POST
+    //http://localhost:3600/recuperar-contrasenia
     recuperar(datos: any): Observable<any> {
         let params = JSON.stringify(datos);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');

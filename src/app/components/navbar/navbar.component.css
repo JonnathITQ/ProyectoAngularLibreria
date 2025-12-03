@@ -1,196 +1,162 @@
-/* CONTENEDOR PRINCIPAL */
 .contenedor-navbar {
     background-color: rgba(255, 228, 196, 0.92);
-    /* crema */
+    /*Fondo navbar*/
     border-bottom: 1px solid rgba(95, 61, 34, 0.10);
-    /* café suave */
+    /*el borde inferior*/
     box-shadow: 0 6px 18px rgba(95, 61, 34, 0.06);
+    /*Sombreado*/
 }
 
-/* LOGO + TEXTO */
+/*LOGO */
 .navbar-brand {
     display: inline-flex;
+    /*Coloca el logo y el texto en una sola linea y permite alinear esto de manera más fácil*/
     align-items: center;
+    /*Centramos los elementos dentro del contenedor*/
     gap: 0.75rem;
+    /*Espacio que tendrán los items del contenedor (Logo y el título)*/
     padding: 6px 8px;
+    /*Espacio interno del contenedor*/
     text-decoration: none;
+    /*quitamos el subrayado de los <a>*/
 }
 
 .navbar-logo {
     width: 56px;
+    /*Tenemos el ancho de la imágen*/
     height: auto;
+    /*Altura de la imagen, se ajusta el ancho*/
     border-radius: 8px;
+    /*Para redondear los bordes*/
     padding: 6px;
+    /*Borde interno*/
     background: rgba(99, 99, 78, 0.95);
-    /* fondo opaco del PNG */
+    /*Fondo para la parte del logo (para que se pueda distinguir del fondo de la navbar)*/
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    transition: transform .18s ease, box-shadow .18s ease;
+    /*Sombra para que resalte el logo*/
+    transition: transform .18s ease,
+        /*Sirve para el movimiento en el hover*/
+        box-shadow .18s ease;
+    /*también animamos la sombra*/
 }
 
 .brand-text {
     color: #2b2b2b;
+    /*Color del texto*/
     font-weight: 700;
+    /*Coloco texto en negrillas para que se vea como título*/
     font-size: 1.05rem;
+    /*Hacemos un poco más grande la letra*/
     white-space: nowrap;
+    /*Evita que el texto se divida en otra linea, todo seguido*/
 }
 
-/* HOVER LOGO */
+/* Hover para el logo */
 .navbar-brand:hover .navbar-logo {
     transform: translateY(-3px);
+    /*mueve el logo 3px arriba al pasar el mouse*/
     box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+    /*Le aumentamos un poco la sombra para que cree el estilo de que está más alto*/
 }
 
 /* LINKS DE LA NAVBAR */
 .navbar-nav .nav-link {
     color: #3f3f3f;
+    /*Color de la letra*/
     font-weight: 600;
+    /*Negrilla*/
     padding: 0.45rem 0.75rem;
+    /*borde interno*/
     border-radius: 8px;
-    transition: background .18s ease, transform .18s ease, color .12s ease;
+    /*redondeamos el contenedor*/
+    transition: background .18s ease,
+        /*Al momento de pasar el mouse, suaviza el fondo*/
+        transform .18s ease,
+        /*cuando se haga el movimiento del fondo, este lo suaviza*/
+        color .12s ease;
+    /*Va cambiando de color suavemente*/
 }
 
 .navbar-nav .nav-link:hover {
     background: rgba(255, 255, 255, 0.35);
+    /*Fondo cambiante de la nav al pasar el mouse*/
     color: #2b2b2b;
+    /*Letras negras*/
     transform: translateY(-3px);
+    /*subir 3 pixeles*/
 }
 
 /* ACTIVO */
 .navbar-nav .nav-link.active {
     color: #5f3d22;
-    /* café más oscuro */
+    /*Si está activo, sale el color cafe*/
     background: rgba(255, 255, 255, 0.35);
+    /*Si está activo, sale el fondo de color tipo gris*/
 }
 
-/* BUSCADOR */
-.nav-search {
-    border-radius: 8px;
-    border: 1px solid rgba(95, 61, 34, 0.35);
-    background: rgba(255, 255, 255, 0.9);
-}
-
-.nav-search:focus {
-    outline: none;
-    box-shadow: 0 6px 18px rgba(95, 61, 34, 0.25);
-}
-
-/* BOTÓN BUSCAR (solo café) */
-.btn-outline-success {
-    border-radius: 8px;
-    border: 1px solid rgba(95, 61, 34, 0.45);
-    color: #5f3d22;
-    background: rgba(255, 255, 255, 0.06);
-    font-weight: 600;
-    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-}
-
-.btn-outline-success:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(95, 61, 34, 0.18);
-}
-
-/* LOGIN BUTTON (User-profile) */
+/* Botón para el login */
 .user-profile {
+    margin-right: 20px;
+    /*Muevo un poco a la izquierda para que el botón no esté tan pegado*/
     display: inline-flex;
+    /*Coloca los elementos en una fila para después alinearlos*/
     align-items: center;
+    /*Centra el texto y el ícono*/
     gap: 8px;
-    padding: 6px 10px;
+    /*Separación entre el texto e ícono*/
+    padding: 8px 12px;
+    /*Borde interno*/
     border-radius: 8px;
+    /*Borde al contenedor*/
     background: rgb(219, 165, 47);
+    /*Fondo algo amarillo*/
     border: 1px solid rgba(95, 61, 34, 0.15);
+    /*Borde para el botón*/
     color: #2b2b2b;
+    /*letras negras*/
     cursor: pointer;
+    /*Cambia la forma del cursor para que muestre que si puede clickear (esa mano con el dedo)*/
     text-decoration: none;
-    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+    /*Quitamos el subrayado*/
+    transition: transform .12s ease,
+        /*Suavizará el movimiento cuando se haga el hover*/
+        box-shadow .12s ease,
+        /*animación a la sombra*/
+        background .12s ease;
+    /*animación al fondo*/
 }
 
 .user-profile-inner {
     display: inline-flex;
+    /*ícono alineado y en fila*/
     align-items: center;
+    /*Centramos*/
     gap: 8px;
+    /*Separación entre componentes*/
     font-weight: 600;
+    /*Negrilla*/
     color: inherit;
+    /*Basicamente hereda el color (me dió pereza poner el colorxd)*/
 }
 
 .user-profile-inner svg {
     width: 20px;
+    /*el svg ancho*/
     height: 20px;
+    /*el svg alto*/
     fill: currentColor;
+    /*El ícono tomará el color del texto*/
     opacity: 0.95;
+    /*Le metemos un poco de transparencia para aligerar el color*/
 }
 
+/*En caso que el usuario pase el mouse o enfoque el mouse del botón*/
 .user-profile:hover,
 .user-profile:focus {
     background: rgba(255, 255, 255, 0.18);
+    /*le pongo un fondo más claro*/
     transform: translateY(-2px);
+    /*flota dos pixeles*/
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-}
-
-/* RESPONSIVE */
-@media (max-width: 991.98px) {
-    .contenedor-navbar .container-fluid {
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
-    }
-
-    .navbar-toggler {
-        margin-left: 0.5rem;
-        margin-right: 50px;
-        padding: 0.35rem 0.6rem;
-        border-radius: 8px;
-    }
-
-    .navbar-toggler-icon {
-        width: 28px;
-        height: 18px;
-        background-size: 28px 18px;
-    }
-
-    .navbar-logo {
-        width: 50px;
-        padding: 5px;
-    }
-
-    .brand-text {
-        font-size: 1rem;
-    }
-
-    .nav-search {
-        margin-top: 10px;
-        width: 100%;
-    }
-
-    .btn-outline-success {
-        width: 100%;
-        margin-top: 8px;
-    }
-
-    .navbar-collapse .user-profile {
-        width: 100%;
-        justify-content: center;
-        padding: 8px 12px;
-        margin-top: 8px;
-        border-radius: 10px;
-    }
-}
-
-@media (max-width: 575.98px) {
-    .user-profile-inner span {
-        display: none;
-    }
-
-    .user-profile {
-        padding: 6px;
-    }
-}
-
-/* REDUCE MOTION */
-@media (prefers-reduced-motion: reduce) {
-
-    .navbar-logo,
-    .nav-link,
-    .navbar-brand {
-        transition: none !important;
-    }
+    /*flota la sombra para que resalte el de transform*/
 }

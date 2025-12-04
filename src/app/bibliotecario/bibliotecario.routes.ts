@@ -5,6 +5,7 @@ import { SidebarComponent } from "./sidebar/sidebar.component";
 import { UsuariosComponent } from "./usuarios/usuarios.component";
 import { PrestamosComponent } from "./prestamos/prestamos.component";
 import { AuthGuard } from "../guards/auth.guard";
+import { TicketsComponent } from "./tickets/tickets.component";
 
 
 export const BibliotecarioRoutes: Routes = [
@@ -13,5 +14,6 @@ export const BibliotecarioRoutes: Routes = [
     { path: 'sidebar', component: SidebarComponent, canActivate: [AuthGuard] },
     { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuard] },
     { path: 'prestamos', component: PrestamosComponent, canActivate: [AuthGuard] },
+    { path: 'tickets', component: TicketsComponent, canActivate: [AuthGuard] },
     { path: "**", component: InicioComponent, canActivate: [AuthGuard] }
 ]

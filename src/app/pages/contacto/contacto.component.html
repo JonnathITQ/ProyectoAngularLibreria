@@ -47,13 +47,56 @@
     </ul>
   </section>
 
-  <section class="map-section" aria-labelledby="map-title">
-    <h3 id="map-title">Ubicación</h3>
-    <div class="map-container">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.795717770147!2d-78.49970392415479!3d-0.19285913541029162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59a6a396e7a79%3A0xb00ae5ab53467167!2sInstituto%20Superior%20Tecnol%C3%B3gico%20Quito%20-%20ITQ!5e0!3m2!1ses!2sec!4v1764284051171!5m2!1ses!2sec"
-        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <section class="ticket-section" aria-labelledby="ticket-title">
+    <h3 id="ticket-title">Envíanos un Ticket</h3>
+    <p class="ticket-subtitle">Déjanos tus reclamos, observaciones o críticas constructivas.</p>
+
+    <div class="form-container">
+      <form #ticketForm="ngForm" (ngSubmit)="onSubmit(ticketForm)">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" #nombre="ngModel" [(ngModel)]="ticket.nombre" required
+            placeholder="Tu nombre">
+          <span *ngIf="nombre.touched && !nombre.valid" class="error-msg">El nombre es obligatorio</span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" #email="ngModel" [(ngModel)]="ticket.email" required email
+            placeholder="tucorreo@ejemplo.com">
+          <span *ngIf="email.touched && !email.valid" class="error-msg">Ingresa un email válido</span>
+        </div>
+
+        <div class="form-group">
+          <label for="asunto">Asunto</label>
+          <input type="text" id="asunto" name="asunto" #asunto="ngModel" [(ngModel)]="ticket.asunto" required
+            placeholder="Asunto del mensaje">
+          <span *ngIf="asunto.touched && !asunto.valid" class="error-msg">El asunto es obligatorio</span>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" #mensaje="ngModel" [(ngModel)]="ticket.mensaje" required rows="5"
+            placeholder="Escribe tu mensaje aquí..."></textarea>
+          <span *ngIf="mensaje.touched && !mensaje.valid" class="error-msg">El mensaje es obligatorio</span>
+        </div>
+
+        <div class="form-group">
+          <label for="image">Adjuntar Imagen (Opcional)</label>
+          <input type="file" id="image" (change)="handleFileInput($any($event.target).files)">
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="submit-btn" [disabled]="!ticketForm.form.valid">Enviar Ticket</button>
+        </div>
+
+        <div *ngIf="status === 'success'" class="alert success">
+          Ticket enviado correctamente.
+        </div>
+        <div *ngIf="status === 'failed'" class="alert error">
+          Error al enviar el ticket.
+        </div>
+      </form>
     </div>
   </section>
 </section>

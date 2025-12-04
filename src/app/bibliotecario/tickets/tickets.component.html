@@ -1,0 +1,90 @@
+<app-sidebar></app-sidebar>
+
+<div class="tickets-container">
+    <header class="tickets-header">
+        <h2>Gestión de Tickets</h2>
+        <p>Revisa y gestiona los reclamos y sugerencias de los usuarios.</p>
+    </header>
+
+    <div class="tickets-grid" *ngIf="tickets.length > 0; else noTickets">
+        <div class="ticket-card" *ngFor="let ticket of tickets" [class.finalizado]="ticket.estado">
+            <div class="ticket-header">
+                <span class="ticket-date">{{ ticket.fecha | date:'medium' }}</span>
+                <span class="ticket-status" [class.done]="ticket.estado" [class.pending]="!ticket.estado">
+                    {{ ticket.estado ? 'Finalizado' : 'Pendiente' }}
+                </span>
+            </div>
+
+            <div class="ticket-body">
+                <h3 class="ticket-subject">{{ ticket.asunto }}</h3>
+                <p class="ticket-message">{{ ticket.mensaje }}</p>
+
+                <div class="ticket-image" *ngIf="ticket.image">
+                    <img [src]="url + 'get-image-ticket/' + ticket.image" alt="Imagen del ticket">
+                </div>
+            </div>
+
+            <div class="ticket-footer">
+                <div class="user-info">
+                    <div class="info-item">
+                        <span class="label">Nombre:</span>
+                        <span class="value">{{ ticket.nombre }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Email:</span>
+                        <span class="value">{{ ticket.email }}</span>
+                    </div>
+                </div>
+
+                <div class="ticket-actions">
+                    <button class="action-btn status-btn" (click)="toggleStatus(ticket)"
+                        [title]="ticket.estado ? 'Marcar como pendiente' : 'Marcar como finalizado'">
+                        <svg *ngIf="!ticket.estado" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <svg *ngIf="ticket.estado" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                    <button class="action-btn delete-btn" (click)="openDeleteModal(ticket._id)" title="Eliminar ticket">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #noTickets>
+        <div class="no-tickets">
+            <p>No hay tickets registrados actualmente.</p>
+        </div>
+    </ng-template>
+
+    <!-- Modal de Confirmación -->
+    <div class="modal-overlay" *ngIf="showModal" (click)="closeDeleteModal()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <div class="modal-header">
+                <h3>Confirmar Eliminación</h3>
+                <button class="close-modal-btn" (click)="closeDeleteModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar este ticket? Esta acción no se puede
+                    deshacer.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" (click)="closeDeleteModal()">Cancelar</button>
+                <button class="btn-confirm" (click)="confirmDelete()">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

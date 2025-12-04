@@ -2,36 +2,39 @@
 <br><br>
 
 <div class="titulo-descripcion">
-  <h2>Bienvenido a Entre Letras</h2>
-  <p>La mejor librería donde podrás leer tus libros favoritos ¡Ahora en Digital!</p>
+  <h2>Bienvenido a Entre Letras</h2>
+  <p>La mejor librería donde podrás leer tus libros favoritos ¡Ahora en Digital!</p>
 </div>
 
 <section class="libros">
 
-  <div *ngFor="let genre of generos; let i = index" class="carousel-section">
-    <div class="section-header">
-      <h3>{{ genre.titulo }}</h3>
-      <div class="controls">
-        <button class="nav-btn prev" (click)="scroll(i, 'prev')" aria-label="Anterior">
-          < </button>
-            <button class="nav-btn next" (click)="scroll(i, 'next')" aria-label="Siguiente"> > </button>
-      </div>
-    </div>
+  <div *ngFor="let genre of generos; let i = index" class="carousel-section">
+    <div class="section-header">
+      <h3>{{ genre.titulo }}</h3>
+      <div class="controls">
+        <button class="nav-btn prev" (click)="scroll(i, 'prev')" aria-label="Anterior">
+          < </button>
+            <button class="nav-btn next" (click)="scroll(i, 'next')" aria-label="Siguiente"> > </button>
+      </div>
+    </div>
 
-    <div class="carousel-viewport">
-      <div class="carousel-track" id="track-{{i}}">
-        <a *ngFor="let book of genre.libros" class="book-card" [attr.href]="book.ubicacion">
-          <div class="thumb">
-            <img [src]="book.portada" [alt]="book.titulo">
-          </div>
-          <div class="meta">
-            <h4 class="title">{{ book.titulo }}</h4>
-            <p class="author">{{ book.autor }}</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="track-{{i}}">
+
+        <a *ngFor="let book of genre.libros"
+           class="book-card"
+           [routerLink]="['/usuario/libros', book._id]">
+          <div class="thumb">
+            <img [src]="book.portada" [alt]="book.titulo">
+          </div>
+          <div class="meta">
+            <h4 class="title">{{ book.titulo }}</h4>
+            <p class="author">{{ book.autor }}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 
 </section>
 

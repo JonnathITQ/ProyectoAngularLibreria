@@ -9,8 +9,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './login-usuario.component.html',
-  styleUrl: './login-usuario.component.css',
-  providers: [UsuarioService]
+  styleUrl: './login-usuario.component.css'
 })
 export class LoginUsuarioComponent {
   public usuario: any;

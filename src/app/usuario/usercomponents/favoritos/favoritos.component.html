@@ -1,0 +1,32 @@
+<app-burguer></app-burguer>
+
+<div class="container mt-4">
+    <h2>Libros Favoritos</h2>
+
+    <div *ngIf="cargando" class="alert alert-info">Cargando tus libros favoritos...</div>
+
+    <div *ngIf="!cargando && librosFavoritos.length === 0" class="alert alert-warning">
+        Aún no has marcado ningún libro como favorito.
+    </div>
+
+    <div class="row" *ngIf="!cargando && librosFavoritos.length > 0">
+        <div class="col-md-4 mb-4" *ngFor="let libro of librosFavoritos">
+            <div class="card h-100">
+                <img [src]="libro.portada" class="card-img-top" alt="Portada de {{ libro.titulo }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ libro.titulo }}</h5>
+                    <p class="card-text"><small class="text-muted">Autor: {{ libro.autor }}</small></p>
+                    <p class="card-text">{{ libro.descripcion | slice:0:100 }}...</p>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <button class="btn btn-sm btn-info" (click)="verDetalle(libro._id)">
+                        Ver Detalles
+                    </button>
+                    <button class="btn btn-sm btn-danger" (click)="quitarDeFavoritos(libro._id)">
+                        Quitar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

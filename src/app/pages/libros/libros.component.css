@@ -17,7 +17,7 @@
 
 }
 
-/* 
+/*
    SECCIÓN DEL TÍTULO Y DESCRIPCIÓN
 */
 .titulo-descripcion {
@@ -47,7 +47,7 @@
     padding: 8px 0;
 }
 
-/* 
+/*
    Header
 */
 .section-header {
@@ -72,7 +72,7 @@
     color: #584a3d;
 }
 
-/* 
+/*
    Flechas
 */
 .controls {
@@ -193,7 +193,7 @@
     box-shadow: 0 0 0 3px var(--ring), 0 18px 36px rgba(24, 32, 45, .24);
 }
 
-/* 
+/*
    IMAGEN DE PORTADA DE CADA LIBRO
 */
 .thumb {

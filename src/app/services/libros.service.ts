@@ -4,7 +4,9 @@ import { urlMongo } from "./urlMongo";
 import { Observable } from "rxjs";
 import { Libros } from "../models/libros.model";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 
 export class LibrosService {
 

@@ -1,0 +1,56 @@
+<app-burguer></app-burguer>
+
+<div class="container mt-5">
+
+    <div *ngIf="cargando" class="alert alert-info text-center">
+        Cargando detalles del libro...
+    </div>
+
+    <div *ngIf="errorCarga" class="alert alert-danger text-center">
+        Error al cargar el libro o ID inválido. Por favor, verifica la URL.
+    </div>
+
+    <!-- Mostrar la tarjeta del libro solo si no está cargando y hay datos -->
+    <div *ngIf="!cargando && !errorCarga && libro.titulo" class="card shadow-sm">
+        <div class="row g-0">
+            <!-- Columna de Portada -->
+            <div class="col-md-4">
+                <!-- Se asume que la portada está en 'libro.portada' o una ruta fija -->
+                <img [src]="libro.portada" class="img-fluid rounded-start" alt="Portada de {{ libro.titulo }}">
+            </div>
+
+            <!-- Columna de Detalles y Acciones -->
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h1 class="card-title">{{ libro.titulo }}</h1>
+                    <hr>
+
+                    <p class="card-text"><strong>Autor:</strong> {{ libro.autor }}</p>
+                    <p class="card-text"><strong>Género:</strong> {{ libro.genero }}</p>
+                    <p class="card-text"><strong>Año de Publicación:</strong> {{ libro.anio_publicacion }}</p>
+                    <p class="card-text"><strong>Disponible:</strong> {{ libro.cantidad_disponible }} unidades</p>
+
+                    <hr>
+
+                    <p class="card-text"><strong>Sinopsis:</strong> {{ libro.descripcion }}</p>
+
+                    <div class="mt-4">
+                        <!-- Botón Abrir PDF -->
+                        <button (click)="abrirPDF()" class="btn btn-primary me-3">
+                            <i class="fas fa-file-pdf"></i> Abrir PDF
+                        </button>
+
+                        <!-- Botón de Favorito (Usa [ngClass] que ahora funciona) -->
+                        <button (click)="toggleFavorito()" class="btn"
+                                [ngClass]="{'btn-warning': esFavorito, 'btn-outline-warning': !esFavorito}">
+                            <i class="fas fa-heart"></i>
+                            <!-- El texto del botón cambia según el estado de 'esFavorito' -->
+                            <span *ngIf="esFavorito"> Quitar de Favoritos</span>
+                            <span *ngIf="!esFavorito"> Marcar como Favorito</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

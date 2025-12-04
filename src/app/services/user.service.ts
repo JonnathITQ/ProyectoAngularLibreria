@@ -149,13 +149,13 @@ export class UsuarioService {
         }
     }
 
-    logout(): void {
-        localStorage.removeItem('token');
-        localStorage.removeItem('usuario');
-    }
-
     isAuthenticated():boolean{
         const token = this.getToken();
         return !!token;
+    }
+
+        logout(): void {
+        localStorage.removeItem('token');
+        localStorage.removeItem('usuario');
     }
 }

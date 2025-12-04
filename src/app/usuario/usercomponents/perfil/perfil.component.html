@@ -1,98 +1,122 @@
 <app-burguer></app-burguer>
-
 <div class="perfil-container">
-    <header class="perfil-header">
-        <h1>Perfil del Usuario</h1>
-        <p>Aquí puedes visualizar y actualizar tu información personal</p>
-    </header>
+    <header class="perfil-header">
+        <h1>Perfil del Usuario</h1>
+        <p>Aquí puedes visualizar y actualizar tu información personal</p>
+    </header>
 
-    <div class="perfil-card">
-        <h2>Información Personal</h2>
+    <div class="perfil-card foto-card">
+        <h2>Foto de Perfil</h2>
+        <div class="foto-preview">
+            <img [src]="urlImagenActual || 'assets/default-profile.png'"
+                 alt="Foto de Perfil"
+                 class="perfil-img">
+        </div>
 
-        <form class="perfil-form" #datosForm="ngForm">
-
-            <div class="form-group">
-                <label>Nombre</label>
-                <input type="text" [(ngModel)]="usuario.nombre" name="nombre" required>
-            </div>
-
-            <div class="form-group">
-                <label>Apellido</label>
-                <input type="text" [(ngModel)]="usuario.apellido" name="apellido" required>
-            </div>
-
-            <div class="form-group">
-                <label>Cédula</label>
-                <input type="text" [value]="usuario.cedula" disabled name="cedula_disabled">
-            </div>
-
-            <div class="form-group">
-                <label>Correo</label>
-                <input type="email" [(ngModel)]="usuario.correo" name="correo" required>
-            </div>
-
-            <div class="form-group">
-                <label>Contraseña</label>
-                <input type="password" [value]="usuario.contrasenia" disabled name="password_disabled">
-            </div>
-            
-            <div class="form-group"></div>
-
-
-            <div *ngIf="mensajeDatos" class="mensaje-feedback" 
-                 [class.success]="mensajeDatos.startsWith('Exito')" 
-                 [class.error]="mensajeDatos.startsWith('Error')">
-                {{ mensajeDatos }}
-            </div>
-
-            <div class="botones">
-                <button type="button" class="btn btn-datos" (click)="editarDatos()" [disabled]="datosForm.invalid">
-                    Guardar Cambios
-                </button>
-
-                <button type="button" class="btn btn-pass" (click)="toggleCambiarPassword()">
-                    {{ mostrarCambioPassword ? 'Cancelar' : 'Cambiar Contraseña' }}
-                </button>
-            </div>
-
+        <form class="foto-form" (ngSubmit)="subirFoto()" #fotoForm="ngForm">
+            <input type="file" (change)="onFileSelected($event)" accept="image/jpeg,image/png,image/gif" required>
+            <p class="small-text">Sube una nueva foto (JPG, PNG o GIF).</p>
         </form>
+
+        <div *ngIf="mensajeFoto" class="mensaje-feedback"
+             [class.success]="mensajeFoto.startsWith('Exito')"
+             [class.error]="mensajeFoto.startsWith('Error')">
+            {{ mensajeFoto }}
+        </div>
     </div>
-    
-    <div *ngIf="mostrarCambioPassword" class="perfil-card password-card mt-4">
-        <h2>Cambiar Contraseña</h2>
-        
-        <form class="perfil-form" #passwordChangeForm="ngForm">
 
-            <div class="form-group">
-                <label>Contraseña Actual</label>
-                <input type="password" [(ngModel)]="passwordData.currentPassword" name="currentPassword" required>
-            </div>
+    <div class="perfil-card">
+        <h2>Información Personal</h2>
 
-            <div class="form-group">
-                <label>Nueva Contraseña</label>
-                <input type="password" [(ngModel)]="passwordData.newPassword" name="newPassword" required minlength="6">
-            </div>
+        <form class="perfil-form" #datosForm="ngForm">
 
-            <div class="form-group">
-                <label>Confirmar Nueva Contraseña</label>
-                <input type="password" [(ngModel)]="passwordData.confirmPassword" name="confirmPassword" required>
-            </div>
-            
-            <div class="form-group"></div>
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" [(ngModel)]="usuario.nombre" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label>Apellido</label>
+                <input type="text" [(ngModel)]="usuario.apellido" name="apellido" required>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Descripción del Perfil</label>
+                <textarea [(ngModel)]="usuario.descripcion" name="descripcion" rows="4" placeholder="Cuéntanos algo sobre ti..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Cédula</label>
+                <input type="text" [value]="usuario.cedula" disabled name="cedula_disabled">
+            </div>
+
+            <div class="form-group">
+                <label>Correo</label>
+                <input type="email" [(ngModel)]="usuario.correo" name="correo" required>
+            </div>
+
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" [value]="usuario.contrasenia" disabled name="password_disabled">
+            </div>
+           
+            <div class="form-group"></div>
 
 
-            <div *ngIf="mensajePassword" class="mensaje-feedback" 
-                 [class.success]="mensajePassword.startsWith('Exito')" 
-                 [class.error]="mensajePassword.startsWith('Error')">
-                {{ mensajePassword }}
-            </div>
+            <div *ngIf="mensajeDatos" class="mensaje-feedback"
+                 [class.success]="mensajeDatos.startsWith('Exito')"
+                 [class.error]="mensajeDatos.startsWith('Error')">
+                {{ mensajeDatos }}
+            </div>
 
-            <div class="botones">
-                <button type="button" class="btn btn-pass" (click)="cambiarPassword()" [disabled]="passwordChangeForm.invalid">
-                    Confirmar Cambio
-                </button>
-            </div>
+            <div class="botones">
+                <button type="button" class="btn btn-datos" (click)="editarDatos()" [disabled]="datosForm.invalid">
+                    Guardar Cambios
+                </button>
 
-        </form>
-    </div>
+                <button type="button" class="btn btn-pass" (click)="toggleCambiarPassword()">
+                    {{ mostrarCambioPassword ? 'Cancelar' : 'Cambiar Contraseña' }}
+                </button>
+            </div>
+
+        </form>
+    </div>
+   
+    <div *ngIf="mostrarCambioPassword" class="perfil-card password-card mt-4">
+        <h2>Cambiar Contraseña</h2>
+       
+        <form class="perfil-form" #passwordChangeForm="ngForm">
+
+            <div class="form-group">
+                <label>Contraseña Actual</label>
+                <input type="password" [(ngModel)]="passwordData.currentPassword" name="currentPassword" required>
+            </div>
+
+            <div class="form-group">
+                <label>Nueva Contraseña</label>
+                <input type="password" [(ngModel)]="passwordData.newPassword" name="newPassword" required minlength="6">
+            </div>
+
+            <div class="form-group">
+                <label>Confirmar Nueva Contraseña</label>
+                <input type="password" [(ngModel)]="passwordData.confirmPassword" name="confirmPassword" required>
+            </div>
+           
+            <div class="form-group"></div>
+
+
+            <div *ngIf="mensajePassword" class="mensaje-feedback"
+                 [class.success]="mensajePassword.startsWith('Exito')"
+                 [class.error]="mensajePassword.startsWith('Error')">
+                {{ mensajePassword }}
+            </div>
+
+            <div class="botones">
+                <button type="button" class="btn btn-pass" (click)="cambiarPassword()" [disabled]="passwordChangeForm.invalid">
+                    Confirmar Cambio
+                </button>
+            </div>
+
+        </form>
+    </div>
 </div>

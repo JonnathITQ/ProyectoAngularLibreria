@@ -55,18 +55,18 @@ export class UsuarioService {
 
     actualizarDatosPerfil(usuario: any): Observable<any> {
 
-        const datosActualizar = {
-            nombre: usuario.nombre,
-            apellido: usuario.apellido,
-            correo: usuario.correo
-        };
+        const datosActualizar = {
+            nombre: usuario.nombre,
+            apellido: usuario.apellido,
+            correo: usuario.correo,
+            descripcion: usuario.descripcion
+        };
 
-        let params = JSON.stringify(datosActualizar);
-        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        let params = JSON.stringify(datosActualizar);
+        let headers = this.getAuthHeaders();
 
-
-        return this._http.put(this.url + 'usuario/' + usuario._id + '/datos', params, { headers: headers });
-    }
+        return this._http.put(this.url + 'usuario/' + usuario._id + '/datos', params, { headers: headers });
+    }
 
 
     cambiarContrasena(id: String, currentPassword: string, newPassword: string): Observable<any> {

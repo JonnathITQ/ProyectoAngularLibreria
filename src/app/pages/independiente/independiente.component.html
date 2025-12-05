@@ -1,11 +1,43 @@
 <app-navbar></app-navbar>
-<br><br>
 
-<section class="titulo-descripcion">
-    <h2>Bienvenido a Entre Letras</h2>
-    <p>La mejor librería donde podrás leer tus libros favoritos ¡Ahora en Digital!</p>
+<div class="container" *ngIf="libro">
+    <div class="book-details">
+        <div class="cover-section">
+            <img [src]="libro.portada" [alt]="libro.titulo" class="book-cover">
+        </div>
+        <div class="info-section">
+            <h1 class="book-title">{{ libro.titulo }}</h1>
 
-</section>
+            <div class="book-meta">
+                <div class="meta-item">
+                    <span class="label">Autor:</span>
+                    <span class="value">{{ libro.autor }}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="label">Género:</span>
+                    <span class="value">{{ libro.genero }}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="label">Año de Publicación:</span>
+                    <span class="value">{{ libro.anio_publicacion }}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="label">Idioma:</span>
+                    <span class="value">{{ libro.idioma }}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="label">Ubicación:</span>
+                    <span class="value">{{ libro.ubicacion }}</span>
+                </div>
+            </div>
+
+            <div class="description-section">
+                <h3>Descripción</h3>
+                <p>{{ libro.descripcion }}</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <br><br>
 <app-footer></app-footer>

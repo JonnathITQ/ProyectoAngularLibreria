@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-recuperar',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterLink, RouterModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './recuperar.component.html',
   styleUrl: './recuperar.component.css',
   providers: [UsuarioService]

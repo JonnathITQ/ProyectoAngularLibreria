@@ -1,19 +1,19 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
-import { EmpleadoService } from '../../services/empleado.service';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-sidebar',
   imports: [CommonModule, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
-  providers: [EmpleadoService]
+  providers: [UsuarioService]
 })
 export class SidebarComponent {
-  isOpen = false; //Estado para abrir y cerrar la sidebar
+  isOpen = false;
 
-  constructor(private _empleadoService: EmpleadoService, private _router: Router) { }
+  constructor(private _usuarioService: UsuarioService, private _router: Router) { }
 
   //Activa la sidebar
   toggleSidebar() {
@@ -25,8 +25,8 @@ export class SidebarComponent {
   }
 
   logout() {
-    this._empleadoService.logout();
-    this._router.navigate(['/login']);
+    this._usuarioService.logout();
+    this._router.navigate(['/login-usuario']);
     this.closeSidebar();
   }
 }

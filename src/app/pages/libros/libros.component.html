@@ -20,7 +20,7 @@
 
     <div class="carousel-viewport">
       <div class="carousel-track" id="track-{{i}}">
-        <a *ngFor="let book of genre.libros" class="book-card" [attr.href]="book.ubicacion">
+        <a *ngFor="let book of genre.libros" class="book-card" [routerLink]="['/independiente', book._id]">
           <div class="thumb">
             <img [src]="book.portada" [alt]="book.titulo">
           </div>

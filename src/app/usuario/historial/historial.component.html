@@ -1,0 +1,44 @@
+<app-sidebar></app-sidebar>
+
+<div class="historial-container">
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="header-section">
+            <div class="title-wrapper">
+                <h2>Historial de Lectura</h2>
+                <p>Libros que has visitado recientemente</p>
+            </div>
+        </div>
+
+        <div class="carousel-section" *ngIf="historialLibros.length > 0">
+            <div class="carousel-grid">
+                <div class="book-card" *ngFor="let libro of historialLibros"
+                    [routerLink]="['/independiente', libro._id]">
+                    <div class="book-cover-wrapper">
+                        <img [src]="libro.portada" [alt]="libro.titulo" class="book-cover">
+                        <div class="book-overlay">
+                            <span class="view-btn">Ver Detalles</span>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <h4>{{ libro.titulo }}</h4>
+                        <p>{{ libro.autor }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="empty-state" *ngIf="historialLibros.length === 0">
+            <div class="empty-icon">🕒</div>
+            <h3>Tu historial está vacío</h3>
+            <p>Explora nuestra colección para empezar tu viaje</p>
+            <button routerLink="/libros" class="explore-btn">
+                Explorar Libros
+            </button>
+        </div>
+    </div>
+</div>

@@ -212,11 +212,6 @@
     transition: transform .35s;
 }
 
-.book-card:hover .thumb img {
-    transform: scale(1.06);
-    /* Pequeño zoom de hover */
-}
-
 /*
    Titulo y autor (el overlay)
 */

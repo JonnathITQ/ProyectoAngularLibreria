@@ -1,0 +1,118 @@
+<app-sidebar></app-sidebar>
+
+<div class="favoritos-container">
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="header-section">
+            <div class="title-wrapper">
+                <h2>Mis Libros Favoritos</h2>
+                <p>Tu colección personal de lecturas amadas</p>
+            </div>
+            <button class="manage-btn" (click)="toggleModal()">
+                <span class="btn-icon">+</span>
+                Gestionar Favoritos
+            </button>
+        </div>
+
+        <!-- Carousel de Favoritos -->
+        <div class="carousel-section" *ngIf="librosFavoritos.length > 0">
+            <div class="carousel-grid">
+                <div class="book-card" *ngFor="let libro of librosFavoritos">
+                    <div class="book-cover-wrapper">
+                        <img [src]="libro.portada" [alt]="libro.titulo" class="book-cover">
+                        <div class="book-overlay">
+                            <button class="remove-btn" (click)="eliminarFavorito(libro)" title="Eliminar de favoritos">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <h4>{{ libro.titulo }}</h4>
+                        <p>{{ libro.autor }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="empty-state" *ngIf="librosFavoritos.length === 0">
+            <div class="empty-icon">📚</div>
+            <h3>Tu colección está vacía</h3>
+            <p>Comienza a agregar los libros que más te gusten</p>
+            <button class="manage-btn-large" (click)="toggleModal()">
+                Explorar Libros
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de Selección -->
+    <div class="modal-overlay" *ngIf="showModal" (click)="toggleModal()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <div class="modal-header">
+                <h3>Gestionar Favoritos</h3>
+                <button class="close-modal" (click)="toggleModal()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="search-icon">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <select id="libroSelect" [(ngModel)]="libroSeleccionado" (change)="onLibroSelect()"
+                            class="custom-select">
+                            <option [ngValue]="null" disabled selected>Buscar un libro...</option>
+                            <option *ngFor="let libro of todosLibros" [ngValue]="libro">
+                                {{ libro.titulo }} - {{ libro.autor }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="preview-section" *ngIf="libroSeleccionado">
+                    <div class="preview-card">
+                        <div class="preview-image">
+                            <img [src]="libroSeleccionado.portada" [alt]="libroSeleccionado.titulo">
+                        </div>
+                        <div class="preview-info">
+                            <div class="preview-header">
+                                <h4>{{ libroSeleccionado.titulo }}</h4>
+                                <span class="author-badge">{{ libroSeleccionado.autor }}</span>
+                            </div>
+                            <p class="description">{{ libroSeleccionado.descripcion }}</p>
+
+                            <button class="action-btn" [class.added]="esFavorito(libroSeleccionado)"
+                                (click)="toggleFavorito(libroSeleccionado)">
+                                <span *ngIf="!esFavorito(libroSeleccionado)">Agregar a Favoritos</span>
+                                <span *ngIf="esFavorito(libroSeleccionado)">Quitar de Favoritos</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="done-btn" (click)="guardarCambios()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>

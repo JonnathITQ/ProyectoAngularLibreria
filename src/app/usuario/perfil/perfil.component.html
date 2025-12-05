@@ -1,0 +1,89 @@
+<app-sidebar></app-sidebar>
+
+<div class="perfil-container">
+    <div class="profile-card">
+        <!-- Banner Section -->
+        <div class="profile-banner"></div>
+
+        <!-- Header Section with Avatar -->
+        <div class="profile-header">
+            <div class="avatar-wrapper">
+                <div class="avatar-container">
+                    <img [src]="usuario?.imagen" alt="Foto de perfil" class="profile-img">
+                    <div class="avatar-overlay">
+                        <label for="fileInput" class="edit-avatar-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                                </path>
+                                <circle cx="12" cy="13" r="4"></circle>
+                            </svg>
+                        </label>
+                    </div>
+                </div>
+                <div class="status-indicator"></div>
+            </div>
+
+            <div class="header-info">
+                <div class="username-wrapper">
+                    <h2>{{ usuario?.nombre }} {{ usuario?.apellido }}</h2>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button class="edit-profile-btn" (click)="mostrarFormPassword = !mostrarFormPassword">
+                    {{ mostrarFormPassword ? 'Cancelar' : 'Editar Perfil' }}
+                </button>
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="profile-body">
+            <!-- Upload Actions (Hidden by default unless file selected) -->
+            <input type="file" (change)="fileChangeEvent($event)" id="fileInput" accept="image/*" hidden>
+            <div *ngIf="imagenSubir" class="upload-alert">
+                <span>Imagen seleccionada: <strong>{{ imagenSubir.name }}</strong></span>
+                <div class="upload-buttons">
+                    <button (click)="subirImagen()" class="save-btn">Guardar</button>
+                    <button (click)="imagenSubir = null" class="cancel-btn">Cancelar</button>
+                </div>
+            </div>
+
+            <!-- User Info Grid -->
+            <div class="info-section">
+                <div class="section-title">SOBRE MÍ</div>
+
+                <div class="info-grid">
+                    <div class="info-group">
+                        <label>CORREO ELECTRÓNICO</label>
+                        <div class="info-value">
+                            {{ usuario?.correo }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Password Change Form -->
+                <div class="password-section" *ngIf="mostrarFormPassword">
+                    <div class="section-title">SEGURIDAD</div>
+                    <div class="password-form">
+                        <div class="input-group">
+                            <label>NUEVA CONTRASEÑA</label>
+                            <input type="password" [(ngModel)]="nuevaContrasenia" placeholder="••••••••">
+                        </div>
+                        <div class="form-actions">
+                            <button (click)="actualizarPassword()" class="confirm-btn" [disabled]="!nuevaContrasenia">
+                                Actualizar Contraseña
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="message-box" *ngIf="mensaje" [class.error]="mensaje.includes('Error')">
+                    {{ mensaje }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

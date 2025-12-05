@@ -5,7 +5,9 @@ import { Observable } from "rxjs";
 import { Usuarios } from "../models/usuarios";
 
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class UsuarioService {
     public url: string;
 
@@ -77,11 +79,11 @@ export class UsuarioService {
     }
 
     setToken(token: string): void {
-        localStorage.setItem('token', token);
+        localStorage.setItem('token_usuario', token);
     }
 
     getToken(): string | null {
-        return localStorage.getItem('token');
+        return localStorage.getItem('token_usuario');
     }
 
     setUsuario(usuario: any): void {
@@ -98,7 +100,14 @@ export class UsuarioService {
     }
 
     logout(): void {
-        localStorage.removeItem('token');
+        localStorage.removeItem('token_usuario');
         localStorage.removeItem('usuario');
+    }
+
+    //Autenticación
+    //Retornará true si existe un token y false si no
+    isAuthenticated(): boolean {
+        const token = this.getToken();
+        return !!token; //el !! convierte el valor a booleano
     }
 }

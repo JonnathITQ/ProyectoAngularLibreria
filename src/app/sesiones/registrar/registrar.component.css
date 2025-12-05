@@ -1,4 +1,3 @@
-/* Registrar: tonos claros y detalles en azul */
 :host {
   display: block;
   min-height: 100vh;
@@ -71,4 +70,19 @@
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
+}
+
+/* Botón para ir al home */
+.btn-regresar {
+  position: fixed;
+  top: 20px;
+  right: 113em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: rgb(219, 165, 47);
+  color: #2b2b2b;
+  text-decoration: none;
 }

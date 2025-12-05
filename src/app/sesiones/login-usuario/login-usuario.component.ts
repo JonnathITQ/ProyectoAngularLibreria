@@ -36,7 +36,7 @@ export class LoginUsuarioComponent {
           this._usuarioService.setToken(response.token);
           this._usuarioService.setUsuario(response.usuario);
 
-          this._router.navigate(['/']); // Redirect to home or user dashboard
+          this._router.navigate(['/usuario']);
         } else {
           console.warn("Token missing in response");
           this.status = 'failed';

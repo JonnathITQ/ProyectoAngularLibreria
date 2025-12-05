@@ -1,0 +1,67 @@
+<app-sidebar></app-sidebar>
+
+<div class="inicio-container">
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="welcome-section">
+            <h1>Bienvenido, <span class="highlight">{{ usuario?.nombre }}</span></h1>
+            <p class="subtitle">Tu biblioteca personal te espera</p>
+        </div>
+
+        <div class="cards-container">
+            <div class="card" routerLink="/usuario/favoritos">
+                <div class="card-content">
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-heart">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3>Favoritos</h3>
+                    <p>Tu colección personal de lecturas amadas</p>
+                </div>
+                <div class="card-glow"></div>
+            </div>
+
+            <div class="card" routerLink="/usuario/historial">
+                <div class="card-content">
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-clock">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Historial</h3>
+                    <p>Retoma tus lecturas recientes</p>
+                </div>
+                <div class="card-glow"></div>
+            </div>
+
+            <div class="card" routerLink="/usuario/perfil">
+                <div class="card-content">
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-user">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h3>Perfil</h3>
+                    <p>Personaliza tu identidad</p>
+                </div>
+                <div class="card-glow"></div>
+            </div>
+        </div>
+    </div>
+</div>

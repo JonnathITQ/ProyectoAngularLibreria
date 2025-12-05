@@ -32,12 +32,12 @@ export class EmpleadoService {
 
     //guarda el token en el localstorage del navegador
     setToken(token: string): void {
-        localStorage.setItem('token', token);
+        localStorage.setItem('token_empleado', token);
     }
 
     //Recupera el token desde el localstorage
     getToken(): string | null {
-        return localStorage.getItem('token');
+        return localStorage.getItem('token_empleado');
     }
 
     //Guarda la información del empleado en el localstorage como JSON
@@ -58,7 +58,7 @@ export class EmpleadoService {
     //Cerrar sesión
     //Elimina el token y el empleado del local storage
     logout(): void {
-        localStorage.removeItem('token');
+        localStorage.removeItem('token_empleado');
         localStorage.removeItem('empleado');
     }
 

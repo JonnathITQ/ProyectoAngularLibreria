@@ -16,12 +16,13 @@ import { urlMongo } from '../../services/urlMongo';
   standalone: true
 })
 export class MAddEditLibComponent {
-  public libro: Libros;
-  public status: string = "";
-  public libroOriginal: Libros | null = null;
-  public archivoSeleccionado: File | null = null;
-  public url: string = urlMongo.url;
+  public libro: Libros;// Modelo del Libros
+  public status: string = "";// Estado(success / failed)
+  public libroOriginal: Libros | null = null;// Guarda temporalmente el libro original cuando se está editando
+  public archivoSeleccionado: File | null = null;// Imagen seleccionada del input file
+  public url: string = urlMongo.url;//URL base
 
+  // Evento que emite al padre cuando se crea o actualiza un libro
   @Output() libroGuardado = new EventEmitter<void>();
 
   constructor(
@@ -29,22 +30,25 @@ export class MAddEditLibComponent {
     private _logsService: LogsService,
     private _empleadoService: EmpleadoService
   ) {
+    // Se inicializa el objeto libro vacío
     this.libro = new Libros('', '', '', '', '', 0, '', 0, '', '');
   }
-
+  // Obtiene el empleado que está realizando la acción (para logs)
   private getActor() {
     return this._empleadoService.getEmpleado();
   }
-
+  // Guarda el archivo seleccionado del input type="file"
   onFileSelected(event: any) {
     this.archivoSeleccionado = event.target.files[0];
   }
-
+  //1) Registrar Libro
   registrarLibro(form: any) {
+    // Primero guarda el libro sin la imagen
     this._librosService.guardarLibros(this.libro).subscribe(
       response => {
         if (response.libro) {
           const libroId = response.libro._id;
+          // Si también se subirá imagen
           if (this.archivoSeleccionado) {
             this._librosService.subirImagen(libroId, this.archivoSeleccionado).subscribe(
               result => {
@@ -56,6 +60,7 @@ export class MAddEditLibComponent {
               }
             );
           } else {
+            // Si no hay imagen, finaliza de inmediato
             this.finalizarRegistro(form, response.libro);
           }
         } else {
@@ -69,14 +74,16 @@ export class MAddEditLibComponent {
     );
   }
 
+  // Termina el proceso de crear libro
   finalizarRegistro(form: any, libroCreado: Libros) {
     this.status = 'success';
-    this.logsCrearLibros(libroCreado);
-    this.libroGuardado.emit();
-    this.resetForm(form);
-    this.cerrarModal();
+    this.logsCrearLibros(libroCreado);// Registrar log de acción
+    this.libroGuardado.emit();// Notificar al componente padre que el libro fue guardado
+    this.resetForm(form);// Resetear formulario
+    this.cerrarModal();// Cerrar el modal
   }
 
+  //segundo: Actualizar libro
   actualizarLibro() {
     this._librosService.actualizarLibros(this.libro).subscribe(
       response => {
@@ -104,22 +111,26 @@ export class MAddEditLibComponent {
     );
   }
 
+  // Termina actualización
   finalizarActualizacion(libroActualizado: Libros) {
     this.status = 'success';
-    this.logsActualizarLibros(libroActualizado);
-    this.libroGuardado.emit();
+    this.logsActualizarLibros(libroActualizado); // Log de edición
+    this.libroGuardado.emit();// Notifica al padre
+    // Limpieza
     this.libro = new Libros('', '', '', '', '', 0, '', 0, '', '');
     this.libroOriginal = null;
     this.archivoSeleccionado = null;
+    //Cierra el modal
     this.cerrarModal();
   }
-
+  // Cargar libro seleccionado al formulario
   seleccionarLibro(libro: Libros) {
-    this.libro = { ...libro };
-    this.libroOriginal = { ...libro };
+    this.libro = { ...libro };// Copia editable
+    this.libroOriginal = { ...libro };// Copia original
     this.archivoSeleccionado = null;
   }
 
+  // Resetea el formulario y variables
   resetForm(form?: any) {
     if (form) {
       form.reset();
@@ -128,7 +139,7 @@ export class MAddEditLibComponent {
     this.libroOriginal = null;
     this.archivoSeleccionado = null;
   }
-
+  // Cierra modal presionando botón "close"
   cerrarModal() {
     const btnCerrar = document.getElementById('closeModalBtn');
     if (btnCerrar) {
@@ -151,6 +162,7 @@ export class MAddEditLibComponent {
     });
   }
 
+  // Registrar log de creación
   private logsActualizarLibros(actualizarLibro: Libros): void {
     var actor = this.getActor();
     this._logsService.crearLogs({
@@ -159,6 +171,11 @@ export class MAddEditLibComponent {
       accion: 'EDITAR_LIBRO',
       recurso: 'libro',
       recurso_id: actualizarLibro._id,
+      //El $ hace que sea un template string para poder interpolar
+      // ${actor?.nombre} = toma el nombre del actor, si existe.
+      // ${actor?.apellido} = su apellido.
+      // ${actualizarLibro.titulo} = título del libro actualizado.
+      // ${actor?.rol} = rol del usuario que hizo la acción.
       descripcion: `El ${actor?.nombre} ${actor?.apellido} actualizo el libro "${actualizarLibro.titulo}" (rol: ${actor?.rol})`
     }).subscribe({
       next: () => console.log('Log de actualizacion de libro registrado'),

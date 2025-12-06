@@ -78,30 +78,37 @@ export class UsuarioService {
         return this._http.post(this.url + 'recuperar-contrasenia', params, { headers: headers });
     }
 
+    //Guarda el token del usuario en el localStorage del navegador
     setToken(token: string): void {
-        localStorage.setItem('token_usuario', token);
+        localStorage.setItem('token_usuario', token);// 'token_usuario' será la clave con la que se almacenará el token
     }
 
+    // Obtiene el token guardado en el localStorage
     getToken(): string | null {
-        return localStorage.getItem('token_usuario');
+        return localStorage.getItem('token_usuario');// Si no existe, localStorage devuelve null
     }
 
+    // Guarda un objeto "usuario" en el localStorage
     setUsuario(usuario: any): void {
-        localStorage.setItem('usuario', JSON.stringify(usuario));
+        localStorage.setItem('usuario', JSON.stringify(usuario));// Como localStorage solo almacena strings, se convierte a JSON
     }
 
+    // Obtiene el usuario almacenado en el localStorage
     getUsuario(): any {
-        let usuario = localStorage.getItem('usuario');
+        let usuario = localStorage.getItem('usuario');// Se obtiene el valor guardado
+        // Si existe, se lo convierte nuevamente a objeto
         if (usuario) {
             return JSON.parse(usuario);
+            // Si no existe, retorna null
         } else {
             return null;
         }
     }
 
+    // Cierra la sesión del usuario
     logout(): void {
-        localStorage.removeItem('token_usuario');
-        localStorage.removeItem('usuario');
+        localStorage.removeItem('token_usuario'); //Quita el token
+        localStorage.removeItem('usuario'); //Quita las credenciales que estaban en formato JSON
     }
 
     //Autenticación

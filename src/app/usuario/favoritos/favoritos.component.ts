@@ -8,10 +8,13 @@ import { Libros } from '../../models/libros';
 import { urlMongo } from '../../services/urlMongo';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
+import { CarouselFavoritosComponent } from '../carousel-favoritos/carousel-favoritos.component';
+import { ModalSeleccionComponent } from '../modal-seleccion/modal-seleccion.component';
+
 @Component({
   selector: 'app-favoritos',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, SidebarComponent],
+  imports: [CommonModule, FormsModule, RouterModule, SidebarComponent, CarouselFavoritosComponent, ModalSeleccionComponent],
   templateUrl: './favoritos.component.html',
   styleUrl: './favoritos.component.css',
   providers: [UsuarioService, LibrosService]
@@ -23,9 +26,6 @@ export class FavoritosComponent implements OnInit {
   public todosLibros: Libros[] = [];
   public url: string;
   public showModal: boolean = false;
-
-  // New property for selected book in dropdown
-  public libroSeleccionado: any = null;
 
   constructor(
     private _usuarioService: UsuarioService,
@@ -81,26 +81,6 @@ export class FavoritosComponent implements OnInit {
 
   toggleModal() {
     this.showModal = !this.showModal;
-    if (this.showModal) {
-      this.libroSeleccionado = null;
-    }
-  }
-
-  onLibroSelect() {
-    // Logic when a book is selected from dropdown (optional, mostly for UI updates)
-  }
-
-  esFavorito(libro: any): boolean {
-    if (!libro) return false;
-    return this.librosFavoritos.some(f => f._id === libro._id);
-  }
-
-  toggleFavorito(libro: any) {
-    if (this.esFavorito(libro)) {
-      this.librosFavoritos = this.librosFavoritos.filter(f => f._id !== libro._id);
-    } else {
-      this.librosFavoritos.push(libro);
-    }
   }
 
   eliminarFavorito(libro: any) {
@@ -117,7 +97,6 @@ export class FavoritosComponent implements OnInit {
     const idsFavoritos = this.librosFavoritos.map(l => l._id);
     const usuarioActualizado = { ...this.usuario, libros_favorito: idsFavoritos };
 
-    // Remove password to avoid hashing it again or sending empty
     delete usuarioActualizado.contrasenia;
 
     this._usuarioService.actualizarUsuario(usuarioActualizado).subscribe(

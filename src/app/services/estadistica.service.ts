@@ -23,7 +23,7 @@ export class EstadisticasService {
 
     private getHeaders(): HttpHeaders {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        const token = this._empleadoService.getToken(); // ← de tu login
+        const token = this._empleadoService.getToken();
 
         if (token) {
             headers = headers.set('Authorization', 'Bearer ' + token);
@@ -32,10 +32,15 @@ export class EstadisticasService {
         return headers;
     }
 
+
+    // Obtener las estadísticas de los usuarios - GET
+    // http://localhost:3600/usuarios-estadistica
     getEstadisticaUsuarios(): Observable<any> {
         return this._http.get(this.url + 'usuarios-estadistica', { headers: this.getHeaders() });
     }
 
+    // Obtener las estadísticas de los libros más populares - GET
+    // http://localhost:3600/librosFavoritos-estadistica
     getlibrosFavoritos(): Observable<any> {
         return this._http.get(this.url + 'librosFavoritos-estadistica', { headers: this.getHeaders() });
     }

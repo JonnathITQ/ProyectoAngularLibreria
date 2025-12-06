@@ -30,14 +30,19 @@ export class LogsService {
         return headers;
     }
 
+    // Visualizar la lista de logs - get
+    // http://localhost:3600/logs
     verLogs(): Observable<any> {
         return this._http.get(this.url + 'logs', { headers: this.getHeaders() });
     }
 
+    // Obtener las estadísticas de los usuarios - POST
     crearLogs(data: any): Observable<any> {
         return this._http.post(this.url + 'logs', JSON.stringify(data), { headers: this.getHeaders() });
     }
 
+    // Visualizar logs en específico - get
+    // http://localhost:3600/logs/:id
     verLog(id: string): Observable<any> {
         return this._http.get(this.url + 'logs/' + id, { headers: this.getHeaders() });
     }

@@ -1,9 +1,8 @@
-/* Global Container */
 .container {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Card Styling */
+
 .card {
     border: none;
     border-radius: 15px;
@@ -12,10 +11,6 @@
     background-color: rgba(255, 255, 255, 0.95);
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(95, 61, 34, 0.12);
-}
 
 .card-header {
     background-color: rgba(255, 228, 196, 0.92);
@@ -26,8 +21,6 @@
     padding: 1rem 1.5rem;
 }
 
-
-/* Table Styling */
 .table {
     margin-bottom: 0;
 }

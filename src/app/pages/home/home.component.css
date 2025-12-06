@@ -103,7 +103,7 @@
     animation: float 3s ease-in-out infinite;
 }
 
-/* Buttons */
+/* BOTONES */
 .cta-button {
     display: inline-block;
     padding: 12px 30px;
@@ -133,7 +133,7 @@
     box-shadow: 0 6px 12px rgba(231, 76, 60, 0.4);
 }
 
-/* Animations */
+/* ANIMACIÓN COPIADA DE UNA LIBRERÍA OPEN SOURCE */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -160,7 +160,7 @@
     }
 }
 
-/* Responsive */
+/* EL RESPONSIVE */
 @media (max-width: 768px) {
     .content-wrapper {
         flex-direction: column;

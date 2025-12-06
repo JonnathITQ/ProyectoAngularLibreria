@@ -5,7 +5,7 @@
         <!-- Banner Section -->
         <div class="profile-banner"></div>
 
-        <!-- Header Section with Avatar -->
+        <!-- Contenedor de la información -->
         <div class="profile-header">
             <div class="avatar-wrapper">
                 <div class="avatar-container">
@@ -41,7 +41,6 @@
 
         <!-- Content Section -->
         <div class="profile-body">
-            <!-- Upload Actions (Hidden by default unless file selected) -->
             <input type="file" (change)="fileChangeEvent($event)" id="fileInput" accept="image/*" hidden>
             <div *ngIf="imagenSubir" class="upload-alert">
                 <span>Imagen seleccionada: <strong>{{ imagenSubir.name }}</strong></span>
@@ -51,7 +50,7 @@
                 </div>
             </div>
 
-            <!-- User Info Grid -->
+            <!-- Información del Usuario -->
             <div class="info-section">
                 <div class="section-title">SOBRE MÍ</div>
 
@@ -64,7 +63,7 @@
                     </div>
                 </div>
 
-                <!-- Password Change Form -->
+                <!-- Formulario para Cambiar contraseña -->
                 <div class="password-section" *ngIf="mostrarFormPassword">
                     <div class="section-title">SEGURIDAD</div>
                     <div class="password-form">

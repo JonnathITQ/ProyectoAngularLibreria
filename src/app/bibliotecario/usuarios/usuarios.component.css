@@ -2,7 +2,6 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Card Styling for Main Content */
 .card-custom {
     border: none;
     border-radius: 15px;
@@ -18,7 +17,7 @@ h2 {
     padding-bottom: 1rem;
 }
 
-/* Buttons */
+/* BOTONES */
 .btn-primary-custom {
     background-color: #af7b3f;
     border: none;
@@ -46,7 +45,7 @@ h2 {
     transform: scale(1.1);
 }
 
-/* Table Styling */
+/* TABLA */
 .table-responsive {
     border-radius: 15px;
     overflow: hidden;
@@ -60,7 +59,6 @@ h2 {
 
 .table thead th {
     background-color: #af7b3f;
-    /* Using the primary color for header */
     color: white;
     border: none;
     font-weight: 600;
@@ -93,7 +91,7 @@ h2 {
     letter-spacing: 0.5px;
 }
 
-/* Modal Styling */
+/* MODAL */
 .modal-content {
     border-radius: 15px;
     border: none;
@@ -131,7 +129,7 @@ h2 {
     margin-bottom: 0.5rem;
 }
 
-/* Form Switch Styling */
+/* FORMULARIO */
 .form-check-input {
     width: 3em;
     height: 1.5em;

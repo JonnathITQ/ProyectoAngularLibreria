@@ -20,7 +20,7 @@
     padding: 1rem 1.5rem;
 }
 
-/* Buttons */
+/* BOTONES */
 .btn-primary-custom {
     background-color: #af7b3f;
     border: none;
@@ -47,7 +47,7 @@
     transform: scale(1.05);
 }
 
-/* Table Styling */
+/* TABLA */
 .table {
     margin-bottom: 0;
 }
@@ -67,7 +67,7 @@
     background-color: rgba(255, 228, 196, 0.2);
 }
 
-/* Modal Styling */
+/* MODAL */
 .modal-content {
     border-radius: 15px;
     border: none;
@@ -96,7 +96,7 @@
     box-shadow: 0 0 0 0.25rem rgba(250, 176, 92, 0.25);
 }
 
-/* Section Dividers in Form */
+/* Section del formulario */
 .section-title {
     font-size: 1.1rem;
     color: #1d4f6b;
@@ -111,7 +111,7 @@
     margin-top: 0;
 }
 
-/* Image Preview */
+/* Imagen para ver */
 .img-preview-container {
     border: 2px dashed rgba(95, 61, 34, 0.2);
     border-radius: 8px;

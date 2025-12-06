@@ -6,24 +6,25 @@ import { EmpleadoService } from "./empleado.service";
 
 @Injectable()
 export class AdminService {
-    public url: string;
+    public url: string; //Aquí guardaremos la url base de la API que hicimos en el backend
 
+    //Con este constructor haremos inyección de dependencias
     constructor(
-        private _http: HttpClient,
-        private _empleadoService: EmpleadoService
+        private _http: HttpClient, //Para las peticiones HTTP
+        private _empleadoService: EmpleadoService //Para obtener el token del usuario logeado
     ) {
-        this.url = urlMongo.url;
+        this.url = urlMongo.url; //Decimos que la url base está en el archivo urlMongo.ts
     }
 
-    private getHeaders(): HttpHeaders {
-        let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        var token = this._empleadoService.getToken();
+    private getHeaders(): HttpHeaders { //Construimos los métodos
+        let headers = new HttpHeaders().set('Content-Type', 'application/json'); //Cabecera para indicar que se enviará o recibirá JSON
+        var token = this._empleadoService.getToken(); //Se obtendrá el token del usuario ya logueado
 
-        if (token) {
+        if (token) { //Si hay token, se agrega al header como Authorization: Bearer + token
             headers = headers.set('Authorization', 'Bearer ' + token);
         }
 
-        return headers;
+        return headers; //Se devuelven los headers listos para usarse en una petición
     }
 
     //Lista de admin - GET

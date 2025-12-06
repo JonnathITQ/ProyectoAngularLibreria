@@ -1,0 +1,273 @@
+/* Botón hamburguesa */
+.hamburger-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 228, 196, 0.9);
+    /* Más sólido para evitar repintados costosos */
+    border: 1px solid rgba(95, 61, 34, 0.1);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    box-shadow: 0 2px 8px rgba(95, 61, 34, 0.1);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease;
+    opacity: 1;
+    visibility: visible;
+    /* backdrop-filter removido por performance */
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    /* Hardware acceleration */
+}
+
+.hamburger-btn:hover {
+    background: #ffe4c4;
+    transform: translateY(-2px) translateZ(0);
+    box-shadow: 0 4px 12px rgba(95, 61, 34, 0.15);
+}
+
+/* Ocultar hamburguesa cuando sidebar está abierta */
+.hamburger-btn.active {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.9) rotate(90deg) translateZ(0);
+    pointer-events: none;
+}
+
+/* Ícono de la hamburguesa */
+.hamburger-line {
+    width: 18px;
+    height: 2px;
+    background: #553f35;
+    border-radius: 2px;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.5s;
+    /* backdrop-filter removido por performance */
+    will-change: opacity;
+    transform: translateZ(0);
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    /* Fondo sólido con gradiente para evitar blending costoso */
+    background: linear-gradient(to bottom, #ffe4c4 0%, #fff8e7 100%);
+    border-right: 1px solid rgba(95, 61, 34, 0.1);
+    box-shadow: 4px 0 24px rgba(95, 61, 34, 0.08);
+    z-index: 1000;
+    transform: translate3d(-100%, 0, 0);
+    /* translate3d fuerza GPU */
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+}
+
+.sidebar.open {
+    transform: translate3d(0, 0, 0);
+}
+
+
+/* Header */
+.sidebar-header {
+    padding: 24px 20px;
+    border-bottom: 1px solid rgba(95, 61, 34, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+}
+
+.sidebar-title {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #553f35;
+}
+
+.close-btn {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(95, 61, 34, 0.1);
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s;
+    color: #553f35;
+}
+
+.close-btn:hover {
+    background: #fff;
+    transform: rotate(90deg);
+}
+
+/* Navigation */
+.sidebar-nav {
+    flex: 1;
+    padding: 16px 12px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* Optimización de scroll */
+    -webkit-overflow-scrolling: touch;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #3f3f3f;
+    font-weight: 600;
+    transition: transform 0.3s ease, background-color 0.3s, color 0.3s;
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0);
+}
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #ac9772, #9c6836);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+    transform-origin: bottom;
+}
+
+.nav-item:hover {
+    background: rgba(201, 152, 79, 0.1);
+    color: #2b2b2b;
+    transform: translateX(4px) translateZ(0);
+}
+
+.nav-item:hover::before {
+    transform: scaleY(1);
+}
+
+.nav-item.active {
+    background: rgba(255, 255, 255, 0.6);
+    color: #1d4f6b;
+    box-shadow: 0 2px 8px rgba(95, 61, 34, 0.05);
+}
+
+.nav-item.active::before {
+    transform: scaleY(1);
+}
+
+.nav-item svg {
+    flex-shrink: 0;
+    stroke-width: 2;
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover svg {
+    transform: scale(1.1);
+}
+
+/* Footer */
+.sidebar-footer {
+    padding: 16px 12px;
+    border-top: 1px solid rgba(95, 61, 34, 0.08);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-footer a {
+    text-decoration: none;
+    color: rgb(102, 61, 14);
+}
+
+.logout-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: linear-gradient(to right, #d18f50 0%, #e2a75a 100%);
+    border: 1px solid rgba(95, 61, 34, 0.12);
+    border-radius: 10px;
+    color: #2b2b2b;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s;
+    transform: translateZ(0);
+    text-decoration: none;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px) translateZ(0);
+    box-shadow: 0 4px 12px rgba(95, 61, 34, 0.12);
+}
+
+/* Scrollbar */
+.sidebar-nav::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background: rgba(95, 61, 34, 0.1);
+    border-radius: 10px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+    background: rgba(95, 61, 34, 0.25);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 260px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

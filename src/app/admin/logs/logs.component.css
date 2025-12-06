@@ -1,0 +1,85 @@
+/* Fuente general */
+.container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Tarjeta principal */
+.card-custom {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(95, 61, 34, 0.08);
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+}
+
+/* Título */
+h2 {
+    color: #ce9851;
+    font-weight: 700;
+    border-bottom: 2px solid rgba(255, 228, 196, 0.5);
+    padding-bottom: 1rem;
+}
+
+/* Botón principal (Recargar) */
+.btn-primary-custom {
+    background-color: #af7b3f;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary-custom:hover {
+    background-color: #e09b4b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Tabla */
+.table-responsive {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+    margin-bottom: 0;
+    background-color: white;
+}
+
+.table thead th {
+    background-color: #af7b3f;
+    color: white;
+    border: none;
+    font-weight: 600;
+    padding: 1rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.table tbody tr:hover {
+    background-color: rgba(255, 228, 196, 0.2);
+}
+
+.table td {
+    padding: 1rem;
+    vertical-align: middle;
+    color: #555;
+}
+
+/* Badges */
+.badge {
+    padding: 0.5em 0.8em;
+    border-radius: 6px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}

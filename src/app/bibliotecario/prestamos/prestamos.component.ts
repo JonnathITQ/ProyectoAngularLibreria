@@ -8,13 +8,15 @@ import { LibrosService } from '../../services/libros.service';
 import { UsuarioService } from '../../services/usuario.service';
 import { Libros } from '../../models/libros';
 import { Usuarios } from '../../models/usuarios';
+import { LogsService } from '../../services/logs.service';
+import { EmpleadoService } from '../../services/empleado.service';
 
 @Component({
   selector: 'app-prestamos',
   imports: [SidebarComponent, CommonModule, FormsModule],
   templateUrl: './prestamos.component.html',
   styleUrl: './prestamos.component.css',
-  providers: [PrestamosService, LibrosService, UsuarioService],
+  providers: [PrestamosService, LibrosService, UsuarioService, EmpleadoService, LogsService],
   standalone: true
 })
 export class PrestamosComponent implements OnInit {
@@ -28,7 +30,9 @@ export class PrestamosComponent implements OnInit {
   constructor(
     private _prestamosService: PrestamosService,
     private _librosService: LibrosService,
-    private _usuarioService: UsuarioService
+    private _usuarioService: UsuarioService,
+    private _logsService: LogsService,
+    private _empleadoService: EmpleadoService
   ) {
     this.prestamo = new Prestamos('', '', '', '', 0, false);
   }
@@ -37,6 +41,10 @@ export class PrestamosComponent implements OnInit {
     this.obtenerPrestamos();
     this.obtenerLibros();
     this.obtenerUsuarios();
+  }
+
+  private getActor() {
+    return this._empleadoService.getEmpleado();
   }
 
   obtenerPrestamos() {
@@ -164,5 +172,61 @@ export class PrestamosComponent implements OnInit {
     if (btnCerrar) {
       btnCerrar.click();
     }
+  }
+
+  //logs para eliminar, actualizar y crear un prestamo
+  private logsEliminarPrestamo(prestamoEliminado: Prestamos | undefined): void {
+    var actor = this.getActor();
+    var libro = prestamoEliminado?.libros_id as any;
+    var usuario = prestamoEliminado?.usuario_id as any;
+    this._logsService.crearLogs({
+      actor_id: actor?._id,
+      actor_tipo: 'Empleados',
+      accion: 'ELIMINAR_PRESTAMO',
+      recurso: 'prestamo',
+      recurso_id: prestamoEliminado?._id,
+      descripcion: prestamoEliminado
+        ? `El empleado ${actor?.nombre} ${actor?.apellido} (rol: ${actor?.rol}) eliminó el préstamo del libro "${libro?.titulo}" al usuario "${usuario?.nombre} ${usuario?.apellido}".`
+        : `El empleado ${actor?.nombre} ${actor?.apellido} (rol: ${actor?.rol}) eliminó un préstamo.`
+    }).subscribe({
+      next: () => console.log('Log de eliminación de préstamo registrado'),
+      error: (err) => console.error('Error al registrar log de préstamo', err)
+    });
+  }
+
+  private logsActualizarPrestamos(prestamoActualizado: Prestamos): void {
+    const actor = this.getActor();
+    var usuario = prestamoActualizado.usuario_id as any;
+    var libro = prestamoActualizado.libros_id as any;
+    this._logsService.crearLogs({
+      actor_id: actor?._id,
+      actor_tipo: 'Empleados',
+      accion: 'EDITAR_PRESTAMO',
+      recurso: 'prestamo',
+      recurso_id: prestamoActualizado._id,
+      descripcion: `El empleado ${actor?.nombre} ${actor?.apellido} con rol: ${actor?.rol}) actualizó el préstamo del libro "${libro?.titulo}" al usuario "${usuario?.nombre} ${usuario?.apellido}".`
+    }).subscribe({
+      next: () => console.log('Log de actualización de préstamo registrado'),
+      error: (err) => console.error('Error al registrar log de préstamo', err)
+    });
+  }
+
+  private logsCrearPrestamos(prestamoCreado: Prestamos): void {
+    var actor = this.getActor();
+    // Si el backend hace populate, obtener sus datos:
+    var usuario = prestamoCreado.usuario_id as any;
+    var libro = prestamoCreado.libros_id as any;
+
+    this._logsService.crearLogs({
+      actor_id: actor?._id,
+      actor_tipo: 'Empleados',
+      accion: 'CREAR_PRESTAMO',
+      recurso: 'prestamo',
+      recurso_id: prestamoCreado._id,
+      descripcion: `El empleado ${actor?.nombre} ${actor?.apellido} con rol: ${actor?.rol}) registró un préstamo del libro "${libro?.titulo}" al usuario "${usuario?.nombre} ${usuario?.apellido}".`
+    }).subscribe({
+      next: () => console.log('Log de creación de préstamo registrado'),
+      error: (err) => console.error('Error al registrar log de préstamo', err)
+    });
   }
 }

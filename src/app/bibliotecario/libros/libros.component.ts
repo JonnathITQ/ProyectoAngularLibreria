@@ -5,13 +5,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Libros } from '../../models/libros';
 import { urlMongo } from '../../services/urlMongo';
+import { LogsService } from '../../services/logs.service';
+import { EmpleadoService } from '../../services/empleado.service';
 
 @Component({
   selector: 'app-libros',
   imports: [SidebarComponent, CommonModule, FormsModule],
   templateUrl: './libros.component.html',
   styleUrl: './libros.component.css',
-  providers: [LibrosService],
+  providers: [LibrosService, EmpleadoService, LogsService],
   standalone: true
 })
 export class LibrosComponent implements OnInit {
@@ -27,13 +29,19 @@ export class LibrosComponent implements OnInit {
   public Math = Math;
 
   constructor(
-    private _librosService: LibrosService
+    private _librosService: LibrosService,
+    private _logsService: LogsService,
+    private _empleadoService: EmpleadoService
   ) {
     this.libro = new Libros('', '', '', '', '', 0, '', 0, '', '');
   }
 
   ngOnInit(): void {
     this.obtenerLibros();
+  }
+
+  private getActor() {
+    return this._empleadoService.getEmpleado();
   }
 
   obtenerLibros() {
@@ -170,4 +178,54 @@ export class LibrosComponent implements OnInit {
       btnCerrar.click();
     }
   }
+
+  //Metodos
+  private logsCrearLibros(crearLibro: Libros): void {
+    //Use de this para obtener una instancia del un servico, en este caso el servico de logs XD
+    //lo mismo con el actor pero este es un poco distinto proque creamos la variable para obtener el dato que se obtuvo del metodo getActor
+    var actor = this.getActor();
+    this._logsService.crearLogs({
+      actor_id: actor?._id,
+      actor_tipo: 'Empleados',
+      accion: 'CREAR_LIBRO',
+      recurso: 'libro',
+      recurso_id: crearLibro._id,
+      descripcion: `El ${actor?.nombre} ${actor?.apellido} creó el libro "${crearLibro.titulo}" (rol: ${actor?.rol})`
+    }).subscribe({
+      next: () => console.log('Log de creación de libro registrado'),
+      error: (err) => console.error('Error al registrar log', err)
+    });
+  }
+
+  private logsActualizarLibros(actualizarLibro: Libros): void {
+    var actor = this.getActor();
+    this._logsService.crearLogs({
+      actor_id: actor?._id,
+      actor_tipo: 'Empleados',
+      accion: 'EDITAR_LIBRO',
+      recurso: 'libro',
+      recurso_id: actualizarLibro._id,
+      descripcion: `El ${actor?.nombre} ${actor?.apellido} actualizo el libro "${actualizarLibro.titulo}" (rol: ${actor?.rol})`
+    }).subscribe({
+      next: () => console.log('Log de actualizacion de libro registrado'),
+      error: (err) => console.error('Error al actualizar log', err)
+    });
+  }
+
+
+  private logsEliminarLibros(libroEliminar: Libros): void {
+    var actor = this.getActor();
+    this._logsService.crearLogs({
+      actor_id: actor?._id,
+      actor_tipo: 'Empleados',
+      accion: 'ELIMINAR_LIBRO',
+      recurso: 'libro',
+      recurso_id: libroEliminar._id,
+      descripcion: `El empleado ${actor?.nombre} ${actor?.apellido} elimino el libro "${libroEliminar.titulo}" (rol: ${actor?.rol})`
+    }).subscribe({
+      next: () => console.log('Log de eliminar libros registrado'),
+      error: (err) => console.error('Error al crear log de eliminar', err)
+    });
+  }
 }
+

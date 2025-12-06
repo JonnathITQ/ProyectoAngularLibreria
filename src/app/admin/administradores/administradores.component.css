@@ -1,0 +1,48 @@
+/* Global Container */
+.container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(95, 61, 34, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(95, 61, 34, 0.12);
+}
+
+.card-header {
+    background-color: rgba(255, 228, 196, 0.92);
+    border-bottom: 1px solid rgba(95, 61, 34, 0.08);
+    color: #2b2b2b;
+    font-weight: 700;
+    border-radius: 15px 15px 0 0 !important;
+    padding: 1rem 1.5rem;
+}
+
+
+/* Table Styling */
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: rgba(255, 228, 196, 0.5);
+    color: #1d4f6b;
+    border-bottom: 2px solid rgba(95, 61, 34, 0.1);
+    font-weight: 600;
+}
+
+.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(255, 228, 196, 0.2);
+}

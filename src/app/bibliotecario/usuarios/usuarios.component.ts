@@ -4,6 +4,8 @@ import { Usuarios } from '../../models/usuarios';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { LogsService } from '../../services/logs.service';
+import { EmpleadoService } from '../../services/empleado.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -11,7 +13,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
   imports: [CommonModule, FormsModule, SidebarComponent],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css',
-  providers: [UsuarioService]
+  providers: [UsuarioService, LogsService, EmpleadoService]
 })
 export class UsuariosComponent implements OnInit {
 
@@ -22,7 +24,9 @@ export class UsuariosComponent implements OnInit {
   public idUsuarioAEliminar: String | null = null; //Puse esto para guardar el ID y eliminarlo temporalmente
 
   constructor(
-    private usuarioService: UsuarioService //Esto accedera a los métodos del CRUD que hice en el usuario.service.ts
+    private usuarioService: UsuarioService, //Esto accedera a los métodos del CRUD que hice en el usuario.service.ts
+    private _logsService: LogsService,
+    private _empleadoService: EmpleadoService
   ) {
     //Iniciamos con datos vacíos y como todo es un string, se quedará ''
     this.usuario = new Usuarios('', '', '', '', '', '', '');
@@ -30,6 +34,11 @@ export class UsuariosComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerUsuarios(); //Apenas inicie el componente, cargará los usuarios
+  }
+
+  // Obtener info del empleado logueado, a traves del loclahost del servicio empleado (actor para los logs)
+  private getActor() {
+    return this._empleadoService.getEmpleado();
   }
 
   obtenerUsuarios() {
@@ -134,5 +143,52 @@ export class UsuariosComponent implements OnInit {
     if (btnCerrar) {
       btnCerrar.click();
     }
+  }
+
+  private logsCrearUsuarios(usuariosCreados: Usuarios): void {
+    var actor = this.getActor();
+    this._logsService.crearLogs({
+      actor_id: actor?._id,
+      actor_tipo: 'Empleados',
+      accion: 'CREAR_USUARIO',
+      recurso: 'usuario',
+      recurso_id: usuariosCreados._id,
+      descripcion: `El empleado ${actor?.nombre} ${actor?.apellido} (rol: ${actor?.rol}) registró al usuario "${usuariosCreados?.nombre} ${usuariosCreados?.apellido}" con cédula ${usuariosCreados?.cedula}.`
+    }).subscribe({
+      next: () => console.log('Log de creación de usuario registrado'),
+      error: (err) => console.error('Error al registrar log de usuario', err)
+    });
+  }
+
+  private logsActualizarUsuarios(usuariosActualizados: Usuarios): void {
+    var actor = this.getActor();
+    this._logsService.crearLogs({
+      actor_id: actor?._id,
+      actor_tipo: 'Empleados',
+      accion: 'EDITAR_USUARIO',
+      recurso: 'usuario',
+      recurso_id: usuariosActualizados._id,
+      descripcion: `El empleado ${actor?.nombre} ${actor?.apellido} (rol: ${actor?.rol}) actualizó los datos del usuario "${usuariosActualizados?.nombre} ${usuariosActualizados?.apellido}" con cédula ${usuariosActualizados?.cedula}.`
+    }).subscribe({
+      next: () => console.log('Log de actualización de usuario registrado'),
+      error: (err) => console.error('Error al registrar log de usuario', err)
+    });
+  }
+
+  private logsEliminarUsuarios(usuarioEliminado: Usuarios | undefined): void {
+    var actor = this.getActor();
+    this._logsService.crearLogs({
+      actor_id: actor?._id,
+      actor_tipo: 'Empleados',
+      accion: 'ELIMINAR_USUARIO',
+      recurso: 'usuario',
+      recurso_id: usuarioEliminado?._id,
+      descripcion: usuarioEliminado
+        ? `El empleado ${actor?.nombre} ${actor?.apellido} (rol: ${actor?.rol}) eliminó al usuario "${usuarioEliminado?.nombre} ${usuarioEliminado?.apellido}" con cédula ${usuarioEliminado?.cedula}.`
+        : `El empleado ${actor?.nombre} ${actor?.apellido} (rol: ${actor?.rol}) eliminó un usuario.`
+    }).subscribe({
+      next: () => console.log('Log de eliminación de usuario registrado'),
+      error: (err) => console.error('Error al registrar log de usuario', err)
+    });
   }
 }

@@ -1,0 +1,19 @@
+.container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(95, 61, 34, 0.08);
+  border: none;
+}
+
+.card-header {
+  background-color: rgba(255, 228, 196, 0.92);
+  font-weight: 600;
+}
+
+canvas {
+  max-width: 350px;
+  max-height: 350px;
+}

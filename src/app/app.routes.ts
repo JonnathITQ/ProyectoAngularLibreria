@@ -31,6 +31,11 @@ export const routes: Routes = [
         path: "usuario", loadChildren: () => import('./usuario/usuario.routes') //Rutas para el usuario
             .then(m => m.UsuarioRoutes)
     },
+    {
+        path: "administrador", loadChildren: //Rutas para el bibliotecario
+            () => import('./admin/admin.routes')
+                .then(m => m.ADMIN_ROUTES)
+    },
     { path: "seleccionar", component: SeleccionLoginComponent },
     { path: "**", component: HomeComponent }, //Validación al error de rutas, manda al inicio
 ];

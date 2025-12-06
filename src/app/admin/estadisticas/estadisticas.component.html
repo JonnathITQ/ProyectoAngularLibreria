@@ -1,0 +1,48 @@
+<app-sidebar></app-sidebar>
+
+<br>
+<br>
+
+<h1 style="text-align: center;">Graficas</h1>
+<div class="container mt-4">
+  <h2 class="text-dark fw-bold mb-4">Estadísticas de Usuarios</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <h5 class="mb-0">Usuarios registrados</h5>
+    </div>
+    <div class="card-body">
+      <p class="mb-3" >
+        Total de usuarios en el sistema:
+        {{ totalUsuarios }}</p>
+        <br>
+
+      <div class="d-flex justify-content-center">
+        <!-- El id es para que el canvas sepa donde dibujar-->
+        <canvas id="usuarios" width="50" height="50"></canvas>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+
+  <h2 class="text-dark fw-bold mb-4">Estadísticas de libros favoritos</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <h5 class="mb-0">Libros más marcados como favoritos</h5>
+    </div>
+    <div class="card-body">
+      <p class="mb-3">
+        Se muestran los libros con mayor número de veces marcados como favorito.
+      </p>
+
+      <div class="d-flex justify-content-center">
+        <!-- Ojo: id distinto -->
+        <canvas id="librosFavoritos" width="50" height="50"></canvas>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+</div>

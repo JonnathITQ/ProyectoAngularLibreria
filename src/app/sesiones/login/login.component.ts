@@ -28,19 +28,27 @@ export class LoginComponent {
   onSubmit(form: any) {
     this._empleadoService.login(this.empleado).subscribe(
       response => {
-        if (response.token) {
+        console.log('Respuesta login =>', response);   //DEBUG
+
+        if (response.token && response.empleado) {
           this.status = 'success';
           this._empleadoService.setToken(response.token);
           this._empleadoService.setEmpleado(response.empleado);
 
-          // Redirigir según el rol si es necesario, por ahora a bibliotecario
-          this._router.navigate(['/bibliotecario']);
+          let rol: string = response.empleado.rol || '';
+          rol = rol.toLowerCase().trim();
+
+          if (rol === 'admin') {
+            this._router.navigate(['/administrador']);
+          } else {
+            this._router.navigate(['/bibliotecario']);
+          }
         } else {
           this.status = 'failed';
         }
       },
       error => {
-        console.log(<any>error);
+        console.log('Error en login =>', error);
         this.status = 'failed';
       }
     );

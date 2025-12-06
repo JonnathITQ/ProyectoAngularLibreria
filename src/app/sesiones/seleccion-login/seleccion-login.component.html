@@ -1,33 +1,53 @@
+<!-- Botón para regresar al home -->
 <a routerLink="/home" class="btn-regresar">Regresar</a>
+<!-- Contenedor principal que tendrá un margen en la superior -->
 <div class="container mt-5">
+    <!-- Centrar el contenido horizontalmente -->
     <div class="row justify-content-center">
+        <!-- El contenido ocupa 8 columnas en pantallas medianas -->
         <div class="col-md-8">
+            <!-- Título principal -->
             <h2 class="text-center mb-4">Seleccione su tipo de cuenta</h2>
+            <!-- Card para iniciar como empleado -->
             <div class="row">
+                <!-- Ocupa 6 columnas y tiene margen inferior -->
                 <div class="col-md-6 mb-3">
+                    <!-- Redirige al login de empleado usando routerLink -->
                     <div class="card h-100 text-center p-4 shadow-sm hover-card" style="cursor: pointer;"
                         [routerLink]="['/login']">
+                        <!-- Contenedor interno de la tarjeta -->
                         <div class="card-body">
+                            <!-- Icono de persona con traje (es de FontAwesome) -->
                             <i class="fas fa-user-tie fa-4x mb-3 text-primary"></i>
+                            <!-- Título de la card -->
                             <h3 class="card-title">Empleado</h3>
+                            <!-- Descripción -->
                             <p class="card-text">Acceso para bibliotecarios y personal administrativo.</p>
+                            <!-- Botón-->
                             <button class="btn btn-outline-primary mt-2">Ingresar como Empleado</button>
+
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <!-- Card para iniciar como USUARIO -->
+                <div class="col-md-6 mb-3"><!-- Ocupa 6 columnas -->
+
                     <div class="card h-100 text-center p-4 shadow-sm hover-card" style="cursor: pointer;"
-                        [routerLink]="['/login-usuario']">
+                        [routerLink]="['/login-usuario']"><!-- Redirige al login de usuario -->
+
                         <div class="card-body">
+
                             <i class="fas fa-user fa-4x mb-3 text-success"></i>
+
                             <h3 class="card-title">Usuario</h3>
+
                             <p class="card-text">Acceso para lectores y usuarios de la biblioteca.</p>
+
                             <button class="btn btn-outline-success mt-2">Ingresar como Usuario</button>
+
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="text-center mt-4">
             </div>
         </div>
     </div>

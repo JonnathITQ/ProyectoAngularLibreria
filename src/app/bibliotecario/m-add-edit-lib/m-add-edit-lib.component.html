@@ -1,0 +1,97 @@
+<!-- Modal de Registro/Edición -->
+<div class="modal fade" id="libroModal" tabindex="-1" aria-labelledby="libroModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="libroModalLabel">
+                    {{ libro._id ? 'Actualizar Libro' : 'Registrar Nuevo Libro' }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    id="closeModalBtn"></button>
+            </div>
+            <div class="modal-body">
+                <form #libroForm="ngForm" (ngSubmit)="libro._id ? actualizarLibro() : registrarLibro(libroForm)">
+
+                    <!-- Sección: Información Principal -->
+                    <h6 class="section-title"><i class="bi bi-info-circle me-2"></i>Información Principal</h6>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="titulo" class="form-label fw-bold">Título</label>
+                            <input type="text" class="form-control" name="titulo" #titulo="ngModel"
+                                [(ngModel)]="libro.titulo" required placeholder="Ingrese el título">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="autor" class="form-label fw-bold">Autor</label>
+                            <input type="text" class="form-control" name="autor" #autor="ngModel"
+                                [(ngModel)]="libro.autor" required placeholder="Ingrese el autor">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label fw-bold">Descripción</label>
+                        <textarea class="form-control" name="descripcion" #descripcion="ngModel"
+                            [(ngModel)]="libro.descripcion" rows="3" placeholder="Ingrese una descripción"></textarea>
+                    </div>
+
+                    <!-- Sección: Detalles del Libro -->
+                    <h6 class="section-title"><i class="bi bi-list-ul me-2"></i>Detalles</h6>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="genero" class="form-label fw-bold">Género</label>
+                            <input type="text" class="form-control" name="genero" #genero="ngModel"
+                                [(ngModel)]="libro.genero" required placeholder="Ingrese el género">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="anio_publicacion" class="form-label fw-bold">Año Publicación</label>
+                            <input type="number" class="form-control" name="anio_publicacion"
+                                #anio_publicacion="ngModel" [(ngModel)]="libro.anio_publicacion" required
+                                placeholder="Ej: 2023">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="idioma" class="form-label fw-bold">Idioma</label>
+                            <input type="text" class="form-control" name="idioma" #idioma="ngModel"
+                                [(ngModel)]="libro.idioma" required placeholder="Ej: Español">
+                        </div>
+                    </div>
+
+                    <!-- Sección: Inventario y Ubicación -->
+                    <h6 class="section-title"><i class="bi bi-box-seam me-2"></i>Inventario y Ubicación</h6>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="cantidad_disponible" class="form-label fw-bold">Cantidad Disponible</label>
+                            <input type="number" class="form-control" name="cantidad_disponible"
+                                #cantidad_disponible="ngModel" [(ngModel)]="libro.cantidad_disponible" required
+                                placeholder="Ej: 10">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="ubicacion" class="form-label fw-bold">Ubicación</label>
+                            <input type="text" class="form-control" name="ubicacion" #ubicacion="ngModel"
+                                [(ngModel)]="libro.ubicacion" required placeholder="Ej: Estante A1">
+                        </div>
+                    </div>
+
+                    <!-- Sección: Portada -->
+                    <h6 class="section-title"><i class="bi bi-image me-2"></i>Portada del Libro</h6>
+                    <div class="mb-3">
+                        <label for="portada" class="form-label fw-bold">Seleccionar Imagen</label>
+                        <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
+
+                        <div class="img-preview-container mt-3" *ngIf="libro.portada || archivoSeleccionado">
+                            <p class="text-muted mb-2" *ngIf="libro.portada && !archivoSeleccionado">Portada Actual:</p>
+                            <p class="text-muted mb-2" *ngIf="archivoSeleccionado">Nueva Portada Seleccionada</p>
+
+                            <img *ngIf="libro.portada && !archivoSeleccionado"
+                                [src]="url + 'tener-portada/' + libro.portada" alt="Portada actual" class="img-preview">
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary-custom" [disabled]="libroForm.invalid">
+                            {{ libro._id ? 'Actualizar Datos' : 'Registrar Libro' }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

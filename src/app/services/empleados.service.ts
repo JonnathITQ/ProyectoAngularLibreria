@@ -61,6 +61,7 @@ export class EmpleadosService {
     }
 
     //Borrar libros - DELETE
+    //http://localhost:3600/libros/:id
     deleteEmpleados(id: String): Observable<any> {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this._http.delete(this.url + 'empleados/' + id, { headers: this.getHeaders() });

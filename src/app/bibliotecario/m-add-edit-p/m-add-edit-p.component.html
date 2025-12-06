@@ -1,0 +1,91 @@
+<!-- Modal Agregar/Editar Préstamo -->
+<div class="modal fade" id="prestamoModal" tabindex="-1" aria-labelledby="prestamoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="prestamoModalLabel">{{ prestamo._id ? 'Editar' : 'Nuevo' }} Préstamo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    id="closeModalBtn"></button>
+            </div>
+            <div class="modal-body">
+                <form #prestamoForm="ngForm"
+                    (ngSubmit)="prestamo._id ? actualizarPrestamo() : registrarPrestamo(prestamoForm)">
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="usuario" class="form-label">Usuario <span class="text-danger">*</span></label>
+                            <select class="form-select" id="usuario" name="usuario" #usuario="ngModel"
+                                [(ngModel)]="prestamo.usuario_id" required>
+                                <option value="" disabled selected>Seleccione un usuario</option>
+                                <option *ngFor="let usuario of listaUsuarios" [value]="usuario._id">
+                                    {{ usuario.nombre }} {{ usuario.apellido }} - {{ usuario.cedula }}
+                                </option>
+                            </select>
+                            <div *ngIf="usuario.touched && usuario.invalid" class="text-danger small mt-1">
+                                <div *ngIf="usuario.errors?.['required']">El usuario es requerido.</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="libro" class="form-label">Libro <span class="text-danger">*</span></label>
+                            <select class="form-select" id="libro" name="libro" #libro="ngModel"
+                                [(ngModel)]="prestamo.libros_id" required>
+                                <option value="" disabled selected>Seleccione un libro</option>
+                                <option *ngFor="let libro of listaLibros" [value]="libro._id">
+                                    {{ libro.titulo }} - {{ libro.autor }}
+                                </option>
+                            </select>
+                            <div *ngIf="libro.touched && libro.invalid" class="text-danger small mt-1">
+                                <div *ngIf="libro.errors?.['required']">El libro es requerido.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción <span
+                                class="text-danger">*</span></label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" #descripcion="ngModel"
+                            [(ngModel)]="prestamo.descripcion" rows="3" required
+                            placeholder="Detalles del préstamo..."></textarea>
+                        <div *ngIf="descripcion.touched && descripcion.invalid" class="text-danger small mt-1">
+                            <div *ngIf="descripcion.errors?.['required']">La descripción es requerida.</div>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center">
+                        <div class="col-md-6 mb-3">
+                            <label for="horas" class="form-label">Horas de Préstamo <span
+                                    class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="horas" name="horas" #horas="ngModel"
+                                    [(ngModel)]="prestamo.horasPrestamo" required min="1">
+                                <span class="input-group-text">Hrs</span>
+                            </div>
+                            <div *ngIf="horas.touched && horas.invalid" class="text-danger small mt-1">
+                                <div *ngIf="horas.errors?.['required']">Las horas son requeridas.</div>
+                                <div *ngIf="horas.errors?.['min']">Debe ser al menos 1 hora.</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="multa-container form-check form-switch">
+                                <label class="form-check-label multa-label" for="multa">
+                                    <i class="fas fa-exclamation-circle me-2"></i>¿Tiene Multa?
+                                </label>
+                                <input class="form-check-input" type="checkbox" role="switch" id="multa" name="multa"
+                                    [(ngModel)]="prestamo.multa">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-0 px-0 pb-0 mt-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary-custom px-4" [disabled]="!prestamoForm.form.valid">
+                            <i class="fas fa-save me-2"></i> {{ prestamo._id ? 'Actualizar' : 'Guardar' }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

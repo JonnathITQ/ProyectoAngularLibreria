@@ -7,6 +7,9 @@ import { routes } from './app/app.routes';
 
 bootstrapApplication(AppComponent, {
   providers: [
+    // Registra el servicio HttpClient, pero usando la API fetch del navegador
+    // en lugar de la implementación clásica basada en XMLHttpRequest.
+    // Esto permite usar HttpClient normalmente, pero con fetch por debajo.
     provideHttpClient(withFetch()),
     provideRouter(routes)
   ]

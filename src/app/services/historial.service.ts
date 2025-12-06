@@ -8,9 +8,9 @@ export class HistorialService {
     public url: string;
 
     constructor(
-        private _http: HttpClient
+        private _http: HttpClient //Para peticiones HTTP
     ) {
-        this.url = urlMongo.url;
+        this.url = urlMongo.url;//url base de mongito
     }
 
     // Agregar al historial - POST

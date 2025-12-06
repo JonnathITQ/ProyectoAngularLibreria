@@ -6,7 +6,7 @@
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="mb-0">Gestión de Usuarios</h2>
                 <button class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#userModal"
-                    (click)="resetForm(userForm)">
+                    (click)="abrirModalNuevo()">
                     <i class="bi bi-person-plus-fill me-2"></i>Registrar Usuario
                 </button>
             </div>
@@ -32,11 +32,11 @@
                             <td>{{ user.correo }}</td>
                             <td>
                                 <button class="btn btn-sm btn-info btn-action me-2 text-white" data-bs-toggle="modal"
-                                    data-bs-target="#userModal" (click)="seleccionarUsuario(user)" title="Editar">
+                                    data-bs-target="#userModal" (click)="abrirModalEditar(user)" title="Editar">
                                     <i class="bi bi-pencil-square"></i> Editar
                                 </button>
                                 <button class="btn btn-sm btn-danger btn-action" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal" (click)="prepararEliminacion(user._id)"
+                                    data-bs-target="#deleteModal" (click)="abrirModalEliminar(user._id, user)"
                                     title="Eliminar">
                                     <i class="bi bi-trash"></i> Eliminar
                                 </button>
@@ -49,87 +49,5 @@
     </div>
 </div>
 
-<!-- Modal de Registro/Edición -->
-<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="userModalLabel">
-                    {{ usuario._id ? 'Actualizar Usuario' : 'Registrar Nuevo Usuario' }}
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    id="closeModalBtn"></button>
-            </div>
-            <div class="modal-body">
-                <form #userForm="ngForm" (ngSubmit)="usuario._id ? actualizarUsuario() : registrarUsuario(userForm)">
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="nombre" #nombre="ngModel"
-                                [(ngModel)]="usuario.nombre" required placeholder="Ingrese el nombre">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="apellido" class="form-label">Apellido <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="apellido" #apellido="ngModel"
-                                [(ngModel)]="usuario.apellido" required placeholder="Ingrese el apellido">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="cedula" class="form-label">Cédula <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="cedula" #cedula="ngModel"
-                                [(ngModel)]="usuario.cedula" required pattern="[0-9]{10}" minlength="10" maxlength="10"
-                                placeholder="Ingrese la cédula (10 dígitos)">
-                            <div *ngIf="cedula.touched && cedula.invalid" class="text-danger small mt-1">
-                                <div *ngIf="cedula.errors?.['required']">La cédula es requerida.</div>
-                                <div *ngIf="cedula.errors?.['pattern']">La cédula debe contener solo números.</div>
-                                <div *ngIf="cedula.errors?.['minlength'] || cedula.errors?.['maxlength']">La cédula debe
-                                    tener exactamente 10 dígitos.</div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="correo" class="form-label">Correo <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control" name="correo" #correo="ngModel"
-                                [(ngModel)]="usuario.correo" required placeholder="Ingrese el correo">
-                        </div>
-                    </div>
-
-                    <div class="mb-3" *ngIf="!usuario._id">
-                        <label for="contrasenia" class="form-label">Contraseña <span
-                                class="text-danger">*</span></label>
-                        <input type="password" class="form-control" name="contrasenia" #contrasenia="ngModel"
-                            [(ngModel)]="usuario.contrasenia" required placeholder="Ingrese la contraseña">
-                    </div>
-
-                    <div class="modal-footer border-0 px-0 pb-0 mt-3">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary-custom px-4" [disabled]="userForm.invalid">
-                            <i class="fas fa-save me-2"></i> {{ usuario._id ? 'Actualizar' : 'Guardar' }}
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal de Confirmación de Eliminación -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    id="closeDeleteModalBtn"></button>
-            </div>
-            <div class="modal-body">
-                <p>¿Estás seguro que quieres eliminar este usuario? Esta acción no se puede deshacer.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" (click)="confirmarEliminacion()">Eliminar</button>
-            </div>
-        </div>
-    </div>
-</div>
+<app-m-add-edit-us (usuarioGuardado)="obtenerUsuarios()"></app-m-add-edit-us>
+<app-m-delete-us (usuarioEliminado)="obtenerUsuarios()"></app-m-delete-us>

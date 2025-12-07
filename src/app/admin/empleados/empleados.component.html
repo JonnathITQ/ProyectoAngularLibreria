@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="text-dark fw-bold">Gestión de Empleados</h2>
         <button class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#userModal"
-            (click)="resetForm(userForm)">
+            (click)="abrirModalRegistro()">
             <i class="bi bi-person-plus-fill me-2"></i>Registrar Empleado
         </button>
     </div>
@@ -55,103 +55,5 @@
     </div>
 </div>
 
-<!-- Modal de Registro/Edición -->
-<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="userModalLabel">
-                    {{ empleado._id ? 'Actualizar Usuario' : 'Registrar Nuevo Empleado' }}
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    id="closeModalBtn"></button>
-            </div>
-            <div class="modal-body">
-                <form #userForm="ngForm" (ngSubmit)="empleado._id ? actualizarEmpleado() : registrarEmpleado(userForm)">
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label fw-bold">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" #nombre="ngModel"
-                            [(ngModel)]="empleado.nombre" required placeholder="Ingrese el nombre">
-                    </div>
-                    <div class="mb-3">
-                        <label for="apellido" class="form-label fw-bold">Apellido</label>
-                        <input type="text" class="form-control" name="apellido" #apellido="ngModel"
-                            [(ngModel)]="empleado.apellido" required placeholder="Ingrese el apellido">
-                    </div>
-                    <div class="mb-3">
-                        <label for="cedula" class="form-label fw-bold">Cédula</label>
-                        <input type="text" class="form-control" name="cedula" #cedula="ngModel"
-                            [(ngModel)]="empleado.cedula" required pattern="[0-9]{10}" minlength="10" maxlength="10"
-                            placeholder="Ingrese la cédula (10 dígitos)">
-                        <div *ngIf="cedula.touched && cedula.invalid" class="text-danger small mt-1">
-                            <div *ngIf="cedula.errors?.['required']">La cédula es requerida.</div>
-                            <div *ngIf="cedula.errors?.['pattern']">La cédula debe contener solo números.</div>
-                            <div *ngIf="cedula.errors?.['minlength'] || cedula.errors?.['maxlength']">La cédula debe
-                                tener exactamente 10 dígitos.</div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="tipoSangre" class="form-label fw-bold">Tipo de Sangre</label>
-                        <select type="text" class="form-control" name="tipoSangre" #tipoSangre="ngModel"
-                            [(ngModel)]="empleado.tipoSangre" required>
-                            <option value="" disabled selected>Seleccione una opcion</option>
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                            <option value="B+">B-</option>
-                            <option value="AB+">AB+</option>
-                            <option value="AB-">AB-</option>
-                            <option value="O+">O+</option>
-                            <option value="O-">O-</option>
-                        </select>
-
-                    </div>
-                    <div class="mb-3">
-                        <label for="seguroMedico" class="form-label fw-bold">Seguro medico</label>
-                        <select type="text" class="form-control" name="seguroMedico" #seguroMedico="ngModel"
-                            [(ngModel)]="empleado.seguroMedico" required>
-                            <option value="" disable selected>Seleccione una opcion</option>
-                            <option value="Si">Si</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="correo" class="form-label fw-bold">Correo</label>
-                        <input type="email" class="form-control" name="correo" #correo="ngModel"
-                            [(ngModel)]="empleado.correo" required placeholder="Ingrese el correo">
-                    </div>
-                    <div class="mb-3" *ngIf="!empleado._id">
-                        <label for="contrasenia" class="form-label fw-bold">Contraseña</label>
-                        <input type="password" class="form-control" name="contrasenia" #contrasenia="ngModel"
-                            [(ngModel)]="empleado.contrasenia" required placeholder="Ingrese la contraseña">
-                    </div>
-                    <div class="d-grid gap-2 mt-4">
-                        <button type="submit" class="btn btn-primary-custom" [disabled]="userForm.invalid">
-                            {{ empleado._id ? 'Actualizar Datos' : 'Registrar empleado' }}
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal de Confirmación de Eliminación -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"
-                    id="closeDeleteModalBtn"></button>
-            </div>
-            <div class="modal-body">
-                <p>¿Estás seguro que quieres eliminar este empleado? Esta acción no se puede deshacer.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" (click)="confirmarEliminacion()">Eliminar</button>
-            </div>
-        </div>
-    </div>
-</div>
+<app-modal-registro-edit-empleado (empleadoGuardado)="obtenerEmpleados()"></app-modal-registro-edit-empleado>
+<app-modal-eliminar-empleado (empleadoEliminado)="obtenerEmpleados()"></app-modal-eliminar-empleado>

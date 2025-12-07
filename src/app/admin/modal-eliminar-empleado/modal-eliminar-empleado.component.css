@@ -1,0 +1,14 @@
+.modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    border-radius: 15px 15px 0 0;
+    border-bottom: 1px solid rgba(95, 61, 34, 0.08);
+}
+
+.modal-title {
+    font-weight: 700;
+}

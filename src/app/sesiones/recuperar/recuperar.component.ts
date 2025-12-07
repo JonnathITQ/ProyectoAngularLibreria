@@ -34,7 +34,7 @@ export class RecuperarComponent {
       response => {
         if (response.message) {
           this.status = 'success';
-          this.errorMessage = ""; // Clear error on success
+          this.errorMessage = ""; // borramos el error
           form.reset();
           setTimeout(() => {
             this._router.navigate(['/login-usuario']);
